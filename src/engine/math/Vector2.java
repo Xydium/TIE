@@ -34,6 +34,18 @@ public class Vector2
 	}
 	
 	/**
+	 * Calculates the dot product of this vector and
+	 * the given vector
+	 * 
+	 * @param v2 the vector to dot product with
+	 * @return the dot product of the two vectors
+	 */
+	public float dot(Vector2 v2)
+	{
+		return x * v2.x + y * v2.y;
+	}
+	
+	/**
 	 * Gets the magnitude (length) of the vector
 	 * 
 	 * @return the magnitude of the vector
@@ -118,6 +130,54 @@ public class Vector2
 	public Vector2 div(Vector2 v2)
 	{
 		return new Vector2(x / v2.x, y / v2.y);
+	}
+	
+	/**
+	 * Adds the given number to this vector and
+	 * creates a new sum vector to be returned
+	 * 
+	 * @param n The number to be added
+	 * @return The sum vector
+	 */
+	public Vector2 add(float n)
+	{
+		return new Vector2(x + n, y + n);
+	}
+	
+	/**
+	 * Subtracts the given number to this vector and
+	 * creates a new difference vector to be returned
+	 * 
+	 * @param n The number to be subtracted
+	 * @return The difference vector
+	 */
+	public Vector2 sub(float n)
+	{
+		return new Vector2(x - n, y - n);
+	}
+	
+	/**
+	 * Multiplies the given number by this vector and
+	 * creates a new product vector to be returned
+	 * 
+	 * @param n The number to be multiplied by
+	 * @return The product vector
+	 */
+	public Vector2 mul(float n)
+	{
+		return new Vector2(x * n, y * n);
+	}
+	
+	/**
+	 * Divides this vector by the given number and
+	 * creates a new quotient vector to be returned
+	 * 
+	 * @param n The number to be divided by
+	 * @return The quotient vector
+	 */
+	public Vector2 div(float n)
+	{
+		return new Vector2(x / n, y / n);
 	}
 	
 	/**
