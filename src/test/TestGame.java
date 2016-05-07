@@ -10,9 +10,16 @@ public class TestGame extends Game
 {
 	private Texture myTexture;
 	private Shader myShader;
+	private float scale;
+	
+	private float counter;
 	
 	public void start()
 	{
+		scale = 1.f; 
+		
+		counter = 0.0f;
+		
 		myTexture = new Texture("test.png");
 		myShader = new Shader("testShader");
 	}
@@ -29,6 +36,12 @@ public class TestGame extends Game
 		}
 	}
 	
+	public void update()
+	{
+		counter += 0.01f;
+		myShader.setUniform("num", counter);
+	}
+	
 	public void render()
 	{
 		myTexture.bind();
@@ -36,16 +49,16 @@ public class TestGame extends Game
 		
 		glBegin(GL_QUADS);
 		
-		glVertex2f(-1.0f, -1.0f);
+		glVertex2f(-1.0f * scale, -1.0f * scale);
 		glTexCoord2f(0.0f, 1.0f);
 		
-		glVertex2f(-1.0f, 1.0f);
+		glVertex2f(-1.0f * scale, 1.0f * scale);
 		glTexCoord2f(0.0f, 0.0f);
 		
-		glVertex2f(1.0f, 0.5f);
+		glVertex2f(1.0f * scale, 1.0f * scale);
 		glTexCoord2f(1.0f, 0.0f);
 		
-		glVertex2f(1.0f, -0.5f);
+		glVertex2f(1.0f * scale, -1.0f * scale);
 		glTexCoord2f(1.0f, 1.0f);
 		
 		glEnd();

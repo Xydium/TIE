@@ -12,10 +12,13 @@ public class RenderingEngine
 		glEnable(GL_TEXTURE_2D);
 	}
 	
-	public void render(GameObject obj)
+	public void clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		
+	}
+	
+	public void render(GameObject obj)
+	{	
 		obj.render(this);
 		obj.renderAll(this);
 	}

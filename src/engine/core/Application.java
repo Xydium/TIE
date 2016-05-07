@@ -31,6 +31,8 @@ public class Application
 	public Application(Game game, double framesPerSecond, WindowFlags windowFlags)
 	{
 		this.game = game;
+		game.setApplication(this);
+		
 		frameTime = 1.0 / framesPerSecond;
 		
 		isRunning = false;
@@ -121,6 +123,7 @@ public class Application
 			
 			if (render)
 			{
+				renderingEngine.clear();
 				game.render();
 				Window.render();
 				++frames;
@@ -154,5 +157,16 @@ public class Application
 	public RenderingEngine getRenderingEngine()
 	{
 		return renderingEngine;
+	}
+	
+	/**
+	 * Gets the delta-time of the last frame passed
+	 * of the engine
+	 * 
+	 * @return delta time
+	 */
+	public double getDeltaTime()
+	{
+		return deltaTime;
 	}
 }
