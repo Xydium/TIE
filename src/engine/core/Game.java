@@ -80,6 +80,26 @@ public abstract class Game
 	}
 	
 	/**
+	 * Adds the given object to the game
+	 * 
+	 * @param obj the object to add
+	 */
+	public void add(GameObject obj)
+	{
+		rootObject.addChild(obj);
+	}
+	
+	/**
+	 * Adds all of the given objects to the game
+	 * 
+	 * @param objects the objects to add
+	 */
+	public void addAll(GameObject... objects)
+	{
+		rootObject.addAllChildren(objects);
+	}
+	
+	/**
 	 * Gets the root object of the game
 	 * 
 	 * @return the root object

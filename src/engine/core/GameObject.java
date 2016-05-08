@@ -132,6 +132,20 @@ public class GameObject
 		}
 	}
 	
+	public void addComponent(GameComponent component)
+	{
+		components.add(component);
+		component.setParent(this);
+	}
+	
+	public void addAllComponents(GameComponent... components)
+	{
+		for (GameComponent comp : components)
+		{
+			addComponent(comp);
+		}
+	}
+	
 	/**
 	 * Gets a list of the components of this GameObject
 	 * 

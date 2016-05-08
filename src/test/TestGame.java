@@ -1,8 +1,11 @@
 package test;
 
 import static org.lwjgl.opengl.GL11.*;
+import engine.components.RectRenderer;
 import engine.core.Game;
+import engine.core.GameObject;
 import engine.core.Input;
+import engine.math.Vector2;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
@@ -11,6 +14,8 @@ public class TestGame extends Game
 	private Texture myTexture;
 	private Shader myShader;
 	private float scale;
+	
+	private GameObject obj;
 	
 	private float counter;
 	
@@ -22,6 +27,13 @@ public class TestGame extends Game
 		
 		myTexture = new Texture("test.png");
 		myShader = new Shader("testShader");
+		
+		obj = new GameObject();
+		RectRenderer rr = new RectRenderer(new Vector2(1, 1), myTexture);
+		rr.setShader(myShader);
+		obj.addComponent(rr);
+		
+		add(obj);
 	}
 	
 	public void input()
@@ -43,8 +55,8 @@ public class TestGame extends Game
 	}
 	
 	public void render()
-	{
-		myTexture.bind();
+	{	
+		/*myTexture.bind();
 		myShader.bind();
 		
 		glBegin(GL_QUADS);
@@ -61,6 +73,6 @@ public class TestGame extends Game
 		glVertex2f(1.0f * scale, -1.0f * scale);
 		glTexCoord2f(1.0f, 1.0f);
 		
-		glEnd();
+		glEnd();*/
 	}
 }

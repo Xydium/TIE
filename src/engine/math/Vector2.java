@@ -241,4 +241,9 @@ public class Vector2
 				throw new IndexOutOfBoundsException();
 		}
 	}
+	
+	public String toString()
+	{
+		return String.format("(%.2f, %.2f)", x, y);
+	}
 }

@@ -109,9 +109,12 @@ public class Application
 				}
 				
 				game.input();
+				game.inputObjects();
+				
 				Input.update();
 				
 				game.update();
+				game.updateObjects();
 				
 				if (frameCounter >= 1.0)
 				{
@@ -125,6 +128,7 @@ public class Application
 			{
 				renderingEngine.clear();
 				game.render();
+				game.renderObjects();
 				Window.render();
 				++frames;
 			}
