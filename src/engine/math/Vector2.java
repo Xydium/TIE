@@ -56,6 +56,16 @@ public class Vector2
 	}
 	
 	/**
+	 * Gets the magnitude^2 of the vector
+	 * 
+	 * @return the magnitude^2 of the vector
+	 */
+	public float getMagnitudeSq()
+	{
+		return x * x + y * y;
+	}
+	
+	/**
 	 * Gets the unit (normalized) vector from the
 	 * current vector
 	 * 

@@ -35,6 +35,11 @@ public class RectRenderer extends GameComponent
 		rect.render(getTransform());
 	}
 	
+	public Rectangle getRect()
+	{
+		return rect;
+	}
+	
 	public void setSize(Vector2 size)
 	{
 		rect.setSize(size);

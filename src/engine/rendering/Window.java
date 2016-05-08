@@ -67,6 +67,11 @@ public final class Window
 		return flags.getHeight();
 	}
 	
+	public static double getAspectRatio()
+	{
+		return (double)flags.getWidth() / (double)flags.getHeight();
+	}
+	
 	public static String getTitle()
 	{
 		return flags.getTitle();

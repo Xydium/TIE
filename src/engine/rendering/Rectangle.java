@@ -11,9 +11,11 @@ import engine.math.Vector2;
 
 public class Rectangle
 {
-	private static final Vertex[] BASE_VERTICES = {new Vertex(new Vector2(-1, -1), new Vector2(0, 1)),
-		new Vertex(new Vector2(-1, 1), new Vector2(0, 0)), new Vertex(new Vector2(1, 1), new Vector2(1, 0)),
-		new Vertex(new Vector2(1, -1), new Vector2(1, 1))};
+	private static final Vertex[] BASE_VERTICES =
+		{new Vertex(new Vector2(-1, -(float)Window.getAspectRatio()), new Vector2(0, 1)),
+		new Vertex(new Vector2(-1, (float)Window.getAspectRatio()), new Vector2(0, 0)),
+		new Vertex(new Vector2(1, (float)Window.getAspectRatio()), new Vector2(1, 0)),
+		new Vertex(new Vector2(1, -(float)Window.getAspectRatio()), new Vector2(1, 1))};
 	
 	private Vector2 size;
 	
@@ -40,6 +42,11 @@ public class Rectangle
 	public Vector2 getSize()
 	{
 		return size;
+	}
+	
+	public Vector2 getAdjustedSize()
+	{
+		return size.mul(new Vector2(1, (float)Window.getAspectRatio()));
 	}
 	
 	public void render(Transform trans)
