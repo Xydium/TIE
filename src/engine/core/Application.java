@@ -1,5 +1,6 @@
 package engine.core;
 
+import engine.audio.GlobalAudio;
 import engine.physics.Collider;
 import engine.rendering.RenderingEngine;
 import engine.rendering.Window;
@@ -41,6 +42,8 @@ public class Application
 		
 		Window.create(windowFlags);
 		renderingEngine = new RenderingEngine();
+		
+		GlobalAudio.initAudio();
 		
 		game.init();
 	}
