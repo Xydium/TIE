@@ -1,4 +1,4 @@
-package engine.core;
+package engine.utility;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -6,8 +6,40 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
-public final class Util
+import engine.math.Vector2;
+import engine.rendering.Window;
+
+/**
+ * Useful misfit functions with no real home.
+ * 
+ * @author Tim Hornick
+ *
+ */
+public class Util 
 {
+
+	/**
+	 * @param pixel
+	 * @return modified vector as GL coords
+	 */
+	public static Vector2 pixelCToGL(Vector2 pixel) 
+	{
+		pixel.setX(pixel.getX() / Window.getWidth() * 2 - 1.0f);
+		pixel.setY(pixel.getY() / Window.getHeight() / (float) (Window.getAspectRatio() / 2) - 1.0f);
+		return pixel;
+	}
+	
+	/**
+	 * @param pixel
+	 * @return modified vector as GL dimensions
+	 */
+	public static Vector2 pixelDToGL(Vector2 pixel) 
+	{
+		pixel.setX(pixel.getX() / Window.getWidth());
+		pixel.setY(pixel.getY() / Window.getWidth());
+		return pixel;
+	}
+	
 	public static ByteBuffer createByteBuffer(int size)
 	{
 		return BufferUtils.createByteBuffer(size);
@@ -42,4 +74,5 @@ public final class Util
 		
 		return result;
 	}
+	
 }
