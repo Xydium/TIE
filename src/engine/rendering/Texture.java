@@ -99,9 +99,9 @@ public class Texture
 			ByteBuffer buffer = Util.createByteBuffer(image.getHeight() * image.getWidth() * 4);
 			boolean hasAlpha = image.getColorModel().hasAlpha();
 			
-			for (int x = 0; x < image.getWidth(); x++)
+			for (int y = 0; y < image.getHeight(); y++)
 			{
-				for (int y = 0; y < image.getHeight(); y++)
+				for (int x = 0; x < image.getWidth(); x++)
 				{
 					int pixel = pixels[y * image.getWidth() + x];
 					
@@ -128,8 +128,8 @@ public class Texture
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 			
