@@ -24,7 +24,7 @@ public class TestGame extends Game
 		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();
-		RectRenderer rr = new RectRenderer(new Vector2(0.3f, 0.3f), myTexture);
+		RectRenderer rr = new DistortRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"), new Texture("distortionMap.png"));
 		//rr.setShader(myShader);
 		obj.addComponent(rr);
 		//a1 = new AABBCollider(rr.getRect());
@@ -43,9 +43,9 @@ public class TestGame extends Game
 		//add(go);
 		//go.getTransform().setRotation((float)Math.PI * 0.05f);
 		
-		//add(obj);
+		add(obj);
 		//add(obj2);
-		addAll(obj, obj2);
+		//addAll(obj, obj2);
 	}
 	
 	public void input()

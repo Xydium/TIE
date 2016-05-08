@@ -54,4 +54,9 @@ public class RectRenderer extends GameComponent
 	{
 		this.texture = texture;
 	}
+	
+	public Texture getTexture()
+	{
+		return texture;
+	}
 }
