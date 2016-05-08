@@ -1,8 +1,7 @@
 package engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
+import static org.lwjgl.opengl.GL13.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,8 +10,9 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import engine.core.Util;
+
 import engine.resmgmt.TextureResource;
+import engine.utility.Util;
 
 /**
  * Class that stores a texture which is loaded from a file
