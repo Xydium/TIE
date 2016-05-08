@@ -8,6 +8,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="jar/tinysound-1.1.1.jar"/>
-	<classpathentry kind="lib" path="jar/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
