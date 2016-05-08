@@ -20,7 +20,7 @@ public class Transform
 	public Transform()
 	{
 		position = new Vector2();
-		rotation = 0;
+		rotation = (float) (Math.PI * 0.5);
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class Transform
 	public Transform(Vector2 position)
 	{
 		this.position = position;
-		this.rotation = 0;
+		this.rotation = (float) (Math.PI * 0.5);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class Transform
 	public Transform(float rotation)
 	{
 		this.position = new Vector2();
-		this.rotation = 0;
+		this.rotation = rotation;
 	}
 	
 	/**
