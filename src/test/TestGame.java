@@ -16,7 +16,7 @@ public class TestGame extends Game
 	
 	public void start()
 	{
-		scale = 1.f; 
+		scale = 2.5f; 
 		
 		counter = 0.0f;
 		
