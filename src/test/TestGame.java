@@ -18,13 +18,16 @@ public class TestGame extends Game
 	private GameObject obj, obj2;
 	private AABBCollider a1, a2;
 	
+	private float counter;
+	
 	public void start()
 	{
 		myTexture = new Texture("test.png");
 		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();
-		RectRenderer rr = new DistortRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"), new Texture("distortionMap.png"));
+		RectRenderer rr = new RectRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"));
+		rr.setShader(new Shader("distort-shader"));
 		//rr.setShader(myShader);
 		obj.addComponent(rr);
 		//a1 = new AABBCollider(rr.getRect());
@@ -33,7 +36,7 @@ public class TestGame extends Game
 		
 		obj2 = new GameObject();
 		RectRenderer rr2 = new RectRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"));
-		rr2.setShader(myShader);
+		//rr2.setShader(myShader);
 		obj2.addComponent(rr2);
 		//a2 = new AABBCollider(rr2.getRect());
 		//obj2.addComponent(a2);
@@ -43,8 +46,16 @@ public class TestGame extends Game
 		//add(go);
 		//go.getTransform().setRotation((float)Math.PI * 0.05f);
 		
+		counter = 0.0f;
+		
+		rr.setUniformConfig(()->{
+			rr.getShader().setUniform("time", counter);
+			rr.getShader().setUniform("frequency", 5.0f);
+			rr.getShader().setUniform("amplitude", 0.01f);
+		});
+		
 		add(obj);
-		//add(obj2);
+		add(obj2);
 		//addAll(obj, obj2);
 	}
 	
@@ -73,6 +84,7 @@ public class TestGame extends Game
 	
 	public void update()
 	{
+		counter += 0.02f;
 		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);

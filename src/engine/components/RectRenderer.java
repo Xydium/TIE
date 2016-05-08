@@ -13,11 +13,14 @@ public class RectRenderer extends GameComponent
 	private Shader shader;
 	private Rectangle rect;
 	
+	private UniformConfig uniformConfig;
+	
 	public RectRenderer(Vector2 size, Texture texture)
 	{
 		shader = new Shader("basic-shader");
 		rect = new Rectangle(size);
 		this.texture = texture;
+		uniformConfig = null;
 	}
 	
 	public RectRenderer(Rectangle rect, Texture texture)
@@ -25,12 +28,18 @@ public class RectRenderer extends GameComponent
 		shader = new Shader("basic-shader");
 		this.rect = rect;
 		this.texture = texture;
+		uniformConfig = null;
 	}
 	
 	public void render(RenderingEngine renderingEngine)
 	{
 		texture.bind();
 		shader.bind();
+		
+		if (uniformConfig != null)
+		{
+			uniformConfig.setUniforms();
+		}
 		
 		rect.render(getTransform());
 	}
@@ -50,6 +59,11 @@ public class RectRenderer extends GameComponent
 		this.shader = shader;
 	}
 	
+	public Shader getShader()
+	{
+		return shader;
+	}
+	
 	public void setTexture(Texture texture)
 	{
 		this.texture = texture;
@@ -58,5 +72,15 @@ public class RectRenderer extends GameComponent
 	public Texture getTexture()
 	{
 		return texture;
+	}
+	
+	public void setUniformConfig(UniformConfig uniformConfig)
+	{
+		this.uniformConfig = uniformConfig;
+	}
+	
+	public interface UniformConfig
+	{
+		public void setUniforms();
 	}
 }
