@@ -8,7 +8,7 @@ package engine.rendering;
  */
 public class Color
 {
-	private float r, g, b;
+	private float r, g, b, a;
 	
 	/**
 	 * Creates a new color object with the given
@@ -20,9 +20,24 @@ public class Color
 	 */
 	public Color(float r, float g, float b)
 	{
+		this(r, g, b, 1.f);
+	}
+	
+	/**
+	 * Creates a new color object with the given
+	 * RGBA values
+	 * 
+	 * @param r the r value of the color
+	 * @param g the g value of the color
+	 * @param b the b value of the color
+	 * @param a the a value of the color
+	 */
+	public Color(float r, float g, float b, float a)
+	{
 		this.r = r;
 		this.g = g;
 		this.b = b;
+		this.a = a;
 	}
 	
 	/**
@@ -83,5 +98,15 @@ public class Color
 	public float getB()
 	{
 		return b;
+	}
+	
+	/**
+	 * Gets the a value of the color
+	 * 
+	 * @return the a value of the color
+	 */
+	public float getA()
+	{
+		return a;
 	}
 }

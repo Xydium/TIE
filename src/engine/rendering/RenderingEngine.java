@@ -10,6 +10,8 @@ public class RenderingEngine
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //TODO: add way to set clear color
 		
 		glEnable(GL_TEXTURE_2D);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
 	}
 	
 	public void clear()

@@ -25,22 +25,27 @@ public class TestGame extends Game
 		
 		obj = new GameObject();
 		RectRenderer rr = new RectRenderer(new Vector2(0.3f, 0.3f), myTexture);
-		rr.setShader(myShader);
+		//rr.setShader(myShader);
 		obj.addComponent(rr);
-		a1 = new AABBCollider(rr.getRect());
-		obj.addComponent(a1);
+		//a1 = new AABBCollider(rr.getRect());
+		//obj.addComponent(a1);
 		obj.getTransform().setPosition(0f, 0.3f);
 		
 		obj2 = new GameObject();
 		RectRenderer rr2 = new RectRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"));
 		rr2.setShader(myShader);
 		obj2.addComponent(rr2);
-		a2 = new AABBCollider(rr2.getRect());
-		obj2.addComponent(a2);
+		//a2 = new AABBCollider(rr2.getRect());
+		//obj2.addComponent(a2);
 		
-		add(obj);
-		add(obj2);
-		//addAll(obj, obj2);
+		//GameObject go = new GameObject();
+		//go.addComponent(new RectRenderer(new Vector2(1, 1), new Texture("testjpeg.jpg")));
+		//add(go);
+		//go.getTransform().setRotation((float)Math.PI * 0.05f);
+		
+		//add(obj);
+		//add(obj2);
+		addAll(obj, obj2);
 	}
 	
 	public void input()
@@ -68,15 +73,16 @@ public class TestGame extends Game
 	
 	public void update()
 	{
+		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);
-		if (a1.collidesWith(a2))
+		/*if (a1.collidesWith(a2))
 		{
 			myShader.setUniform("color", new Color(1, 0, 0));
 		}
 		else
 		{
 			myShader.setUniform("color", new Color(0, 1, 0));
-		}
+		}*/
 	}
 }

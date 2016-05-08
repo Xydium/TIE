@@ -124,7 +124,7 @@ public class Shader
 	 */
 	public void setUniform(String uniformName, Color value)
 	{
-		glUniform3f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB());
+		glUniform4f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
 	}
 	
 	private void addAllAttributes(String source)
