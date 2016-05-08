@@ -93,6 +93,17 @@ public class Transform
 	/**
 	 * Sets the position of this transform
 	 * 
+	 * @param x the x position of the transform
+	 * @param y the y position of the transform
+	 */
+	public void setPosition(float x, float y)
+	{
+		position = new Vector2(x, y);
+	}
+	
+	/**
+	 * Sets the position of this transform
+	 * 
 	 * @param position the new position of the transform
 	 */
 	public void setPosition(Vector2 position)

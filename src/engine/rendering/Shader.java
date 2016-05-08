@@ -115,6 +115,18 @@ public class Shader
 		glUniform2f(resource.getUniforms().get(uniformName), value.getX(), value.getY());
 	}
 	
+	/**
+	 * Sets a uniform variable of the given name in this shader
+	 * to be a given Color value
+	 * 
+	 * @param uniformName the name of the uniform variable
+	 * @param value the new value of the uniform variable
+	 */
+	public void setUniform(String uniformName, Color value)
+	{
+		glUniform3f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB());
+	}
+	
 	private void addAllAttributes(String source)
 	{
 		final String ATTRIBUTE_KEYWORD = "attribute";
@@ -251,7 +263,7 @@ public class Shader
 			int whiteSpacePos = uniformLine.indexOf(' ');
 			String uniformName = uniformLine.substring(whiteSpacePos + 1, uniformLine.length()).trim();
 			String uniformType = uniformLine.substring(0, whiteSpacePos).trim();
-
+			
 			resource.getUniformNames().add(uniformName);
 			resource.getUniformTypes().add(uniformType);
 			

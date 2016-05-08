@@ -6,6 +6,7 @@ import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
 import engine.math.Vector2;
+import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
@@ -26,12 +27,13 @@ public class TestGame extends Game
 		counter = 0.0f;
 		
 		myTexture = new Texture("test.png");
-		myShader = new Shader("testShader");
+		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();
-		RectRenderer rr = new RectRenderer(new Vector2(1, 1), myTexture);
+		RectRenderer rr = new RectRenderer(new Vector2(0.3f, 0.3f), myTexture);
 		rr.setShader(myShader);
 		obj.addComponent(rr);
+		obj.getTransform().setPosition(0.2f, 0.3f);
 		
 		add(obj);
 	}
@@ -51,7 +53,8 @@ public class TestGame extends Game
 	public void update()
 	{
 		counter += 0.01f;
-		myShader.setUniform("num", counter);
+		obj.getTransform().rotateBy(0.01f);
+		myShader.setUniform("color", new Color(1, 0, 0));
 	}
 	
 	public void render()
