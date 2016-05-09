@@ -393,4 +393,10 @@ public class Shader
 		
 		glAttachShader(resource.getProgram(), shader);
 	}
+	
+	public String getFileName() 
+	{
+		return fileName;
+	}
+	
 }
