@@ -1,6 +1,6 @@
 package engine.core;
 
-public class Scene
+public abstract class Scene
 {
 	private GameObject rootObject;
 	

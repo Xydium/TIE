@@ -23,6 +23,8 @@ public class GameObject
 	
 	private Application application;
 	
+	private String tag;
+	
 	/**
 	 * Creates a new GameObject object
 	 */
@@ -205,4 +207,67 @@ public class GameObject
 	{
 		return application;
 	}
+	
+	public String getTag()
+	{
+		return tag;
+	}
+	
+	public void setTag(String tag)
+	{
+		this.tag = tag;
+	}
+	
+	public GameComponent getComponentWithTag(String tag)
+	{
+		for(GameComponent c : components)
+		{
+			if(c.getTag().equals(tag)) return c;
+		}
+		return null;
+	}
+	
+	public ArrayList<GameComponent> getComponentsWithTags(String... tags)
+	{
+		ArrayList<GameComponent> result = new ArrayList<GameComponent>();
+		for(GameComponent c : components)
+		{
+			for(String t : tags)
+			{
+				if(c.getTag().equals(t)) 
+				{
+					result.add(c); 
+					break;
+				}
+			}
+		}
+		return result;
+	}
+	
+	public GameObject getChildWithTag(String tag)
+	{
+		for(GameObject c : children)
+		{
+			if(c.getTag().equals(tag)) return c;
+		}
+		return null;
+	}
+	
+	public ArrayList<GameObject> getChildrenWithTags(String... tags)
+	{
+		ArrayList<GameObject> result = new ArrayList<GameObject>();
+		for(GameObject c : children)
+		{
+			for(String t : tags)
+			{
+				if(c.getTag().equals(t)) 
+				{
+					result.add(c); 
+					break;
+				}
+			}
+		}
+		return result;
+	}
+	
 }

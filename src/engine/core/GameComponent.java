@@ -12,6 +12,7 @@ import engine.rendering.RenderingEngine;
 public abstract class GameComponent
 {
 	private GameObject parent;
+	private String tag;
 	
 	/**
 	 * Called immediately after the game has processed input
@@ -67,4 +68,15 @@ public abstract class GameComponent
 	{
 		return parent.getTransform();
 	}
+	
+	public String getTag() 
+	{
+		return tag;
+	}
+	
+	public void setTag(String tag)
+	{
+		this.tag = tag;
+	}
+	
 }
