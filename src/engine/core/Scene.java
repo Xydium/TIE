@@ -2,7 +2,7 @@ package engine.core;
 
 public abstract class Scene
 {
-	private GameObject rootObject;
+	protected GameObject rootObject;
 	
 	public Scene()
 	{
