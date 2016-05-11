@@ -387,7 +387,7 @@ public class Shader
 		
 		if (glGetShaderi(shader, GL_COMPILE_STATUS) == 0)
 		{
-			System.err.println(glGetShaderInfoLog(shader, 1024));
+			System.err.println(glGetShaderInfoLog(shader, 2048));
 			System.exit(1);
 		}
 		

@@ -1,6 +1,7 @@
 package test;
 
 import engine.components.RectRenderer;
+import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
@@ -26,7 +27,7 @@ public class TestGame extends Game
 		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();
-		RectRenderer rr = new RectRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"));
+		final RectRenderer rr = new RectRenderer(new Vector2(0.7f, 0.7f), new Texture("test.png"));
 		rr.setShader(new Shader("distort-shader"));
 		//rr.setShader(myShader);
 		obj.addComponent(rr);
@@ -48,10 +49,14 @@ public class TestGame extends Game
 		
 		counter = 0.0f;
 		
-		rr.setUniformConfig(()->{
-			rr.getShader().setUniform("time", counter);
-			rr.getShader().setUniform("frequency", 5.0f);
-			rr.getShader().setUniform("amplitude", 0.01f);
+		rr.setUniformConfig(new UniformConfig()
+		{
+			public void setUniforms()
+			{
+				rr.getShader().setUniform("time", counter);
+				rr.getShader().setUniform("frequency", 5.0f);
+				rr.getShader().setUniform("amplitude", 0.01f);
+			}
 		});
 		
 		add(obj);
