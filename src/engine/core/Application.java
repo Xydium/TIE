@@ -23,6 +23,8 @@ public class Application
 	private double deltaTime;
 	private double frameTime;
 	
+	private int lastFPS;
+	
 	/**
 	 * Creates a new Application object with a given game,
 	 * frame rate, and window creation flags
@@ -123,7 +125,7 @@ public class Application
 				
 				if (frameCounter >= 1.0)
 				{
-					System.out.println("FPS: " + frames);
+					lastFPS = frames;
 					frames = 0;
 					frameCounter = 0;
 				}
@@ -182,6 +184,11 @@ public class Application
 	public Game getGame() 
 	{
 		return game;
+	}
+	
+	public int getLastFPS()
+	{
+		return lastFPS;
 	}
 	
 }
