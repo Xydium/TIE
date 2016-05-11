@@ -67,3 +67,7 @@ $RECYCLE.BIN/
 *.prefs
 
 .settings/org.eclipse.jdt.core.prefs
+
+.classpath
+
+.settings/org.eclipse.jdt.core.prefs
