@@ -11,6 +11,8 @@ import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
+import static org.lwjgl.opengl.GL11.*;
+
 public class TestGame extends Game
 {
 	private Texture myTexture;
@@ -23,6 +25,7 @@ public class TestGame extends Game
 	
 	public void start()
 	{
+		System.out.println(glGetString(GL_VERSION));
 		myTexture = new Texture("test.png");
 		myShader = new Shader("color-shader");
 		
