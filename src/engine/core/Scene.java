@@ -23,8 +23,14 @@ public class Scene
 	/**
 	 * Called when the scene is set as a game's current scene
 	 */
-	public void init()
+	public void activate()
 	{
+		
+	}
+	
+	public void deactivate()
+	{
+		
 	}
 	
 	/**

@@ -97,13 +97,16 @@ public abstract class Game
 	
 	/**
 	 * Sets the current scene of the game to be the given scene
+	 * AND calls scene.init()
 	 * 
 	 * @param scene the scene to be added
 	 */
 	public void setScene(Scene scene)
 	{
+		if(scene != null) scene.deactivate();
 		this.scene = scene;
 		scene.setApplication(application);
+		scene.activate();
 	}
 	
 	/**

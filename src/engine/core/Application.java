@@ -178,4 +178,10 @@ public class Application
 	{
 		return deltaTime;
 	}
+	
+	public Game getGame() 
+	{
+		return game;
+	}
+	
 }
