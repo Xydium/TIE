@@ -1,7 +1,6 @@
 package engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
-import engine.core.GameObject;
 
 public class RenderingEngine
 {
@@ -17,11 +16,5 @@ public class RenderingEngine
 	public void clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-	}
-	
-	public void render(GameObject obj)
-	{	
-		obj.render(this);
-		obj.renderAll(this);
 	}
 }

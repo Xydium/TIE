@@ -3,7 +3,6 @@ package engine.core;
 import java.util.ArrayList;
 
 import engine.math.Transform;
-import engine.rendering.RenderingEngine;
 
 /**
  * An object which resides within a game, with a
@@ -54,7 +53,7 @@ public class GameObject
 	/**
 	 * Called every time the game renders
 	 */
-	public void render(RenderingEngine renderingEngine)
+	public void render()
 	{	
 	}
 	
@@ -95,17 +94,17 @@ public class GameObject
 	/**
 	 * Renders all of the children and components of the GameObject
 	 */
-	public void renderAll(RenderingEngine renderingEngine)
+	public void renderAll()
 	{
 		for (GameObject obj : children)
 		{
-			obj.render(renderingEngine);
-			obj.renderAll(renderingEngine);
+			obj.render();
+			obj.renderAll();
 		}
 		
 		for (GameComponent comp : components)
 		{
-			comp.render(renderingEngine);
+			comp.render();
 		}
 	}
 	

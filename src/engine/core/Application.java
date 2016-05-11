@@ -45,8 +45,6 @@ public class Application
 		renderingEngine = new RenderingEngine();
 		
 		GlobalAudio.initAudio();
-		
-		game.init();
 	}
 	
 	/**
@@ -114,12 +112,12 @@ public class Application
 				}
 				
 				game.input();
-				game.inputObjects();
+				game.inputScene();
 				
 				Input.update();
 				
 				game.update();
-				game.updateObjects();
+				game.updateScene();
 				
 				Collider.resolveCollisions();
 				
@@ -135,7 +133,7 @@ public class Application
 			{
 				renderingEngine.clear();
 				game.render();
-				game.renderObjects();
+				game.renderScene();
 				Window.render();
 				++frames;
 			}

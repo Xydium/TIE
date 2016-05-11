@@ -1,7 +1,6 @@
 package engine.core;
 
 import engine.math.Transform;
-import engine.rendering.RenderingEngine;
 
 /**
  * A component of a GameObject
@@ -27,7 +26,7 @@ public abstract class GameComponent
 	/**
 	 * Called every time the game renders
 	 */
-	public void render(RenderingEngine renderingEngine) {}
+	public void render() {}
 	
 	/**
 	 * Sets the parent of the component

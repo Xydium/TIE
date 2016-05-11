@@ -8,21 +8,16 @@ package engine.core;
  */
 public abstract class Game
 {
-	private GameObject rootObject;
+	private Application application;
+	private Scene scene;
 	
 	/**
 	 * Creates a new object of type Game
+	 * and creates a new Scene
 	 */
 	public Game()
 	{
-		rootObject = new GameObject();
-	}
-	
-	/**
-	 * Called when the application is initialized
-	 */
-	public void init()
-	{
+		setScene(new Scene());
 	}
 	
 	/**
@@ -54,59 +49,71 @@ public abstract class Game
 	}
 	
 	/**
-	 * Updates the input on all objects in the game
+	 * Updates the input on all objects in the scene
 	 */
-	public void inputObjects()
+	public void inputScene()
 	{
-		rootObject.input();
-		rootObject.inputAll();
+		getScene().getRootObject().input();
+		getScene().getRootObject().inputAll();
 	}
 	
 	/**
-	 * Updates all objects in the game
+	 * Updates all objects in the scene
 	 */
-	public void updateObjects()
+	public void updateScene()
 	{
-		rootObject.update();
-		rootObject.updateAll();
+		getScene().getRootObject().update();
+		getScene().getRootObject().updateAll();
 	}
 	
 	/**
-	 * Renders all objects in the game
+	 * Renders all objects in the scene
 	 */
-	public void renderObjects()
+	public void renderScene()
 	{
-		getApplication().getRenderingEngine().render(rootObject);
+		getScene().getRootObject().render();
+		getScene().getRootObject().renderAll();
 	}
 	
 	/**
-	 * Adds the given object to the game
+	 * Adds the given object to the current scene
 	 * 
 	 * @param obj the object to add
 	 */
 	public void add(GameObject obj)
 	{
-		rootObject.addChild(obj);
+		getScene().getRootObject().addChild(obj);
 	}
 	
 	/**
-	 * Adds all of the given objects to the game
+	 * Adds all of the given objects to the current scene
 	 * 
 	 * @param objects the objects to add
 	 */
 	public void addAll(GameObject... objects)
 	{
-		rootObject.addAllChildren(objects);
+		getScene().getRootObject().addAllChildren(objects);
 	}
 	
 	/**
-	 * Gets the root object of the game
+	 * Sets the current scene of the game to be the given scene
 	 * 
-	 * @return the root object
+	 * @param scene the scene to be added
 	 */
-	public GameObject getRootObject()
+	public void setScene(Scene scene)
 	{
-		return rootObject;
+		this.scene = scene;
+		scene.setApplication(application);
+	}
+	
+	/**
+	 * Gets the current scene of the game
+	 * 
+	 * @return the game's current scene
+	 */
+	public Scene getScene()
+	{
+		return scene;
 	}
 	
 	/**
@@ -116,7 +123,7 @@ public abstract class Game
 	 */
 	public void setApplication(Application application)
 	{
-		rootObject.setApplication(application);
+		this.application = application;
 	}
 	
 	/**
@@ -126,6 +133,6 @@ public abstract class Game
 	 */
 	public Application getApplication()
 	{
-		return rootObject.getApplication();
+		return application;
 	}
 }

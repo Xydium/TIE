@@ -3,7 +3,6 @@ package engine.components;
 import engine.core.GameComponent;
 import engine.math.Vector2;
 import engine.rendering.Rectangle;
-import engine.rendering.RenderingEngine;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
@@ -31,7 +30,7 @@ public class RectRenderer extends GameComponent
 		uniformConfig = null;
 	}
 	
-	public void render(RenderingEngine renderingEngine)
+	public void render()
 	{
 		texture.bind();
 		shader.bind();
