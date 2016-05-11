@@ -25,6 +25,7 @@ public abstract class Game
 	 */
 	public void start()
 	{
+		
 	}
 	
 	/**
@@ -32,6 +33,7 @@ public abstract class Game
 	 */
 	public void input()
 	{
+		
 	}
 	
 	/**
@@ -39,6 +41,7 @@ public abstract class Game
 	 */
 	public void update()
 	{
+		
 	}
 	
 	/**
@@ -46,6 +49,7 @@ public abstract class Game
 	 */
 	public void render()
 	{
+		
 	}
 	
 	/**
@@ -53,6 +57,7 @@ public abstract class Game
 	 */
 	public void inputScene()
 	{
+		getScene().input();
 		getScene().getRootObject().input();
 		getScene().getRootObject().inputAll();
 	}
@@ -62,6 +67,7 @@ public abstract class Game
 	 */
 	public void updateScene()
 	{
+		getScene().update();
 		getScene().getRootObject().update();
 		getScene().getRootObject().updateAll();
 	}
@@ -71,6 +77,7 @@ public abstract class Game
 	 */
 	public void renderScene()
 	{
+		getScene().render();
 		getScene().getRootObject().render();
 		getScene().getRootObject().renderAll();
 	}
@@ -103,7 +110,7 @@ public abstract class Game
 	 */
 	public void setScene(Scene scene)
 	{
-		if(scene != null) scene.deactivate();
+		scene.deactivate();
 		this.scene = scene;
 		scene.setApplication(application);
 		scene.activate();
