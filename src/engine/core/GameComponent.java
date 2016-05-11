@@ -11,7 +11,7 @@ import engine.math.Transform;
 public abstract class GameComponent
 {
 	private GameObject parent;
-	private String tag;
+	private String tag = "";
 	
 	/**
 	 * Called immediately after the game has processed input

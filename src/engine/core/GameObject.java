@@ -34,6 +34,7 @@ public class GameObject
 		parent = null;
 		transform = new Transform();
 		application = null;
+		tag = "";
 	}
 	
 	/**
