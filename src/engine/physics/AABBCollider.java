@@ -27,8 +27,8 @@ public class AABBCollider extends Collider
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2 cPos1 = getTransform().getPosition().sub(rect.getSize());
-		Vector2 cPos2 = aabb2.getTransform().getPosition().sub(aabb2.getRect().getSize());
+		Vector2 cPos1 = getTransform().getGlobalPosition().sub(rect.getSize());
+		Vector2 cPos2 = aabb2.getTransform().getGlobalPosition().sub(aabb2.getRect().getSize());
 		
 		Vector2 sz1 = rect.getAdjustedSize().mul(2);
 		Vector2 sz2 = aabb2.getRect().getAdjustedSize().mul(2);
@@ -48,8 +48,8 @@ public class AABBCollider extends Collider
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2 p1 = getTransform().getPosition();
-		Vector2 p2 = aabb2.getTransform().getPosition();
+		Vector2 p1 = getTransform().getGlobalPosition();
+		Vector2 p2 = aabb2.getTransform().getGlobalPosition();
 		
 		Vector2 s1 = rect.getAdjustedSize();
 		Vector2 s2 = aabb2.getRect().getAdjustedSize();

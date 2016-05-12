@@ -48,7 +48,7 @@ public abstract class Collider extends GameComponent
 				if (colliders.get(i).collidesWith(colliders.get(j)))
 				{
 					Vector2 penetration = colliders.get(i).resolveCollision(colliders.get(j));
-					colliders.get(i).getTransform().setPosition(colliders.get(i).getTransform().getPosition().add(penetration));
+					colliders.get(i).getTransform().setGlobalPosition(colliders.get(i).getTransform().getGlobalPosition().add(penetration));
 				}
 			}
 		}

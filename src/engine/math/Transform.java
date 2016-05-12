@@ -9,6 +9,7 @@ package engine.math;
  */
 public class Transform
 {
+	private Transform parent;
 	private Vector2 position;
 	private float rotation;
 	
@@ -19,8 +20,7 @@ public class Transform
 	 */
 	public Transform()
 	{
-		position = new Vector2();
-		rotation = 0;
+		this(new Vector2(), 0);
 	}
 	
 	/**
@@ -32,8 +32,7 @@ public class Transform
 	 */
 	public Transform(Vector2 position)
 	{
-		this.position = position;
-		this.rotation = 0;
+		this(position, 0);
 	}
 	
 	/**
@@ -45,8 +44,7 @@ public class Transform
 	 */
 	public Transform(float rotation)
 	{
-		this.position = new Vector2();
-		this.rotation = rotation;
+		this(new Vector2(), rotation);
 	}
 	
 	/**
@@ -59,6 +57,7 @@ public class Transform
 	 */
 	public Transform(Vector2 position, float rotation)
 	{
+		parent = null;
 		this.position = position;
 		this.rotation = rotation;
 	}
@@ -91,7 +90,7 @@ public class Transform
 	}
 	
 	/**
-	 * Sets the position of this transform
+	 * Sets the local position of this transform
 	 * 
 	 * @param x the x position of the transform
 	 * @param y the y position of the transform
@@ -102,13 +101,39 @@ public class Transform
 	}
 	
 	/**
-	 * Sets the position of this transform
+	 * Sets the local position of this transform
 	 * 
 	 * @param position the new position of the transform
 	 */
 	public void setPosition(Vector2 position)
 	{
 		this.position = position;
+	}
+	
+	/**
+	 * Sets the global position of the transform
+	 * 
+	 * @param position the global position of the transform
+	 */
+	public void setGlobalPosition(Vector2 position)
+	{
+		if (parent == null)
+		{
+			this.position = position;
+		}
+		
+		this.position = position.sub(parent.getGlobalPosition()).rotateBy(-parent.getRotation());
+	}
+	
+	/**
+	 * Sets the global position of the transform
+	 * 
+	 * @param x the x component of the global position of the transform
+	 * @param y the y component of the global position of the transform
+	 */
+	public void setGlobalPosition(float x, float y)
+	{
+		setGlobalPosition(new Vector2(x, y));
 	}
 	
 	/**
@@ -121,8 +146,18 @@ public class Transform
 		this.rotation = rotation;
 	}
 	
+	public void setGlobalRotation(float rotation)
+	{
+		if (parent == null)
+		{
+			this.rotation = rotation;
+		}
+		
+		this.rotation = parent.getGlobalRotation() - rotation;
+	}
+	
 	/**
-	 * Gets the position of the transform
+	 * Gets the local position of the transform
 	 * 
 	 * @return the position of the transform
 	 */
@@ -132,12 +167,42 @@ public class Transform
 	}
 	
 	/**
-	 * Gets the rotation of the transform
+	 * Gets the global position of the transform
+	 * 
+	 * @return the global position of the transform
+	 */
+	public Vector2 getGlobalPosition()
+	{
+		if (parent == null)
+		{
+			return position;
+		}
+		
+		return parent.getGlobalPosition().add(position.rotateBy(parent.getRotation()));
+	}
+	
+	/**
+	 * Gets the local rotation of the transform
 	 * 
 	 * @return the rotation of the transform
 	 */
 	public float getRotation()
 	{
 		return rotation;
+	}
+	
+	/**
+	 * Gets the global rotation of the transform
+	 * 
+	 * @return the global rotation of the transform
+	 */
+	public float getGlobalRotation()
+	{
+		if (parent == null)
+		{
+			return rotation;
+		}
+		
+		return parent.getGlobalRotation() + rotation;
 	}
 }

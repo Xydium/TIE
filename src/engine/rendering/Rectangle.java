@@ -56,7 +56,7 @@ public class Rectangle
 		for (int i = 0; i < BASE_VERTICES.length; i++)
 		{
 			Vector2 pos = BASE_VERTICES[i].getPosition();
-			pos = pos.rotateBy(trans.getRotation()).mul(size).add(trans.getPosition());
+			pos = pos.rotateBy(trans.getGlobalRotation()).mul(size).add(trans.getGlobalPosition());
 			
 			glVertex2f(pos.getX(), pos.getY());
 			glTexCoord2f(BASE_VERTICES[i].getTexCoord().getX(), BASE_VERTICES[i].getTexCoord().getY());
