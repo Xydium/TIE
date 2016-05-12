@@ -9,6 +9,10 @@ public final class Input
 	public static final int NUM_KEYCODES = 256;
 	public static final int NUM_MOUSEBUTTONS = 5;
 	
+	public static final int MOUSE_LEFT = 0;
+	public static final int MOUSE_RIGHT = 1;
+	public static final int MOUSE_MIDDLE = 2;
+	
 	public static final int KEY_NONE			= 0x00;
 	public static final int KEY_ESCAPE			= 0x01;
 	public static final int KEY_1				= 0x02;
