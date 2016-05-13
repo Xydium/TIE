@@ -38,7 +38,7 @@ public class RectRenderer extends GameComponent
 		
 		if (uniformConfig != null)
 		{
-			uniformConfig.setUniforms();
+			uniformConfig.setUniforms(shader);
 		}
 		
 		rect.render(getTransform());
@@ -81,7 +81,7 @@ public class RectRenderer extends GameComponent
 	
 	public interface UniformConfig
 	{
-		public void setUniforms();
+		public void setUniforms(Shader s);
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
