@@ -38,4 +38,12 @@ public class TextureResource extends Resource
 	{
 		return id;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TextureResource [id=" + id + "]";
+	}
 }

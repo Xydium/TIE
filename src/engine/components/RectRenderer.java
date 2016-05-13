@@ -10,6 +10,7 @@ public class RectRenderer extends GameComponent
 {
 	private Texture texture;
 	private Shader shader;
+
 	private Rectangle rect;
 	
 	private UniformConfig uniformConfig;
@@ -81,5 +82,13 @@ public class RectRenderer extends GameComponent
 	public interface UniformConfig
 	{
 		public void setUniforms();
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", rect=" + rect + ", uniformConfig="
+				+ uniformConfig + "]";
 	}
 }
