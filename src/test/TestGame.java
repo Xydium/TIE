@@ -21,6 +21,7 @@ public class TestGame extends Game
 	
 	public void start()
 	{
+		getApplication().getRenderingEngine().setOverlayBrightness(0.7f);
 		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();

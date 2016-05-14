@@ -73,3 +73,5 @@ $RECYCLE.BIN/
 .settings/org.eclipse.jdt.core.prefs
 
 saved*.png
+
+src/assets/textures

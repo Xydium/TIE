@@ -3,7 +3,7 @@ package engine.rendering;
 import static org.lwjgl.opengl.GL20.*;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -370,7 +370,7 @@ public class Shader
 		
 		try
 		{
-			shaderReader = new BufferedReader(new FileReader("res/shaders/" + fileName));
+			shaderReader = new BufferedReader(new InputStreamReader(Shader.class.getResourceAsStream("/assets/shaders/" + fileName)));
 			String line;
 			
 			while ((line = shaderReader.readLine()) != null)

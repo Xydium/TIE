@@ -4,7 +4,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -109,12 +108,13 @@ public class Texture
 	{
 		try
 		{
-			BufferedImage image = ImageIO.read(new File("res/textures/" + fileName));
+			//BufferedImage image = ImageIO.read(new File("./res/textures/" + fileName));
+			BufferedImage image = ImageIO.read(Texture.class.getResourceAsStream("/assets/textures/" + fileName));
 			return bufferedImageToTexture(image);
 		}
 		catch (IOException e)
 		{
-			Log.error("Texture loading error");
+			Log.error("Error loading texture: " + fileName);
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -164,7 +164,7 @@ public class Texture
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 		
 		// TEMPORARY - TODO: REMOVE IT /////////////////////////////////////////////////////////////////
-		try
+		/*try
 		{
 			File outputfile = new File("saved" + System.nanoTime() + ".png");
 		    ImageIO.write(image, "png", outputfile);
@@ -172,7 +172,7 @@ public class Texture
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}
+		}*/
 		///////////////////////////////////////////////////////////////////////////////////////////////
 
 		return resource;
