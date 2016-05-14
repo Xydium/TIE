@@ -10,14 +10,14 @@ public class RectRenderer extends Renderable
 	private Texture texture;
 	private Shader shader;
 	private Rectangle rect;
-	
+
 	private UniformConfig uniformConfig;
-	
+
 	public RectRenderer(Vector2 size, Texture texture)
 	{
 		this(new Rectangle(size), texture);
 	}
-	
+
 	public RectRenderer(Rectangle rect, Texture texture)
 	{
 		setShader(new Shader("basic-shader"));
@@ -25,17 +25,17 @@ public class RectRenderer extends Renderable
 		this.texture = texture;
 		uniformConfig = null;
 	}
-	
+
 	public void render()
 	{
 		texture.bind();
 		getShader().bind();
-		
+
 		if (uniformConfig != null)
 		{
-			uniformConfig.setUniforms(shader);
+			uniformConfig.setUniforms(getShader());
 		}
-		
+
 		//setRenderLighting(false);
 		//getApplication().getRenderingEngine().renderLighting(this);
 		//rect.render(getTransform());
@@ -46,32 +46,32 @@ public class RectRenderer extends Renderable
 		//setRenderLighting(true);
 		//getApplication().getRenderingEngine().renderLightingTemp(this);
 	}
-	
+
 	public Rectangle getRect()
 	{
 		return rect;
 	}
-	
+
 	public void setSize(Vector2 size)
 	{
 		rect.setSize(size);
 	}
-	
+
 	public void setTexture(Texture texture)
 	{
 		this.texture = texture;
 	}
-	
+
 	public Texture getTexture()
 	{
 		return texture;
 	}
-	
+
 	public void setUniformConfig(UniformConfig uniformConfig)
 	{
 		this.uniformConfig = uniformConfig;
 	}
-	
+
 	public interface UniformConfig
 	{
 		public void setUniforms(Shader s);
