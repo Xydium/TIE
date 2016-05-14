@@ -418,5 +418,13 @@ public class Shader
 	{
 		return fileName;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Shader [resource=" + resource + ", fileName=" + fileName + "]";
+	}
 	
 }

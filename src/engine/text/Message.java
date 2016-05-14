@@ -101,20 +101,23 @@ public class Message {
 		return imgs;
 	}
 	
-	public List<RectRenderer> getRectangles(Shader texShader) {
+	/**
+	 * @deprecated
+	 */
+	public List<BufferedImage> getRectangles(Shader texShader) {
 		List<BufferedImage> textures = getLettersTextures();
 		List<RectRenderer> rectangles = new ArrayList<RectRenderer>();
 		
 		int x = 0;
 		for(BufferedImage bi : textures) {
 			Texture texture = new Texture(bi);
-			RectRenderer rec = new RectRenderer(Util.pixelDToGL(new Vector2(this.loc.getX() + x, this.loc.getY())), texture);
+			RectRenderer rec = new RectRenderer(new Vector2(this.loc.getX() + x, this.loc.getY()), texture);
 			rec.setShader(texShader);
 			rectangles.add(rec);
 			System.out.println(bi);
 			x += bi.getWidth();
 		}
-		return rectangles;
+		return null;
 	}
 	
 	/**
