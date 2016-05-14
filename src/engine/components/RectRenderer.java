@@ -33,7 +33,7 @@ public class RectRenderer extends Renderable
 		
 		if (uniformConfig != null)
 		{
-			uniformConfig.setUniforms(shader);
+			uniformConfig.setUniforms(getShader());
 		}
 		
 		//setRenderLighting(false);

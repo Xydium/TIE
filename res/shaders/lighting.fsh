@@ -32,17 +32,15 @@ vec4 calcLightingColor(vec4 baseColor)
 	}
 	else
 	{
-		ratio = (1 - limit(dist / range)) * brightness;
+		ratio = (limit(dist / range)) * brightness;
 	}
 	
-	if (lighting)
+	if (dist < range)
 	{
+		return vec4(0, 0, 0, min(baseColor.a, ratio));
 	}
 	else
 	{
-		if (dist > range)
-			return baseColor;
-		else
-			return vec4(0, 0, 0, 0);
+		return vec4(0, 0, 0, 0);
 	}
 }

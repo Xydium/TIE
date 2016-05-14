@@ -49,7 +49,7 @@ public class TestGame extends Game
 		//go.getTransform().setRotation((float)Math.PI * 0.05f);
 		
 		obj3 = new GameObject();
-		light = new PointLight(2.5f);
+		light = new PointLight(0.25f);
 		light.setBrightness(1);
 		getApplication().getRenderingEngine().addLight(light);
 		obj3.addComponent(light);
@@ -110,7 +110,6 @@ public class TestGame extends Game
 		counter += 0.02f;
 		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
 		//obj3.getTransform().setPosition(0, Mathf.sin(counter));
-		light.setRange(0.3f);
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);
 		/*if (a1.collidesWith(a2))
