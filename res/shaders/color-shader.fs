@@ -2,7 +2,9 @@
 
 uniform vec4 color;
 
+#include "dark-overlay.fsh"
+
 void main()
 {
-	gl_FragColor = color;
+	gl_FragColor = adjustOverlay(color);
 }

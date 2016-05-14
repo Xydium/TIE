@@ -51,6 +51,12 @@ public class WindowFlags
 		this.height = height;
 	}
 	
+	public void setDimensions(Vector2 dimensions)
+	{
+		width = (int)dimensions.getX();
+		height = (int)dimensions.getY();
+	}
+	
 	public Vector2 getDimensions()
 	{
 		return new Vector2(width, height);

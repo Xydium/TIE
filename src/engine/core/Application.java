@@ -46,7 +46,7 @@ public class Application
 		deltaTime = 0.0;
 		
 		Window.create(windowFlags);
-		renderingEngine = new RenderingEngine();
+		renderingEngine = new RenderingEngine(this);
 		
 		GlobalAudio.initAudio();
 	}

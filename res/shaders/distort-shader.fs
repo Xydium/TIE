@@ -8,6 +8,8 @@ uniform float amplitude;
 
 varying vec2 texCoord;
 
+#include "dark-overlay.fsh"
+
 float clamp(float a, float min, float max)
 {
 	if (a < min)
@@ -25,5 +27,5 @@ void main()
 	aux.x = clamp(sin(30.0 * aux.y + frequency * time) * amplitude + aux.x, 0.0, 1.0);
 	aux.y = clamp(sin(30.0 * aux.x + frequency * time) * amplitude + aux.y, 0.0, 1.0);
 	
-	gl_FragColor = texture2D(currentTexture, aux);
+	gl_FragColor = adjustOverlay(texture2D(currentTexture, aux));
 }

@@ -37,6 +37,8 @@ public class RectRenderer extends GameComponent
 			uniformConfig.setUniforms(getShader());
 		}
 		
+		getApplication().getRenderingEngine().updateOverlayBrightness(getShader());
+		
 		rect.render(getTransform());
 	}
 
