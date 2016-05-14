@@ -71,3 +71,5 @@ $RECYCLE.BIN/
 .classpath
 
 .settings/org.eclipse.jdt.core.prefs
+
+saved*.png
