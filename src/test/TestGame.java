@@ -65,11 +65,11 @@ public class TestGame extends Game
 		
 		rr.setUniformConfig(new UniformConfig()
 		{
-			public void setUniforms()
+			public void setUniforms(Shader s)
 			{
-				rr.getShader().setUniform("time", counter);
-				rr.getShader().setUniform("frequency", 5.0f);
-				rr.getShader().setUniform("amplitude", 0.01f);
+				s.setUniform("time", counter);
+				s.setUniform("frequency", 5.0f);
+				s.setUniform("amplitude", 0.01f);
 			}
 		});
 		

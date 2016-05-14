@@ -8,6 +8,11 @@ import engine.rendering.Texture;
 public class RectRenderer extends Renderable
 {
 	private Texture texture;
+<<<<<<< HEAD
+=======
+	private Shader shader;
+
+>>>>>>> origin/master
 	private Rectangle rect;
 	
 	private UniformConfig uniformConfig;
@@ -32,7 +37,7 @@ public class RectRenderer extends Renderable
 		
 		if (uniformConfig != null)
 		{
-			uniformConfig.setUniforms();
+			uniformConfig.setUniforms(shader);
 		}
 		
 		//setRenderLighting(false);
@@ -73,6 +78,14 @@ public class RectRenderer extends Renderable
 	
 	public interface UniformConfig
 	{
-		public void setUniforms();
+		public void setUniforms(Shader s);
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", rect=" + rect + ", uniformConfig="
+				+ uniformConfig + "]";
 	}
 }

@@ -64,4 +64,12 @@ public class Rectangle
 		
 		glEnd();
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Rectangle [size=" + size + "]";
+	}
 }
