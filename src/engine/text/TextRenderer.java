@@ -1,24 +1,26 @@
 package engine.text;
 
-import org.lwjgl.opengl.GL11;
+import java.awt.image.BufferedImage;
+
+import engine.components.RectRenderer;
+import engine.math.Transform;
+import engine.math.Vector2;
+import engine.rendering.Rectangle;
+import engine.rendering.Texture;
+import engine.utility.Util;
 
 public class TextRenderer {
 
 	public static void renderMessage(Message message) {
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 0, 600, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		
-		GL11.glColor3f(0.5f,0.5f,1.0f);
-		 
-		// draw quad
-		GL11.glBegin(GL11.GL_QUADS);
-		    GL11.glVertex2f(100,100);
-		    GL11.glVertex2f(100+200,100);
-		    GL11.glVertex2f(100+200,100+200);
-		    GL11.glVertex2f(100,100+200);
-		GL11.glEnd();
+		float xOff = 0;
+		for(BufferedImage bi : message.getLettersTextures()) {
+			Rectangle rect = new Rectangle(Util.pixelCToGL(new Vector2(message.getLoc().getX() + xOff, message.getLoc().getY())));
+			RectRenderer rectRenderer = new RectRenderer(rect, new Texture(bi));
+			Transform trans = new Transform(new Vector2(bi.getWidth(), bi.getHeight()));
+			rect.render(trans);
+			rectRenderer.render();
+			xOff+=bi.getWidth();
+		}
 	}
 	
 }

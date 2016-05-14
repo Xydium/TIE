@@ -1,6 +1,5 @@
 package engine.text;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -14,6 +13,7 @@ import java.util.List;
 
 import engine.components.RectRenderer;
 import engine.math.Vector2;
+import engine.rendering.Color;
 import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -30,19 +30,18 @@ public class Message {
 	private String message;
 	private Font font;
 	private Vector2 loc;
-	private Shader shader;
+	private Color color;
 
-	public Message(String message, Font font, Vector2 loc) {
+	public Message(String message, Font font, Color color, Vector2 loc) {
 		this.message = message;
 		this.font = font;
+		this.color = color;
 		this.loc = loc;
-		this.shader = shader;
 	}
 
-	public Message(String message, String font, int size, Vector2 loc) {
+	public Message(String message, String font, Vector2 loc, int size, Color color) {
 		this.message = message;
 		this.loc = loc;
-		this.shader = shader;
 		loadFont(font, size);
 	}
 
@@ -92,7 +91,7 @@ public class Message {
 			g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 			g2d.setFont(font);
 			fm = g2d.getFontMetrics();
-			g2d.setColor(Color.BLACK);
+			g2d.setColor(Util.colorToAwt(color));
 			g2d.drawString(String.valueOf(letter), 0, fm.getAscent());
 			g2d.dispose();
 			imgs.add(img);

@@ -7,7 +7,9 @@ import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 
 import engine.math.Vector2;
+import engine.rendering.Color;
 import engine.rendering.Window;
+
 
 /**
  * Useful misfit functions with no real home.
@@ -73,6 +75,15 @@ public class Util
 			result[i] = data[i].intValue();
 		
 		return result;
+	}
+	
+	public static java.awt.Color colorToAwt(Color color) {
+		float red = color.getR();
+		float blue = color.getB();
+		float green = color.getG();
+		float alpha = color.getA();
+		
+		return new java.awt.Color(red, blue, green, alpha);
 	}
 	
 }
