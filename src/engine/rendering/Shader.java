@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import engine.math.Vector2;
 import engine.resmgmt.ShaderResource;
+import engine.utility.Log;
 
 /**
  * GL Shader program comprised of a vertex and fragment shader
@@ -93,6 +94,21 @@ public class Shader
 	
 	/**
 	 * Sets a uniform variable of the given name in this shader
+	 * to be a given boolean value
+	 * 
+	 * @param uniformName the name of the uniform variable
+	 * @param value the new value of the uniform variable
+	 */
+	public void setUniform(String uniformName, boolean value)
+	{
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform1i(resource.getUniforms().get(uniformName), value ? 1 : 0);
+		}
+	}
+	
+	/**
+	 * Sets a uniform variable of the given name in this shader
 	 * to be a given float value
 	 * 
 	 * @param uniformName the name of the uniform variable
@@ -100,7 +116,10 @@ public class Shader
 	 */
 	public void setUniform(String uniformName, float value)
 	{
-		glUniform1f(resource.getUniforms().get(uniformName), value);
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform1f(resource.getUniforms().get(uniformName), value);
+		}
 	}
 	
 	/**
@@ -112,7 +131,10 @@ public class Shader
 	 */
 	public void setUniform(String uniformName, Vector2 value)
 	{
-		glUniform2f(resource.getUniforms().get(uniformName), value.getX(), value.getY());
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform2f(resource.getUniforms().get(uniformName), value.getX(), value.getY());
+		}
 	}
 	
 	/**
@@ -296,9 +318,7 @@ public class Shader
 
 		if (uniformLocation == 0xFFFFFFFF)
 		{
-			System.err.println("Error: Could not find uniform: " + name);
-			new Exception().printStackTrace();
-			System.exit(1);
+			Log.warning("Warning: Shader could not find uniform: " + name);
 		}
 
 		resource.getUniforms().put(name, uniformLocation);

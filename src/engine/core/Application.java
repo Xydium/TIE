@@ -18,6 +18,7 @@ public class Application
 {
 	private Game game;
 	private RenderingEngine renderingEngine;
+	private WindowFlags windowFlags;
 	
 	private boolean isRunning;
 	private double deltaTime;
@@ -36,6 +37,7 @@ public class Application
 	public Application(Game game, double framesPerSecond, WindowFlags windowFlags)
 	{
 		this.game = game;
+		this.windowFlags = windowFlags;
 		game.setApplication(this);
 		
 		frameTime = 1.0 / framesPerSecond;
@@ -181,11 +183,31 @@ public class Application
 		return deltaTime;
 	}
 	
+	/**
+	 * Gets the window flags used to create the app window
+	 * 
+	 * @return window flags
+	 */
+	public WindowFlags getWindowFlags()
+	{
+		return windowFlags;
+	}
+	
+	/**
+	 * Gets the game the application is running
+	 * 
+	 * @return the application's game
+	 */
 	public Game getGame() 
 	{
 		return game;
 	}
 	
+	/**
+	 * Gets the last FPS of the application
+	 * 
+	 * @return the last fps
+	 */
 	public int getLastFPS()
 	{
 		return lastFPS;

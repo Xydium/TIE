@@ -1,30 +1,25 @@
 package engine.components;
 
-import engine.core.GameComponent;
 import engine.math.Vector2;
 import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
-public class RectRenderer extends GameComponent
+public class RectRenderer extends Renderable
 {
 	private Texture texture;
-	private Shader shader;
 	private Rectangle rect;
 	
 	private UniformConfig uniformConfig;
 	
 	public RectRenderer(Vector2 size, Texture texture)
 	{
-		shader = new Shader("basic-shader");
-		rect = new Rectangle(size);
-		this.texture = texture;
-		uniformConfig = null;
+		this(new Rectangle(size), texture);
 	}
 	
 	public RectRenderer(Rectangle rect, Texture texture)
 	{
-		shader = new Shader("basic-shader");
+		setShader(new Shader("basic-shader"));
 		this.rect = rect;
 		this.texture = texture;
 		uniformConfig = null;
@@ -33,14 +28,22 @@ public class RectRenderer extends GameComponent
 	public void render()
 	{
 		texture.bind();
-		shader.bind();
+		getShader().bind();
 		
 		if (uniformConfig != null)
 		{
 			uniformConfig.setUniforms();
 		}
 		
-		rect.render(getTransform());
+		//setRenderLighting(false);
+		//getApplication().getRenderingEngine().renderLighting(this);
+		//rect.render(getTransform());
+		//setRenderLighting(true);
+
+		setRenderLighting(false);
+		getApplication().getRenderingEngine().renderLightingTemp(this);
+		//setRenderLighting(true);
+		//getApplication().getRenderingEngine().renderLightingTemp(this);
 	}
 	
 	public Rectangle getRect()
@@ -51,16 +54,6 @@ public class RectRenderer extends GameComponent
 	public void setSize(Vector2 size)
 	{
 		rect.setSize(size);
-	}
-	
-	public void setShader(Shader shader)
-	{
-		this.shader = shader;
-	}
-	
-	public Shader getShader()
-	{
-		return shader;
 	}
 	
 	public void setTexture(Texture texture)

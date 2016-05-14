@@ -1,36 +1,34 @@
 package test;
 
+import engine.components.PointLight;
 import engine.components.RectRenderer;
 import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
+import engine.math.Mathf;
 import engine.math.Vector2;
-import engine.physics.AABBCollider;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
-
-import static org.lwjgl.opengl.GL11.*;
+import engine.utility.Log;
 
 public class TestGame extends Game
 {
-	private Texture myTexture;
 	private Shader myShader;
 	
-	private GameObject obj, obj2;
-	private AABBCollider a1, a2;
+	private GameObject obj, obj2, obj3;
+	
+	private PointLight light;
 	
 	private float counter;
 	
 	public void start()
 	{
-		System.out.println(glGetString(GL_VERSION));
-		myTexture = new Texture("test.png");
 		myShader = new Shader("color-shader");
 		
 		obj = new GameObject();
-		final RectRenderer rr = new RectRenderer(new Vector2(0.7f, 0.7f), new Texture("test.png"));
+		final RectRenderer rr = new RectRenderer(new Vector2(1f, 1f), new Texture("test.png"));
 		rr.setShader(new Shader("distort-shader"));
 		//rr.setShader(myShader);
 		obj.addComponent(rr);
@@ -50,6 +48,19 @@ public class TestGame extends Game
 		//add(go);
 		//go.getTransform().setRotation((float)Math.PI * 0.05f);
 		
+		obj3 = new GameObject();
+		light = new PointLight(2.5f);
+		light.setBrightness(1);
+		getApplication().getRenderingEngine().addLight(light);
+		obj3.addComponent(light);
+		obj3.getTransform().setPosition(0.25f, 0.25f);
+		
+		GameObject obj4 = new GameObject();
+		PointLight light2 = new PointLight(0.5f);
+		getApplication().getRenderingEngine().addLight(light2);
+		obj4.addComponent(light2);
+		obj4.getTransform().setPosition(-0.25f, -0.25f);
+		
 		counter = 0.0f;
 		
 		rr.setUniformConfig(new UniformConfig()
@@ -64,6 +75,10 @@ public class TestGame extends Game
 		
 		add(obj);
 		add(obj2);
+		add(obj3);
+		add(obj4);
+		
+		Log.info("Initialized");
 		//addAll(obj, obj2);
 	}
 	
@@ -94,6 +109,8 @@ public class TestGame extends Game
 	{
 		counter += 0.02f;
 		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
+		//obj3.getTransform().setPosition(0, Mathf.sin(counter));
+		light.setRange(0.3f);
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);
 		/*if (a1.collidesWith(a2))

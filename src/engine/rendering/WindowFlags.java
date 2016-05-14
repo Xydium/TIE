@@ -1,5 +1,6 @@
 package engine.rendering;
 
+import engine.math.Vector2;
 import engine.utility.Log;
 import engine.utility.Log.LogLevel;
 
@@ -48,6 +49,11 @@ public class WindowFlags
 	public void setHeight(int height)
 	{
 		this.height = height;
+	}
+	
+	public Vector2 getDimensions()
+	{
+		return new Vector2(width, height);
 	}
 	
 	public void setLogLevel(LogLevel logLevel) 

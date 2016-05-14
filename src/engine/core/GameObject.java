@@ -34,7 +34,7 @@ public class GameObject
 		parent = null;
 		transform = new Transform();
 		application = null;
-		tag = "";
+		tag = "GameObject";
 	}
 	
 	/**
@@ -208,65 +208,115 @@ public class GameObject
 		return application;
 	}
 	
+	/**
+	 * Gets the tag of the game object
+	 * 
+	 * @return the tag of the game object
+	 */
 	public String getTag()
 	{
 		return tag;
 	}
 	
+	/**
+	 * Sets the tag of the game object
+	 * 
+	 * @param tag the new tag of the object
+	 */
 	public void setTag(String tag)
 	{
 		this.tag = tag;
 	}
 	
+	/**
+	 * Gets the first component to match the given tag
+	 * 
+	 * @param tag the component's tag
+	 * @return the first component with the given tag
+	 */
 	public GameComponent getComponentWithTag(String tag)
 	{
-		for(GameComponent c : components)
+		for (GameComponent c : components)
 		{
-			if(c.getTag().equals(tag)) return c;
+			if (c.getTag().equals(tag))
+			{
+				return c;			
+			}
 		}
+		
 		return null;
 	}
 	
+	/**
+	 * Gets a list of all the components which match the given tag
+	 * The list contains only the first found component with each given tag
+	 * meaning the maximum size of the returned list is tags.length
+	 * 
+	 * @param tags the tags to check
+	 * @return the components that match the tags
+	 */
 	public ArrayList<GameComponent> getComponentsWithTags(String... tags)
 	{
 		ArrayList<GameComponent> result = new ArrayList<GameComponent>();
-		for(GameComponent c : components)
+		
+		for (GameComponent c : components)
 		{
-			for(String t : tags)
+			for (String t : tags)
 			{
-				if(c.getTag().equals(t)) 
+				if (c.getTag().equals(t)) 
 				{
 					result.add(c); 
 					break;
 				}
 			}
 		}
+		
 		return result;
 	}
 	
+	/**
+	 * Finds the first child that has the given tag
+	 * 
+	 * @param tag the tag to check against
+	 * @return the matching child
+	 */
 	public GameObject getChildWithTag(String tag)
 	{
-		for(GameObject c : children)
+		for (GameObject c : children)
 		{
-			if(c.getTag().equals(tag)) return c;
+			if (c.getTag().equals(tag))
+			{
+				return c;
+			}
 		}
+		
 		return null;
 	}
 	
+	/**
+	 * Gets a list of all the children which match the given tag
+	 * The list contains only the first found child with each given tag
+	 * meaning the maximum size of the returned list is tags.length
+	 * 
+	 * @param tags the tags to check
+	 * @return the children that match the tags
+	 */
 	public ArrayList<GameObject> getChildrenWithTags(String... tags)
 	{
 		ArrayList<GameObject> result = new ArrayList<GameObject>();
-		for(GameObject c : children)
+		
+		for (GameObject c : children)
 		{
-			for(String t : tags)
+			for (String t : tags)
 			{
-				if(c.getTag().equals(t)) 
+				if (c.getTag().equals(t)) 
 				{
 					result.add(c); 
 					break;
 				}
 			}
 		}
+		
 		return result;
 	}
 	

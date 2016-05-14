@@ -19,4 +19,23 @@ public class Mathf {
 		return (float) Math.toDegrees(radians);
 	}
 	
+	public static float abs(float n)
+	{
+		return Math.abs(n);
+	}
+	
+	public static float sin(float a)
+	{
+		return (float)Math.sin(a);
+	}
+	
+	public static float cos(float a)
+	{
+		return (float)Math.cos(a);
+	}
+	
+	public static float tan(float a)
+	{
+		return (float)Math.tan(a);
+	}
 }

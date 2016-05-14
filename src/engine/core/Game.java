@@ -89,7 +89,7 @@ public abstract class Game
 	 */
 	public void add(GameObject obj)
 	{
-		getScene().getRootObject().addChild(obj);
+		getScene().add(obj);
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public abstract class Game
 	 */
 	public void addAll(GameObject... objects)
 	{
-		getScene().getRootObject().addAllChildren(objects);
+		getScene().addAll(objects);
 	}
 	
 	/**
@@ -134,6 +134,7 @@ public abstract class Game
 	public void setApplication(Application application)
 	{
 		this.application = application;
+		getScene().setApplication(application);
 	}
 	
 	/**
