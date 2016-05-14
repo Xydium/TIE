@@ -42,7 +42,7 @@ public class RectRenderer extends Renderable
 		//setRenderLighting(true);
 
 		setRenderLighting(false);
-		getApplication().getRenderingEngine().renderLightingTemp(this);
+		//getApplication().getRenderingEngine().renderLightingTemp(this);
 		//setRenderLighting(true);
 		//getApplication().getRenderingEngine().renderLightingTemp(this);
 	}
