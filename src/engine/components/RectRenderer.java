@@ -1,11 +1,12 @@
 package engine.components;
 
+import engine.core.GameComponent;
 import engine.math.Vector2;
 import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
-public class RectRenderer extends Renderable
+public class RectRenderer extends GameComponent
 {
 	private Texture texture;
 	private Shader shader;
@@ -36,15 +37,7 @@ public class RectRenderer extends Renderable
 			uniformConfig.setUniforms(getShader());
 		}
 		
-		//setRenderLighting(false);
-		//getApplication().getRenderingEngine().renderLighting(this);
-		//rect.render(getTransform());
-		//setRenderLighting(true);
-
-		setRenderLighting(false);
-		getApplication().getRenderingEngine().renderLightingTemp(this);
-		//setRenderLighting(true);
-		//getApplication().getRenderingEngine().renderLightingTemp(this);
+		rect.render(getTransform());
 	}
 	
 	public Rectangle getRect()
@@ -62,9 +55,19 @@ public class RectRenderer extends Renderable
 		this.texture = texture;
 	}
 	
+	public void setShader(Shader shader)
+	{
+		this.shader = shader;
+	}
+	
 	public Texture getTexture()
 	{
 		return texture;
+	}
+	
+	public Shader getShader()
+	{
+		return shader;
 	}
 	
 	public void setUniformConfig(UniformConfig uniformConfig)

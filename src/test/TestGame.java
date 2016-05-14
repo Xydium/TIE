@@ -1,12 +1,10 @@
 package test;
 
-import engine.components.PointLight;
 import engine.components.RectRenderer;
 import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
-import engine.math.Mathf;
 import engine.math.Vector2;
 import engine.rendering.Color;
 import engine.rendering.Shader;
@@ -17,9 +15,7 @@ public class TestGame extends Game
 {
 	private Shader myShader;
 	
-	private GameObject obj, obj2, obj3;
-	
-	private PointLight light;
+	private GameObject obj, obj2;
 	
 	private float counter;
 	
@@ -48,19 +44,6 @@ public class TestGame extends Game
 		//add(go);
 		//go.getTransform().setRotation((float)Math.PI * 0.05f);
 		
-		obj3 = new GameObject();
-		light = new PointLight(0.25f);
-		light.setBrightness(1);
-		getApplication().getRenderingEngine().addLight(light);
-		obj3.addComponent(light);
-		obj3.getTransform().setPosition(0.25f, 0.25f);
-		
-		GameObject obj4 = new GameObject();
-		PointLight light2 = new PointLight(0.5f);
-		getApplication().getRenderingEngine().addLight(light2);
-		obj4.addComponent(light2);
-		obj4.getTransform().setPosition(-0.25f, -0.25f);
-		
 		counter = 0.0f;
 		
 		rr.setUniformConfig(new UniformConfig()
@@ -75,8 +58,6 @@ public class TestGame extends Game
 		
 		add(obj);
 		add(obj2);
-		add(obj3);
-		add(obj4);
 		
 		Log.info("Initialized");
 		//addAll(obj, obj2);
