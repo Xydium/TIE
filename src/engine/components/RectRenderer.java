@@ -8,11 +8,7 @@ import engine.rendering.Texture;
 public class RectRenderer extends Renderable
 {
 	private Texture texture;
-<<<<<<< HEAD
-=======
 	private Shader shader;
-
->>>>>>> origin/master
 	private Rectangle rect;
 	
 	private UniformConfig uniformConfig;
