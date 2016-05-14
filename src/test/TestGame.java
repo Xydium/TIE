@@ -90,6 +90,7 @@ public class TestGame extends Game
 	{
 		counter += 0.02f;
 		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
+		obj2.getTransform().rotateBy(0.01f);
 		//obj3.getTransform().setPosition(0, Mathf.sin(counter));
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);
