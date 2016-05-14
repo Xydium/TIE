@@ -12,6 +12,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import engine.resmgmt.TextureResource;
+import engine.utility.Log;
 import engine.utility.Util;
 
 /**
@@ -49,11 +50,21 @@ public class Texture
 		}
 	}
 
-	public Texture(BufferedImage bi) {
+	/**
+	 * Creates a new texture from a given buffered image
+	 * 
+	 * @param bufferedImage the image to read from
+	 */
+	public Texture(BufferedImage bufferedImage)
+	{
 		this.fileName = "";
-		this.resource = bufferedImageToTexture(bi);
+		this.resource = bufferedImageToTexture(bufferedImage);
 	}
 
+	/**
+	 * Cleans up the texture after no more references exist
+	 * to it
+	 */
 	@Override
 	protected void finalize()
 	{
@@ -64,7 +75,7 @@ public class Texture
 	}
 
 	/**
-	 * Binds the texture to GL
+	 * Binds the texture to GL at the first texture slot
 	 */
 	public void bind()
 	{
@@ -103,6 +114,7 @@ public class Texture
 		}
 		catch (IOException e)
 		{
+			Log.error("Texture loading error");
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -110,7 +122,8 @@ public class Texture
 		return null;
 	}
 
-	private static TextureResource bufferedImageToTexture(BufferedImage image) {
+	private static TextureResource bufferedImageToTexture(BufferedImage image)
+	{
 		int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 
 		ByteBuffer buffer = Util.createByteBuffer(image.getHeight() * image.getWidth() * 4);
@@ -149,12 +162,18 @@ public class Texture
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-		try {
+		
+		// TEMPORARY - TODO: REMOVE IT /////////////////////////////////////////////////////////////////
+		try
+		{
 			File outputfile = new File("saved" + System.nanoTime() + ".png");
 		    ImageIO.write(image, "png", outputfile);
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
+		///////////////////////////////////////////////////////////////////////////////////////////////
 
 		return resource;
 	}

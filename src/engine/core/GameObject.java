@@ -134,12 +134,22 @@ public class GameObject
 		}
 	}
 	
+	/**
+	 * Adds the given component to the game object
+	 * 
+	 * @param component the component to add
+	 */
 	public void addComponent(GameComponent component)
 	{
 		components.add(component);
 		component.setParent(this);
 	}
 	
+	/**
+	 * Adds all of the given components to the game object
+	 * 
+	 * @param components the components to add
+	 */
 	public void addAllComponents(GameComponent... components)
 	{
 		for (GameComponent comp : components)

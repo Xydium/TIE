@@ -63,6 +63,10 @@ public class Shader
 		}
 	}
 	
+	/**
+	 * Cleans up the shader after no more references exist
+	 * to it
+	 */
 	@Override
 	protected void finalize()
 	{

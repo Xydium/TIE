@@ -12,8 +12,10 @@ import engine.rendering.Window;
 
 
 /**
- * Useful misfit functions with no real home.
+ * Miscellaneous collection of utility functions with
+ * no better location
  * 
+ * @author Lenny Livak
  * @author Tim Hornick
  *
  */
@@ -42,21 +44,45 @@ public class Util
 		return pixel;
 	}
 	
+	/**
+	 * Creates a buffer of bytes with the given size
+	 * 
+	 * @param size the size of the byte buffer
+	 * @return the new byte buffer
+	 */
 	public static ByteBuffer createByteBuffer(int size)
 	{
 		return BufferUtils.createByteBuffer(size);
 	}
 	
+	/**
+	 * Creates a buffer of ints with the given size
+	 * 
+	 * @param size the size of the int buffer
+	 * @return the new int buffer
+	 */
 	public static IntBuffer createIntBuffer(int size)
 	{
 		return BufferUtils.createIntBuffer(size);
 	}
 	
+	/**
+	 * Creates a buffer of floats with the given size
+	 * 
+	 * @param size the size of the float buffer
+	 * @return the new float buffer
+	 */
 	public static FloatBuffer createFloatBuffer(int size)
 	{
 		return BufferUtils.createFloatBuffer(size);
 	}
 	
+	/**
+	 * Creates a flipped int buffer from the given set of values
+	 * 
+	 * @param values the values to insert in the buffer
+	 * @return the flipped IntBuffer
+	 */
 	public static IntBuffer createFlippedBuffer(int... values)
 	{
 		IntBuffer buffer = createIntBuffer(values.length);
@@ -67,6 +93,13 @@ public class Util
 		return buffer;
 	}
 	
+	/**
+	 * Converts an array of java Integer types to an array of
+	 * java int type
+	 * 
+	 * @param data the Integer data
+	 * @return the int copy of the given data
+	 */
 	public static int[] toIntArray(Integer[] data)
 	{
 		int[] result = new int[data.length];
@@ -77,7 +110,15 @@ public class Util
 		return result;
 	}
 	
-	public static java.awt.Color colorToAwt(Color color) {
+	/**
+	 * Converts the internal engine color class's data to a 
+	 * Java AWT color object
+	 * 
+	 * @param color the input engine.rendering.Color object
+	 * @return the Java AWT color object
+	 */
+	public static java.awt.Color colorToAwt(Color color)
+	{
 		float red = color.getR();
 		float blue = color.getB();
 		float green = color.getG();
@@ -85,5 +126,4 @@ public class Util
 		
 		return new java.awt.Color(red, blue, green, alpha);
 	}
-	
 }

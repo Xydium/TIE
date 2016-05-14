@@ -17,44 +17,116 @@ public class Log
 	private static final int MAX_LOG_BUFFER_SIZE = 100;
 	private static final long FILE_RUNTIME_ID = System.currentTimeMillis();	
 
-	public static LogLevel logLevel = LogLevel.INTERNAL;
-	public static boolean consoleEnabled = true;		
+	private static LogLevel logLevel = LogLevel.INTERNAL;
+	private static boolean consoleEnabled = true;		
 	
 	private static ArrayList<String> lines = new ArrayList<String>();
 
+	/**
+	 * Writes to the ERROR log level
+	 * 
+	 * @param msg the msg to write
+	 */
 	public static void error(String msg) 
 	{
 		addLine(LogLevel.ERROR, msg);
 	}
 	
+	/**
+	 * Writes to the WARNING log level
+	 * 
+	 * @param msg the msg to write
+	 */
 	public static void warning(String msg) 
 	{
 		addLine(LogLevel.WARNING, msg);
 	}
 	
+	/**
+	 * Writes to the INFO log level
+	 * 
+	 * @param msg the msg to write
+	 */
 	public static void info(String msg) 
 	{
 		addLine(LogLevel.INFO, msg);
 	}
 	
+	/**
+	 * Writes to the DEBUG log level
+	 * 
+	 * @param msg the msg to write
+	 */
 	public static void debug(String msg) 
 	{
 		addLine(LogLevel.DEBUG, msg);
 	}
 	
+	/**
+	 * Writes to the INTERNAL log level
+	 * 
+	 * @param msg the msg to write
+	 */
 	public static void internal(String msg) 
 	{ 
 		addLine(LogLevel.INTERNAL, msg);
 	}
 	
+	/**
+	 * Sets the maximum log level that the log will output to
+	 * 
+	 * @param logLevel the max log level
+	 */
+	public static void setLogLevel(LogLevel logLevel)
+	{
+		Log.logLevel = logLevel;
+	}
+	
+	/**
+	 * Sets whether the log should output to the console or not
+	 * 
+	 * @param consoleEnabled whether the log should output to the console
+	 */
+	public static void setConsoleEnabled(boolean consoleEnabled)
+	{
+		Log.consoleEnabled = consoleEnabled;
+	}
+	
+	/**
+	 * Gets the maximum log level that the log outputs to
+	 * 
+	 * @return the max log level
+	 */
+	public static LogLevel getLogLevel()
+	{
+		return logLevel;
+	}
+	
+	/**
+	 * Gets whether the log writes to the output console
+	 * 
+	 * @return whether the log writes to the output console
+	 */
+	public static boolean getConsoleEnabled()
+	{
+		return consoleEnabled;
+	}
+	
 	private static void addLine(LogLevel level, String msg) 
 	{
-		if(level.ordinal() <= logLevel.ordinal()) 
+		if (level.ordinal() <= logLevel.ordinal()) 
 		{
 			String line = level.tag + " " + msg;
 			lines.add(line);
-			if(consoleEnabled) System.out.println(line);
-			if(lines.size() >= MAX_LOG_BUFFER_SIZE) flushLog();
+			if (consoleEnabled)
+			{
+				System.out.println(line);
+			}
+			
+			if (lines.size() >= MAX_LOG_BUFFER_SIZE)
+			{
+				flushLog();
+			}
 		}
 	}
 	
@@ -64,12 +136,19 @@ public class Log
 		{
 			FileWriter file = new FileWriter("LOG_" + FILE_RUNTIME_ID + ".txt");
 			BufferedWriter bf = new BufferedWriter(file);
-			for(String s : lines) 
+			
+			for (String s : lines) 
 			{
 				bf.write(s + "\n");
 			}
+			
 			bf.close();
-		} catch (IOException e) { e.printStackTrace(); }
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		lines.clear();
 	}
 	

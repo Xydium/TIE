@@ -1,7 +1,7 @@
 package engine.math;
 
 /**
- * a Transform which represents a position and a rotation
+ * A Transform which represents a position and a rotation
  * of an object, and can be translated or rotated
  * 
  * @author Lenny Litvak

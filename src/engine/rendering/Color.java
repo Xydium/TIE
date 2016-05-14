@@ -1,7 +1,7 @@
 package engine.rendering;
 
 /**
- * RGB color value
+ * RGBA color value
  * 
  * @author Lenny Litvak
  *

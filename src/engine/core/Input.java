@@ -4,15 +4,24 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import engine.math.Vector2;
 
+/**
+ * Class used to recieve input from the keyboard
+ * and mouse
+ * 
+ * @author Lenny Litvak
+ *
+ */
 public final class Input
 {
 	public static final int NUM_KEYCODES = 256;
 	public static final int NUM_MOUSEBUTTONS = 5;
 	
+	// Mouse bindings
 	public static final int MOUSE_LEFT = 0;
 	public static final int MOUSE_RIGHT = 1;
 	public static final int MOUSE_MIDDLE = 2;
 	
+	// Key bindings copied from LWJGL
 	public static final int KEY_NONE			= 0x00;
 	public static final int KEY_ESCAPE			= 0x01;
 	public static final int KEY_1				= 0x02;
@@ -145,6 +154,9 @@ public final class Input
 	private static boolean[] lastKeys = new boolean[NUM_KEYCODES];
 	private static boolean[] lastMouse = new boolean[NUM_MOUSEBUTTONS];
 	
+	/**
+	 * Updates the states of the input keys and mouse buttons
+	 */
 	public static void update()
 	{
 		for(int i = 0; i < NUM_KEYCODES; i++)
@@ -158,51 +170,110 @@ public final class Input
 		}
 	}
 	
+	/**
+	 * Gets the current state of a key with the given key-code
+	 * true = down, false = up
+	 * 
+	 * @param keyCode the key-code of the key to check
+	 * @return the state of the key
+	 */
 	public static boolean getKey(int keyCode)
 	{
 		return Keyboard.isKeyDown(keyCode);
 	}
 	
+	/**
+	 * Returns whether the given key was pressed down that frame
+	 * 
+	 * @param keyCode the key-code of the key to check
+	 * @return whether the key was pressed down that frame
+	 */
 	public static boolean getKeyDown(int keyCode)
 	{
 		return !lastKeys[keyCode] && Keyboard.isKeyDown(keyCode);
 	}
 	
+	/**
+	 * Returns whether the given key was released that frame
+	 * 
+	 * @param keyCode the key-code of the key to check
+	 * @return whether the key was released that frame
+	 */
 	public static boolean getKeyUp(int keyCode)
 	{
 		return lastKeys[keyCode] && !Keyboard.isKeyDown(keyCode);
 	}
 	
+	/**
+	 * Gets the current state of a mouse button with the given button code
+	 * true = down, false = up
+	 * 
+	 * @param mButton the mouse button code of the button to check
+	 * @return the state of the mouse button
+	 */
 	public static boolean getMouse(int mButton)
 	{
 		return Mouse.isButtonDown(mButton);
 	}
 	
+	/**
+	 * Returns whether the given mouse button was pressed down that frame
+	 * 
+	 * @param mButton the mouse button code of the button to check
+	 * @return whether the mouse button was pressed down that frame
+	 */
 	public static boolean getMouseDown(int mButton)
 	{
 		return !lastMouse[mButton] && Mouse.isButtonDown(mButton);
 	}
 	
+	/**
+	 * Returns whether the given mouse button was released that frame
+	 * 
+	 * @param mButton the mouse button code of the button to check
+	 * @return whether the mouse button was released that frame
+	 */
 	public static boolean getMouseUp(int mButton)
 	{
 		return lastMouse[mButton] && !Mouse.isButtonDown(mButton);
 	}
 	
+	/**
+	 * Sets the position of the mouse in screen coordinates
+	 * 
+	 * @param x the x position of the mouse
+	 * @param y the y position of the mouse
+	 */
 	public static void setMousePosition(int x, int y)
 	{
 		Mouse.setCursorPosition(x, y);
 	}
 	
+	/**
+	 * Sets the position of the mouse in screen coordinates
+	 * 
+	 * @param pos the new position of the mouse
+	 */
 	public static void setMousePosition(Vector2 pos)
 	{
 		Mouse.setCursorPosition((int)pos.getX(), (int)pos.getY());
 	}
 	
+	/**
+	 * Gets the current mouse position in screen coordinates
+	 * 
+	 * @return the mouse position
+	 */
 	public static Vector2 getMousePosition()
 	{
 		return new Vector2((float)Mouse.getX(), (float)Mouse.getY());
 	}
 	
+	/**
+	 * Sets whether the cursor is visible on the screen
+	 * 
+	 * @param visible whether the cursor is visible or not
+	 */
 	public static void setCursorVisible(boolean visible)
 	{
 		Mouse.setGrabbed(!visible);

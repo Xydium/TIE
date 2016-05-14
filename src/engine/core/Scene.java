@@ -24,13 +24,14 @@ public class Scene
 	 * Called when the scene is set as a game's current scene
 	 */
 	public void activate()
-	{
-		
+	{	
 	}
 	
+	/**
+	 * Called when the scene is no longer set as a game's current scene
+	 */
 	public void deactivate()
 	{
-		
 	}
 	
 	/**
