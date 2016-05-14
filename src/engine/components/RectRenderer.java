@@ -36,21 +36,8 @@ public class RectRenderer extends GameComponent
 		{
 			uniformConfig.setUniforms(getShader());
 		}
-<<<<<<< HEAD
 		
 		rect.render(getTransform());
-=======
-
-		//setRenderLighting(false);
-		//getApplication().getRenderingEngine().renderLighting(this);
-		//rect.render(getTransform());
-		//setRenderLighting(true);
-
-		setRenderLighting(false);
-		//getApplication().getRenderingEngine().renderLightingTemp(this);
-		//setRenderLighting(true);
-		//getApplication().getRenderingEngine().renderLightingTemp(this);
->>>>>>> origin/master
 	}
 
 	public Rectangle getRect()
@@ -67,30 +54,22 @@ public class RectRenderer extends GameComponent
 	{
 		this.texture = texture;
 	}
-<<<<<<< HEAD
 	
 	public void setShader(Shader shader)
 	{
 		this.shader = shader;
 	}
 	
-=======
-
->>>>>>> origin/master
 	public Texture getTexture()
 	{
 		return texture;
 	}
-<<<<<<< HEAD
-	
+
 	public Shader getShader()
 	{
 		return shader;
 	}
 	
-=======
-
->>>>>>> origin/master
 	public void setUniformConfig(UniformConfig uniformConfig)
 	{
 		this.uniformConfig = uniformConfig;
