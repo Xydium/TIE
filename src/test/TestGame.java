@@ -14,8 +14,11 @@ import engine.utility.Log;
 public class TestGame extends Game
 {
 	private Shader myShader;
+	private Texture t1, t2;
 	
 	private GameObject obj, obj2;
+	
+	private RectRenderer rr;
 	
 	private float counter;
 	
@@ -24,8 +27,12 @@ public class TestGame extends Game
 		getApplication().getRenderingEngine().setOverlayBrightness(0.7f);
 		myShader = new Shader("color-shader");
 		
+		t1 = new Texture("test.png");
+		t2 = new Texture("distortionMap.png");
+		
 		obj = new GameObject();
-		final RectRenderer rr = new RectRenderer(new Vector2(1f, 1f), new Texture("test.png"));
+		rr = new RectRenderer(new Vector2(0.3f, 0.3f), t1);
+		rr.setTag("renderer");
 		rr.setShader(new Shader("distort-shader"));
 		rr.setAllowLighting(false);
 		//rr.setShader(myShader);
@@ -88,11 +95,19 @@ public class TestGame extends Game
 		}
 	}
 	
+	boolean sw = false;
+	
 	public void update()
 	{
 		counter += 0.02f;
 		myShader.setUniform("color", new Color(1, 0, 0, 0.5f));
 		obj2.getTransform().rotateBy(0.01f);
+		if (counter >= 4.f)
+		{
+			sw = !sw;
+			rr.setTexture(sw ? t1 : t2);
+			counter = 0;
+		}
 		//obj3.getTransform().setPosition(0, Mathf.sin(counter));
 		//obj.getTransform().translateBy(new Vector2(0, 0.01f));
 		//obj.getTransform().rotateBy(0.01f);

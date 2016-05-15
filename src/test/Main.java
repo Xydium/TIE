@@ -11,6 +11,7 @@ public class Main
 		WindowFlags flags = new WindowFlags("My window", 800, 600);
 		flags.setLogLevel(LogLevel.INTERNAL);
 		flags.setConsoleEnabled(true);
+		flags.setIconFiles("icon16.png", "icon32.png");
 		
 		Application app = new Application(new TestGame(), 60.0, flags);
 		app.start();

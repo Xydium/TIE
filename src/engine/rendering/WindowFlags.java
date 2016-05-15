@@ -14,8 +14,12 @@ import engine.utility.Log.LogLevel;
 public class WindowFlags
 {
 	private String title;
+	
 	private int width;
 	private int height;
+	
+	private String cornerIcon;
+	private String taskbarIcon;
 	
 	/**
 	 * Creates a new window flags object with
@@ -55,6 +59,9 @@ public class WindowFlags
 		this.title = title;
 		this.width = width;
 		this.height = height;
+		
+		cornerIcon = "";
+		taskbarIcon = "";
 		
 		Log.setLogLevel(logLevel);
 		Log.setConsoleEnabled(consoleEnabled);
@@ -132,6 +139,19 @@ public class WindowFlags
 	}
 	
 	/**
+	 * Sets the icon file names for the corner icon and the taskbar icon
+	 * of the window
+	 * 
+	 * @param cornerIcon the corner icon file name
+	 * @param taskbarIcon the taskbar icon file name
+	 */
+	public void setIconFiles(String cornerIcon, String taskbarIcon)
+	{
+		this.cornerIcon = cornerIcon;
+		this.taskbarIcon = taskbarIcon;
+	}
+	
+	/**
 	 * Gets the title of the window flags
 	 * 
 	 * @return the window flags' title
@@ -159,6 +179,26 @@ public class WindowFlags
 	public int getHeight()
 	{
 		return height;
+	}
+	
+	/**
+	 * Gets the file name for the corner icon
+	 * 
+	 * @return the corner icon file name
+	 */
+	public String getCornerIcon()
+	{
+		return cornerIcon;
+	}
+	
+	/**
+	 * Gets the file name for the taskbar icon
+	 * 
+	 * @return the taskbar icon file name
+	 */
+	public String getTaskbarIcon()
+	{
+		return taskbarIcon;
 	}
 	
 	/**

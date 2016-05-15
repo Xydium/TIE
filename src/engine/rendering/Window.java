@@ -50,9 +50,11 @@ public final class Window
 		PixelFormat pixelFormat = new PixelFormat();
 		ContextAttribs contextAtrributes = new ContextAttribs(3, 1);
 
-		try {
+		try
+		{
 		    Display.setDisplayMode(new DisplayMode(flags.getWidth(), flags.getHeight()));
 		    Display.setTitle(flags.getTitle());
+		    setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
 		    Display.create(pixelFormat, contextAtrributes);
 		    Keyboard.create();
 		    Mouse.create();
@@ -94,7 +96,15 @@ public final class Window
 		Mouse.destroy();
 	}
 
-	public static void setWindowIcon(String cornerIcon, String taskbarIcon)
+	/**
+	 * Sets the taskbar and corner icons of the window
+	 * the corner icon must be 16x16
+	 * and the taskbar icon must be 32x32
+	 * 
+	 * @param cornerIcon the corner icon name
+	 * @param taskbarIcon the taskbar icon name
+	 */
+	public static void setIcons(String cornerIcon, String taskbarIcon)
 	{
 		final String BASE_PATH = "/assets/textures/";
 
@@ -102,12 +112,11 @@ public final class Window
 		{
 			ByteBuffer[] data = new ByteBuffer[2];
 			data[0] = Texture.loadImageToByteBuffer(ImageIO.read(Window.class.getResourceAsStream(BASE_PATH + cornerIcon)));
-			data[0] = Texture.loadImageToByteBuffer(ImageIO.read(Window.class.getResourceAsStream(BASE_PATH + taskbarIcon)));
+			data[1] = Texture.loadImageToByteBuffer(ImageIO.read(Window.class.getResourceAsStream(BASE_PATH + taskbarIcon)));
 			Display.setIcon(data);
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
 		}
 	}
 
