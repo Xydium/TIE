@@ -44,7 +44,7 @@ public class Texture
 		}
 		else
 		{
-			resource = loadTexture(fileName);
+			resource = bufferedImageToTexture(loadBufferedImage(fileName));
 			loadedTextures.put(fileName, resource);
 		}
 	}
@@ -127,23 +127,6 @@ public class Texture
 		return resource.getID();
 	}
 
-	private static TextureResource loadTexture(String fileName)
-	{
-		try
-		{
-			BufferedImage image = ImageIO.read(Texture.class.getResourceAsStream("/assets/textures/" + fileName));
-			return bufferedImageToTexture(image);
-		}
-		catch (IOException e)
-		{
-			Log.error("Error loading texture: " + fileName);
-			e.printStackTrace();
-			System.exit(1);
-		}
-
-		return null;
-	}
-	
 	/**
 	 * Utility method for loading a given BufferedImage to a byte buffer
 	 * 
@@ -182,6 +165,28 @@ public class Texture
 		
 		return buffer;
 	}
+	
+	/**
+	 * Loads a buffered image from the given file name
+	 * 
+	 * @param fileName the file name of the image
+	 * @return the image at the given file name
+	 */
+	public static BufferedImage loadBufferedImage(String fileName)
+	{
+		try
+		{
+			return ImageIO.read(Texture.class.getResourceAsStream("/assets/textures/" + fileName));
+		}
+		catch (IOException e)
+		{
+			Log.error("Error loading texture: " + fileName);
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+		return null;
+	}
 
 	private static TextureResource bufferedImageToTexture(BufferedImage image)
 	{
@@ -205,7 +210,8 @@ public class Texture
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Texture [resource=" + resource + ", fileName=" + fileName + "]";
 	}
 }
