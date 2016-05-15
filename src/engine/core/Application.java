@@ -160,6 +160,7 @@ public class Application
 	private void cleanUp()
 	{
 		Window.dispose();
+		GlobalAudio.shutdown();
 	}
 	
 	/**

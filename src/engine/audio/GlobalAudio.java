@@ -29,6 +29,11 @@ public final class GlobalAudio
 		TinySound.init();
 	}
 	
+	public static void shutdown()
+	{
+		TinySound.shutdown();
+	}
+	
 	/**
 	 * Loads a sound from the given path
 	 * 
@@ -37,7 +42,8 @@ public final class GlobalAudio
 	 */
 	public static void addSound(String name, String path)
 	{
-		sounds.put(name, TinySound.loadSound(path));
+		if(!sounds.containsKey(name))
+			sounds.put(name, TinySound.loadSound(path));
 	}
 	
 	/**
@@ -49,7 +55,8 @@ public final class GlobalAudio
 	 */
 	public static void addMusic(String name, String path)
 	{
-		music.put(name, TinySound.loadMusic(path));
+		if(!music.containsKey(name))
+			music.put(name, TinySound.loadMusic(path));
 	}
 	
 	/**
@@ -112,7 +119,8 @@ public final class GlobalAudio
 	 */
 	private static void playMusic(String name, double vol, boolean loop)
 	{
-		music.get(name).play(loop, vol);
+		Music m = music.get(name);
+		if(!m.playing()) m.play(loop, vol);
 	}
 	
 	/**
