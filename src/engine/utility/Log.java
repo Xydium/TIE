@@ -1,5 +1,6 @@
 package engine.utility;
 
+import java.awt.EventQueue;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
  * text files upon overflow or user request.
  * 
  * @author Tim Hornick
+ * @author Chris Jerrett
  *
  */
 public class Log 
@@ -18,10 +20,22 @@ public class Log
 	private static final long FILE_RUNTIME_ID = System.currentTimeMillis();	
 
 	private static LogLevel logLevel = LogLevel.INTERNAL;
-	private static boolean consoleEnabled = true;		
+	private static boolean consoleEnabled = false;		
 	
 	private static ArrayList<String> lines = new ArrayList<String>();
 
+	private static LogWindow logWindow;
+	
+	public static void enableDebugWindow() {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				logWindow = new LogWindow();				
+			}
+		});
+		consoleEnabled = true;
+	}
+	
 	/**
 	 * Writes to the ERROR log level
 	 * 
@@ -30,6 +44,7 @@ public class Log
 	public static void error(String msg) 
 	{
 		addLine(LogLevel.ERROR, msg);
+		logWindow.updateConsole(msg);
 	}
 	
 	/**
@@ -40,6 +55,7 @@ public class Log
 	public static void warning(String msg) 
 	{
 		addLine(LogLevel.WARNING, msg);
+		logWindow.updateConsole(msg);
 	}
 	
 	/**
@@ -50,6 +66,7 @@ public class Log
 	public static void info(String msg) 
 	{
 		addLine(LogLevel.INFO, msg);
+		logWindow.updateConsole(msg);
 	}
 	
 	/**
@@ -60,6 +77,7 @@ public class Log
 	public static void debug(String msg) 
 	{
 		addLine(LogLevel.DEBUG, msg);
+		logWindow.updateConsole(msg);
 	}
 	
 	/**
@@ -70,6 +88,7 @@ public class Log
 	public static void internal(String msg) 
 	{ 
 		addLine(LogLevel.INTERNAL, msg);
+		logWindow.updateConsole(msg);
 	}
 	
 	/**
@@ -89,6 +108,12 @@ public class Log
 	 */
 	public static void setConsoleEnabled(boolean consoleEnabled)
 	{
+		if(Log.getConsoleEnabled() && !consoleEnabled) {
+			logWindow.dispose();
+		}
+		if(!Log.getConsoleEnabled() && !consoleEnabled) {
+			enableDebugWindow();
+		}
 		Log.consoleEnabled = consoleEnabled;
 	}
 	
@@ -167,6 +192,13 @@ public class Log
 		{
 			this.tag = tag;
 		}
+	}
+
+	/**
+	 * @return the lines
+	 */
+	public static ArrayList<String> getLines() {
+		return lines;
 	}
 	
 }

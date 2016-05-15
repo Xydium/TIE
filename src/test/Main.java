@@ -2,6 +2,7 @@ package test;
 
 import engine.core.Application;
 import engine.rendering.WindowFlags;
+import engine.utility.Log;
 import engine.utility.Log.LogLevel;
 
 public class Main
@@ -10,6 +11,7 @@ public class Main
 	{
 		WindowFlags flags = new WindowFlags("My window", 800, 600);
 		flags.setLogLevel(LogLevel.INTERNAL);
+		Log.enableDebugWindow();
 		flags.setConsoleEnabled(true);
 		
 		Application app = new Application(new TestGame(), 60.0, flags);
