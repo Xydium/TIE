@@ -143,8 +143,14 @@ public class Texture
 
 		return null;
 	}
-
-	private static TextureResource bufferedImageToTexture(BufferedImage image)
+	
+	/**
+	 * Utility method for loading a given BufferedImage to a byte buffer
+	 * 
+	 * @param image the image to convert
+	 * @return the ByteBuffer containing the image
+	 */
+	public static ByteBuffer loadImageToByteBuffer(BufferedImage image)
 	{
 		int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 
@@ -173,6 +179,13 @@ public class Texture
 		}
 
 		buffer.flip();
+		
+		return buffer;
+	}
+
+	private static TextureResource bufferedImageToTexture(BufferedImage image)
+	{
+		ByteBuffer buffer = loadImageToByteBuffer(image);
 
 		TextureResource resource = new TextureResource();
 		glBindTexture(GL_TEXTURE_2D, resource.getID());
@@ -185,18 +198,6 @@ public class Texture
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 		
-		// TEMPORARY - TODO: REMOVE IT /////////////////////////////////////////////////////////////////
-		/*try
-		{
-			File outputfile = new File("saved" + System.nanoTime() + ".png");
-		    ImageIO.write(image, "png", outputfile);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}*/
-		///////////////////////////////////////////////////////////////////////////////////////////////
-
 		return resource;
 	}
 

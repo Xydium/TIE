@@ -1,5 +1,10 @@
 package engine.rendering;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+import javax.imageio.ImageIO;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -81,6 +86,23 @@ public final class Window
 		Display.destroy();
 		Keyboard.destroy();
 		Mouse.destroy();
+	}
+	
+	public static void setWindowIcon(String cornerIcon, String taskbarIcon)
+	{
+		final String BASE_PATH = "/assets/textures/";
+		
+		try
+		{
+			ByteBuffer[] data = new ByteBuffer[2];
+			data[0] = Texture.loadImageToByteBuffer(ImageIO.read(Window.class.getResourceAsStream(BASE_PATH + cornerIcon)));
+			data[0] = Texture.loadImageToByteBuffer(ImageIO.read(Window.class.getResourceAsStream(BASE_PATH + taskbarIcon)));
+			Display.setIcon(data);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
