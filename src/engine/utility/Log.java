@@ -24,18 +24,6 @@ public class Log
 
 	private static ArrayList<String> lines = new ArrayList<String>();
 
-	private static LogWindow logWindow;
-
-	public static void enableDebugWindow() {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				logWindow = new LogWindow();				
-			}
-		});
-		consoleEnabled = true;
-	}
-	
 	/**
 	 * Writes to the ERROR log level
 	 * 
