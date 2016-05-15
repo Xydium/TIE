@@ -46,10 +46,10 @@ public class RenderingEngine
 	 * 
 	 * @param shader the shader to update
 	 */
-	public void updateOverlayBrightness(Shader shader)
+	public void updateOverlayBrightness(Shader shader, boolean enabled)
 	{
 		
-		shader.setUniform("lightPercent", overlayBrightness);
+		shader.setUniform("lightPercent", enabled ? overlayBrightness : -1.f);
 		shader.setUniform("windowSize", application.getWindowFlags().getDimensions());
 	}
 	

@@ -5,7 +5,6 @@ import engine.math.Vector2;
 import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
-import engine.utility.Log;
 
 /**
  * A simple component for rendering a rectangle onto the screen
@@ -19,6 +18,7 @@ public class RectRenderer extends GameComponent
 	private Texture texture;
 	private Shader shader;
 	private Rectangle rect;
+	private boolean allowLighting;
 
 	private UniformConfig uniformConfig;
 
@@ -51,6 +51,7 @@ public class RectRenderer extends GameComponent
 		this.rect = rect;
 		this.texture = texture;
 		uniformConfig = null;
+		allowLighting = true;
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class RectRenderer extends GameComponent
 			uniformConfig.setUniforms(getShader());
 		}
 		
-		getApplication().getRenderingEngine().updateOverlayBrightness(getShader());
+		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), allowLighting);
 		
 		rect.render(getTransform());
 	}
@@ -116,6 +117,17 @@ public class RectRenderer extends GameComponent
 	}
 	
 	/**
+	 * Sets whether the RectRenderer allows it to be affected
+	 * by lighting
+	 * 
+	 * @param allowLighting whether lighting is allowed
+	 */
+	public void setAllowLighting(boolean allowLighting)
+	{
+		this.allowLighting = allowLighting;
+	}
+	
+	/**
 	 * Gets the texture of the RectRenderer
 	 * 
 	 * @return the RectRenderer's texture
@@ -133,6 +145,17 @@ public class RectRenderer extends GameComponent
 	public Shader getShader()
 	{
 		return shader;
+	}
+	
+	/**
+	 * Gets whether the RectRenderer allows it to be affected
+	 * by lighting
+	 * 
+	 * @return whether lighting is allowed
+	 */
+	public boolean getAllowLighting()
+	{
+		return allowLighting;
 	}
 	
 	/**

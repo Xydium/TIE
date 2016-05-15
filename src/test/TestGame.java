@@ -27,6 +27,7 @@ public class TestGame extends Game
 		obj = new GameObject();
 		final RectRenderer rr = new RectRenderer(new Vector2(1f, 1f), new Texture("test.png"));
 		rr.setShader(new Shader("distort-shader"));
+		rr.setAllowLighting(false);
 		//rr.setShader(myShader);
 		obj.addComponent(rr);
 		//a1 = new AABBCollider(rr.getRect());

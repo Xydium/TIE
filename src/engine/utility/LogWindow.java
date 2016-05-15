@@ -1,17 +1,13 @@
 package engine.utility;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.lwjgl.opengl.Display;
-
 import engine.utility.Log.LogLevel;
 
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 

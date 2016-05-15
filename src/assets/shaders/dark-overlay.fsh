@@ -10,5 +10,12 @@ vec4 adjustOverlay(vec4 baseColor)
 	float maxDist = (windowSize.x / windowSize.y) * lightPercent;
 	float ratio = 1.0 - (length(windowPosAdj) / maxDist);
 	
-	return vec4(baseColor.rgb * lightPercent * ratio, baseColor.a);
+	if (lightPercent != -1.0)
+	{
+		return vec4(baseColor.rgb * lightPercent * ratio, baseColor.a);
+	}
+	else
+	{
+		return baseColor;
+	}
 }
