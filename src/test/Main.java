@@ -2,7 +2,6 @@ package test;
 
 import engine.core.Application;
 import engine.rendering.WindowFlags;
-import engine.utility.Log;
 import engine.utility.Log.LogLevel;
 
 public class Main
