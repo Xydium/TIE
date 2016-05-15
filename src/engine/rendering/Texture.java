@@ -182,7 +182,6 @@ public class Texture
 		{
 			Log.error("Error loading texture: " + fileName);
 			e.printStackTrace();
-			System.exit(1);
 		}
 		
 		return null;
