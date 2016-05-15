@@ -10,8 +10,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
 
 /**
  * Static window class for wrapping LWJGL 2's Display class
@@ -50,7 +48,6 @@ public final class Window
 		{
 			Display.setDisplayMode(new DisplayMode(flags.getWidth(), flags.getHeight()));
 			Display.create();
-			GL11.glEnable(GL13.GL_MULTISAMPLE);
 			Keyboard.create();
 			Mouse.create();
 		}
