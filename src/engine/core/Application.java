@@ -5,6 +5,7 @@ import engine.physics.Collider;
 import engine.rendering.RenderingEngine;
 import engine.rendering.Window;
 import engine.rendering.WindowFlags;
+import engine.utility.Log;
 import engine.utility.Time;
 
 /**
@@ -155,12 +156,14 @@ public class Application
 		}
 		
 		cleanUp();
+		System.exit(0);
 	}
 	
 	private void cleanUp()
 	{
 		Window.dispose();
 		GlobalAudio.shutdown();
+		Log.setWindowEnabled(false);
 	}
 	
 	/**
