@@ -119,6 +119,7 @@ public class GameObject
 		children.add(child);
 		child.setApplication(application);
 		child.parent = this;
+		child.transform.setParent(transform);
 	}
 	
 	/**

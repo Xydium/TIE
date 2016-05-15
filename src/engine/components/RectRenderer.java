@@ -5,6 +5,7 @@ import engine.math.Vector2;
 import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
+import engine.utility.Log;
 
 /**
  * A simple component for rendering a rectangle onto the screen

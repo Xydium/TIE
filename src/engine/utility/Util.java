@@ -29,7 +29,7 @@ public class Util
 	public static Vector2 pixelCToGL(Vector2 pixel) 
 	{
 		pixel.setX(pixel.getX() / Window.getWidth() * 2 - 1.0f);
-		pixel.setY(pixel.getY() / Window.getHeight() / (float) (Window.getAspectRatio() / 2) - 1.0f);
+		pixel.setY(pixel.getY() / Window.getHeight() * 2 - 1.0f);
 		return pixel;
 	}
 	

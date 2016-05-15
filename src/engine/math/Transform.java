@@ -205,4 +205,10 @@ public class Transform
 		
 		return parent.getGlobalRotation() + rotation;
 	}
+	
+	public void setParent(Transform t)
+	{
+		this.parent = t;
+	}
+	
 }
