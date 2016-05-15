@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.lwjgl.opengl.Display;
 
+import engine.utility.Log.LogLevel;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -23,7 +25,7 @@ public class LogWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public LogWindow() {
-		
+
 		setTitle("Log");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,17 +34,19 @@ public class LogWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
+
 		textArea = new JTextArea();
 		textArea.setRows(20);
 		scrollPane.setViewportView(textArea);
 		setVisible(true);
 	}
-	
-	public void updateConsole(String text) {
-		textArea.append(text);
+
+	public void updateConsole(LogLevel level, String text) {
+		if(level.ordinal() >= Log.getLogLevel().ordinal()) {
+			textArea.append(level.tag + " " + text + System.lineSeparator());
+		}
 	}
 }

@@ -21,13 +21,13 @@ public class Log
 
 	private static LogLevel logLevel = LogLevel.INTERNAL;
 	private static boolean consoleEnabled = false;		
-	
+
 	private static ArrayList<String> lines = new ArrayList<String>();
 
 	private static LogWindow logWindow;
-	
+
 	public static void enableDebugWindow() {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				logWindow = new LogWindow();				
@@ -35,7 +35,7 @@ public class Log
 		});
 		consoleEnabled = true;
 	}
-	
+
 	/**
 	 * Writes to the ERROR log level
 	 * 
@@ -44,9 +44,9 @@ public class Log
 	public static void error(String msg) 
 	{
 		addLine(LogLevel.ERROR, msg);
-		logWindow.updateConsole(msg);
+		logWindow.updateConsole(LogLevel.ERROR, msg);
 	}
-	
+
 	/**
 	 * Writes to the WARNING log level
 	 * 
@@ -55,9 +55,9 @@ public class Log
 	public static void warning(String msg) 
 	{
 		addLine(LogLevel.WARNING, msg);
-		logWindow.updateConsole(msg);
+		logWindow.updateConsole(LogLevel.INTERNAL, msg);
 	}
-	
+
 	/**
 	 * Writes to the INFO log level
 	 * 
@@ -66,9 +66,9 @@ public class Log
 	public static void info(String msg) 
 	{
 		addLine(LogLevel.INFO, msg);
-		logWindow.updateConsole(msg);
+		logWindow.updateConsole(LogLevel.INFO, msg);
 	}
-	
+
 	/**
 	 * Writes to the DEBUG log level
 	 * 
@@ -77,9 +77,9 @@ public class Log
 	public static void debug(String msg) 
 	{
 		addLine(LogLevel.DEBUG, msg);
-		logWindow.updateConsole(msg);
+		logWindow.updateConsole(LogLevel.DEBUG, msg);
 	}
-	
+
 	/**
 	 * Writes to the INTERNAL log level
 	 * 
@@ -88,9 +88,9 @@ public class Log
 	public static void internal(String msg) 
 	{ 
 		addLine(LogLevel.INTERNAL, msg);
-		logWindow.updateConsole(msg);
+		logWindow.updateConsole(LogLevel.INTERNAL, msg);
 	}
-	
+
 	/**
 	 * Sets the maximum log level that the log will output to
 	 * 
@@ -100,7 +100,7 @@ public class Log
 	{
 		Log.logLevel = logLevel;
 	}
-	
+
 	/**
 	 * Sets whether the log should output to the console or not
 	 * 
@@ -116,7 +116,7 @@ public class Log
 		}
 		Log.consoleEnabled = consoleEnabled;
 	}
-	
+
 	/**
 	 * Gets the maximum log level that the log outputs to
 	 * 
@@ -126,7 +126,7 @@ public class Log
 	{
 		return logLevel;
 	}
-	
+
 	/**
 	 * Gets whether the log writes to the output console
 	 * 
@@ -136,47 +136,40 @@ public class Log
 	{
 		return consoleEnabled;
 	}
-	
+
 	private static void addLine(LogLevel level, String msg) 
 	{
-		if (level.ordinal() <= logLevel.ordinal()) 
+		String line = level.tag + " " + msg;
+		lines.add(line);
+
+		if (lines.size() >= MAX_LOG_BUFFER_SIZE)
 		{
-			String line = level.tag + " " + msg;
-			lines.add(line);
-			if (consoleEnabled)
-			{
-				System.out.println(line);
-			}
-			
-			if (lines.size() >= MAX_LOG_BUFFER_SIZE)
-			{
-				flushLog();
-			}
+			flushLog();
 		}
 	}
-	
+
 	private static void flushLog() 
 	{
 		try 
 		{
 			FileWriter file = new FileWriter("LOG_" + FILE_RUNTIME_ID + ".txt");
 			BufferedWriter bf = new BufferedWriter(file);
-			
+
 			for (String s : lines) 
 			{
 				bf.write(s + "\n");
 			}
-			
+
 			bf.close();
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		
+
 		lines.clear();
 	}
-	
+
 	public enum LogLevel 
 	{
 		NONE(""),
@@ -185,9 +178,9 @@ public class Log
 		INFO("[INFO]"),
 		DEBUG("[DEBUG]"),
 		INTERNAL("[INTERNAL]");
-		
+
 		public String tag;
-		
+
 		private LogLevel(String tag) 
 		{
 			this.tag = tag;
@@ -200,5 +193,5 @@ public class Log
 	public static ArrayList<String> getLines() {
 		return lines;
 	}
-	
+
 }
