@@ -14,7 +14,6 @@ import java.util.List;
 import engine.components.RectRenderer;
 import engine.math.Vector2;
 import engine.rendering.Color;
-import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 import engine.utility.Log;

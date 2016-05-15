@@ -59,6 +59,29 @@ public class Texture
 		this.fileName = "";
 		this.resource = bufferedImageToTexture(bufferedImage);
 	}
+	
+	/**
+	 * Creates a new texture from the given filename, if the filename
+	 * already exists, it loads from the existing texture resource
+	 * 
+	 * @param bufferedImage the buffered image to possibly write to the filename
+	 * @param fileName the file name for the image
+	 */
+	public Texture(BufferedImage bufferedImage, String fileName)
+	{
+		TextureResource oldResource = loadedTextures.get(fileName);
+		
+		if (oldResource != null)
+		{
+			resource = oldResource;
+			resource.addReference();
+		}
+		else
+		{
+			resource = bufferedImageToTexture(bufferedImage);
+			loadedTextures.put(fileName, resource);
+		}
+	}
 
 	/**
 	 * Cleans up the texture after no more references exist
@@ -108,7 +131,6 @@ public class Texture
 	{
 		try
 		{
-			//BufferedImage image = ImageIO.read(new File("./res/textures/" + fileName));
 			BufferedImage image = ImageIO.read(Texture.class.getResourceAsStream("/assets/textures/" + fileName));
 			return bufferedImageToTexture(image);
 		}
