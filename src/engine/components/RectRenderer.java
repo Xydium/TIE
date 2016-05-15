@@ -47,7 +47,7 @@ public class RectRenderer extends GameComponent
 	 */
 	public RectRenderer(Rectangle rect, Texture texture)
 	{
-		setShader(new Shader("basic-shader"));
+		setShader(new Shader("texture-shader"));
 		this.rect = rect;
 		this.texture = texture;
 		uniformConfig = null;
