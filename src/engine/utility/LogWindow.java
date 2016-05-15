@@ -52,7 +52,6 @@ public class LogWindow extends JFrame {
 		int numStates = Log.LogLevel.values().length + 1;
 
 		double sectionSize = sliderSize/numStates;
-		System.out.println("Section size " + sectionSize);
 		slider.setValue((int)(sectionSize * Log.getLogLevel().ordinal()));
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
