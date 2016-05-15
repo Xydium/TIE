@@ -71,9 +71,7 @@ public class LogWindow extends JFrame {
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 
-	public void updateConsole(LogLevel level, String text) {
-		if(level.ordinal() <= Log.getLogLevel().ordinal()) {
-			textArea.append(level.tag + " " + text + System.lineSeparator());
-		}
+	public void updateConsole(String text) {
+		textArea.append(" " + text + System.lineSeparator());
 	}
 }

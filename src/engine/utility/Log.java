@@ -35,7 +35,6 @@ public class Log
 	public static void error(Exception e)
 	{
 		addLine(LogLevel.INTERNAL, e.getMessage());
-		updateLog(LogLevel.INTERNAL, e.getMessage());
 	}
 
 	/**
@@ -46,7 +45,6 @@ public class Log
 	public static void error(String msg)
 	{
 		addLine(LogLevel.ERROR, msg);
-		updateLog(LogLevel.ERROR, msg);
 	}
 
 	/**
@@ -57,7 +55,6 @@ public class Log
 	public static void warning(String msg)
 	{
 		addLine(LogLevel.WARNING, msg);
-		updateLog(LogLevel.WARNING, msg);
 	}
 
 	/**
@@ -68,7 +65,6 @@ public class Log
 	public static void info(String msg)
 	{
 		addLine(LogLevel.INFO, msg);
-		updateLog(LogLevel.INFO, msg);
 	}
 
 	/**
@@ -79,7 +75,6 @@ public class Log
 	public static void debug(String msg)
 	{
 		addLine(LogLevel.DEBUG, msg);
-		updateLog(LogLevel.DEBUG, msg);
 	}
 
 	/**
@@ -90,7 +85,6 @@ public class Log
 	public static void internal(String msg)
 	{
 		addLine(LogLevel.INTERNAL, msg);
-		updateLog(LogLevel.INTERNAL, msg);
 	}
 
 
@@ -134,14 +128,9 @@ public class Log
 		return consoleEnabled;
 	}
 
-	private static void updateLog(LogLevel level, String message) {
-		if(windowEnabled) {
-			logWindow.updateConsole(level, message);
-		}
-	}
-
 	private static void addLine(LogLevel level, String msg)
 	{
+		if(level.ordinal() > Log.logLevel.ordinal()) return;
 		String line = level.tag + " " + msg;
 		lines.add(line);
 
@@ -150,6 +139,11 @@ public class Log
 			System.out.println(line);
 		}
 
+		if(windowEnabled && logWindow != null)
+		{
+			logWindow.updateConsole(line);
+		}
+		
 		if (lines.size() >= MAX_LOG_BUFFER_SIZE)
 		{
 			flushLog();

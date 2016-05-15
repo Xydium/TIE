@@ -1,5 +1,7 @@
 package engine.core;
 
+import engine.utility.Log;
+
 /**
  * Game which is handled by the game engine
  * 
@@ -110,6 +112,7 @@ public abstract class Game
 	 */
 	public void setScene(Scene scene)
 	{
+		Log.internal("Changed scene to " + scene.getClass().getSimpleName());
 		scene.deactivate();
 		this.scene = scene;
 		scene.setApplication(application);
