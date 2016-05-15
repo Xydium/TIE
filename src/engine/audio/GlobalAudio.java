@@ -164,4 +164,10 @@ public final class GlobalAudio
 	{
 		playMusic(name, vol, true);
 	}
+	
+	public static void stopMusic(String name)
+	{
+		music.get(name).stop();
+	}
+	
 }
