@@ -3,6 +3,7 @@ package engine.audio;
 import java.util.HashMap;
 import java.util.Map;
 
+import engine.utility.Log;
 import kuusisto.tinysound.Music;
 import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
@@ -24,6 +25,7 @@ public final class GlobalAudio
 	 */
 	public static void initAudio()
 	{
+		Log.internal("Initing Audio");
 		sounds = new HashMap<String, Sound>();
 		music = new HashMap<String, Music>();
 		TinySound.init();
@@ -32,6 +34,7 @@ public final class GlobalAudio
 	public static void shutdown()
 	{
 		TinySound.shutdown();
+		Log.internal("Shuting down audio");
 	}
 	
 	/**
@@ -44,6 +47,7 @@ public final class GlobalAudio
 	{
 		if(!sounds.containsKey(name))
 			sounds.put(name, TinySound.loadSound(path));
+		Log.internal("Added audio with name: " + name + " and path: " + path);
 	}
 	
 	/**
@@ -56,7 +60,10 @@ public final class GlobalAudio
 	public static void addMusic(String name, String path)
 	{
 		if(!music.containsKey(name))
+		{
 			music.put(name, TinySound.loadMusic(path));
+			Log.internal("Added Music with name: " + name + " and path:" + path);
+		}
 	}
 	
 	/**
@@ -67,6 +74,7 @@ public final class GlobalAudio
 	public static void removeSound(String name)
 	{
 		sounds.remove(name);
+		Log.internal("Removed sound with name: " + name);
 	}
 	
 	/**

@@ -34,7 +34,13 @@ public class Log
 	 */
 	public static void error(Exception e)
 	{
-		addLine(LogLevel.INTERNAL, e.getMessage());
+		String error = "";
+		for(StackTraceElement el : e.getStackTrace())
+		{
+			error += "\t" + el.toString() + "\n";
+		}
+		
+		addLine(LogLevel.ERROR, error);
 	}
 
 	/**
