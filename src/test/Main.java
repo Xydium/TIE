@@ -11,7 +11,6 @@ public class Main
 	{
 		WindowFlags flags = new WindowFlags("My window", 800, 600);
 		flags.setLogLevel(LogLevel.INTERNAL);
-		Log.enableDebugWindow();
 		flags.setConsoleEnabled(true);
 		
 		Application app = new Application(new TestGame(), 60.0, flags);

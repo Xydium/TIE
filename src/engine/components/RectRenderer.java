@@ -58,7 +58,10 @@ public class RectRenderer extends GameComponent
 	 */
 	public void render()
 	{
-		texture.bind();
+		if(texture!= null)
+		{
+			texture.bind();			
+		}
 		getShader().bind();
 
 		if (uniformConfig != null)
