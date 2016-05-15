@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.components.RectRenderer;
+import engine.core.GameObject;
 import engine.math.Vector2;
 import engine.rendering.Color;
 import engine.rendering.Shader;
@@ -24,13 +25,29 @@ import engine.utility.Util;
  * @author Chris Jerrett
  * @version Alpha
  */
-public class Message {
+public class Message extends GameObject{
 
 	private String message;
 	private Font font;
 	private Vector2 loc;
 	private Color color;
 
+	public void render() {
+		List<BufferedImage> imgs= getLettersTextures();
+		for(BufferedImage img : imgs) {
+			Texture texture = new Texture(img);
+			
+			RectRenderer renderer = new RectRenderer(Util.pixelDToGL(new Vector2(img.getWidth(), img.getHeight())), texture);
+			renderer.setShader(new Shader("basic-shader"));
+			addAllComponents(renderer);
+			Vector2 position = new Vector2();
+			position.setX(loc.getX());
+			position.setY(loc.getY());
+			Util.pixelCToGL(position);
+			getTransform().setPosition(position);	
+		}
+	}
+	
 	public Message(String message, Font font, Color color, Vector2 loc) {
 		this.message = message;
 		this.font = font;
