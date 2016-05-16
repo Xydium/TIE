@@ -1,5 +1,7 @@
 package engine.math;
 
+import engine.utility.Log;
+
 /**
  * A Transform which represents a position and a rotation
  * of an object, and can be translated or rotated
@@ -120,6 +122,7 @@ public class Transform
 		if (parent == null)
 		{
 			this.position = position;
+			return;
 		}
 		
 		this.position = position.sub(parent.getGlobalPosition()).rotateBy(-parent.getRotation());
