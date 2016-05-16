@@ -1,9 +1,6 @@
 package engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
-
-import org.lwjgl.opengl.GL13;
-
 import engine.core.Application;
 
 /**
