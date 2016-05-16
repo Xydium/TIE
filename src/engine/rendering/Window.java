@@ -11,7 +11,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
 import engine.utility.Log;
@@ -48,7 +47,7 @@ public final class Window
 		Window.flags = flags;
 
 		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAtrributes = new ContextAttribs(3, 2).withProfileCore(true);
+		ContextAttribs contextAtrributes = new ContextAttribs(3, 3).withProfileCore(true);
 
 		try
 		{
@@ -63,8 +62,6 @@ public final class Window
 		    Display.create(pixelFormat, contextAtrributes);
 		    Keyboard.create();
 		    Mouse.create();
-		    Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
-		    Log.internal("Display Created");
 		}
 		catch (LWJGLException e)
 		{

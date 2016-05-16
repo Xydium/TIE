@@ -17,12 +17,6 @@ import engine.math.Vector2;
  */
 public class Rectangle
 {
-	private static final Vertex[] BASE_VERTICES =
-		{new Vertex(new Vector2(-1, -1), new Vector2(0, 1)),
-		new Vertex(new Vector2(-1, 1), new Vector2(0, 0)),
-		new Vertex(new Vector2(1, 1), new Vector2(1, 0)),
-		new Vertex(new Vector2(1, -1), new Vector2(1, 1))};
-	
 	private Vector2 size;
 	
 	/**
@@ -92,7 +86,7 @@ public class Rectangle
 	 *
 	 * @param trans the transformation of the rectangle
 	 */
-	public void render(Transform trans)
+	/*public void render(Transform trans)
 	{
 		glBegin(GL_QUADS);
 		
@@ -107,7 +101,7 @@ public class Rectangle
 		}
 		
 		glEnd();
-	}
+	}*/
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

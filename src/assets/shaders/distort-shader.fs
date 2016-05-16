@@ -1,5 +1,13 @@
-#version 140
+//#version 140
 
+//out vec4 out_Color;
+
+void main(void)
+{
+	//out_Color = vec4(0.0, 1.0, 0.0, 1.0);
+}
+
+/*
 uniform sampler2D currentTexture;
 
 uniform float time;
@@ -29,5 +37,6 @@ void main()
 	aux.x = clamp(sin(30.0 * aux.y + frequency * time) * amplitude + aux.x, 0.0, 1.0);
 	aux.y = clamp(sin(30.0 * aux.x + frequency * time) * amplitude + aux.y, 0.0, 1.0);
 	
-	out_FragColor = adjustOverlay(texture(currentTexture, aux));
+	out_FragColor = adjustOverlay(texture2D(currentTexture, aux));
 }
+*/

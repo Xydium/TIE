@@ -2,9 +2,9 @@ package engine.components;
 
 import engine.core.GameComponent;
 import engine.math.Vector2;
-import engine.rendering.Rectangle;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
+import engine.rendering.VertexBuffer;
 
 /**
  * A simple component for rendering a rectangle onto the screen
@@ -17,8 +17,10 @@ public class RectRenderer extends GameComponent
 {
 	private Texture texture;
 	private Shader shader;
-	private Rectangle rect;
 	private boolean allowLighting;
+	
+	private Vector2 size;
+	private VertexBuffer squareBuffer;
 
 	private UniformConfig uniformConfig;
 
@@ -33,39 +35,29 @@ public class RectRenderer extends GameComponent
 	 */
 	public RectRenderer(Vector2 size, Texture texture)
 	{
-		this(new Rectangle(size), texture);
-	}
-
-	/**
-	 * Creates a new RectRenderer using the given rectangle and
-	 * a given texture
-	 * 
-	 * Its default shader is the texture-shader
-	 * 
-	 * @param rect the rect to render
-	 * @param texture the texture to render
-	 */
-	public RectRenderer(Rectangle rect, Texture texture)
-	{
 		setShader(new Shader("texture-shader"));
-		this.rect = rect;
+		this.size = size;
 		this.texture = texture;
 		uniformConfig = null;
 		allowLighting = true;
+		
+		squareBuffer = VertexBuffer.createSquare();
 	}
-
+	
 	/**
 	 * Renders the rectnagle to the screen with the given texture
 	 * and the RectRenderer's current shader
 	 */
 	public void render()
 	{
-		if(texture!= null)
+		if (texture != null)
 		{
 			texture.bind();			
 		}
+		
 		getShader().bind();
-
+		getShader().setUniform("transform", getTransform().toMatrix());
+		
 		if (uniformConfig != null)
 		{
 			uniformConfig.setUniforms(getShader());
@@ -73,19 +65,11 @@ public class RectRenderer extends GameComponent
 		
 		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), allowLighting);
 		
-		rect.render(getTransform());
+		squareBuffer.render();
+		
+		//rect.render(getTransform());
 	}
-
-	/**
-	 * Gets the rectangle being rendered
-	 * 
-	 * @return the RectRenderer's rect
-	 */
-	public Rectangle getRect()
-	{
-		return rect;
-	}
-
+	
 	/**
 	 * Sets the size of the rectangle
 	 * 
@@ -93,7 +77,7 @@ public class RectRenderer extends GameComponent
 	 */
 	public void setSize(Vector2 size)
 	{
-		rect.setSize(size);
+		this.size = size;
 	}
 
 	/**
@@ -187,7 +171,7 @@ public class RectRenderer extends GameComponent
 	@Override
 	public String toString()
 	{
-		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", rect=" + rect + ", uniformConfig="
+		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", size=" + size + ", uniformConfig="
 				+ uniformConfig + "]";
 	}
 }

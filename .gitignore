@@ -75,3 +75,4 @@ $RECYCLE.BIN/
 saved*.png
 
 src/assets/textures
+*.classpath

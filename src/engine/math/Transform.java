@@ -155,6 +155,16 @@ public class Transform
 		
 		this.rotation = parent.getGlobalRotation() - rotation;
 	}
+
+	/**
+	 * Sets the parent of the transformation
+	 * 
+	 * @param parent the parent of the transformation
+	 */
+	public void setParent(Transform parent)
+	{
+		this.parent = parent;
+	}
 	
 	/**
 	 * Gets the local position of the transform
@@ -206,9 +216,24 @@ public class Transform
 		return parent.getGlobalRotation() + rotation;
 	}
 	
-	public void setParent(Transform t)
+	/**
+	 * Gets the parent of the transformation
+	 * 
+	 * @return the parent of the transformation
+	 */
+	public Transform getParent()
 	{
-		this.parent = t;
+		return parent;
 	}
 	
+	/**
+	 * Gets the 3x3 transformation matrix which corresponds to
+	 * this transformation in global screen coordinates
+	 * 
+	 * @return the transformation matrix based on this transform
+	 */
+	public Matrix3x3 toMatrix()
+	{
+		return Matrix3x3.fromAngle(getGlobalRotation()).mul(Matrix3x3.fromPosition(getGlobalPosition()));
+	}
 }

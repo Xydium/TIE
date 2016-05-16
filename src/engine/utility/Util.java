@@ -6,6 +6,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
+import engine.math.Matrix3x3;
 import engine.math.Vector2;
 import engine.rendering.Color;
 import engine.rendering.Vertex;
@@ -94,23 +95,35 @@ public class Util
 		return buffer;
 	}
 	
-	public static FloatBuffer CreateFlippedBuffer(Vertex[] vertices)
+	public static FloatBuffer createFlippedBuffer(Vertex[] vertices)
 	{
-		FloatBuffer buffer = CreateFloatBuffer(vertices.length * Vertex.SIZE);
+		FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE);
 		
 		for(int i = 0; i < vertices.length; i++)
 		{
-			buffer.put(vertices[i].GetPos().GetX());
-			buffer.put(vertices[i].GetPos().GetY());
-			buffer.put(vertices[i].GetPos().GetZ());
-			buffer.put(vertices[i].GetTexCoord().GetX());
-			buffer.put(vertices[i].GetTexCoord().GetY());
-			buffer.put(vertices[i].GetNormal().GetX());
-			buffer.put(vertices[i].GetNormal().GetY());
-			buffer.put(vertices[i].GetNormal().GetZ());
-			buffer.put(vertices[i].GetTangent().GetX());
-			buffer.put(vertices[i].GetTangent().GetY());
-			buffer.put(vertices[i].GetTangent().GetZ());
+			buffer.put(vertices[i].getPosition().getX());
+			buffer.put(vertices[i].getPosition().getY());
+			buffer.put(0);
+			
+			buffer.put(vertices[i].getTexCoord().getX());
+			buffer.put(vertices[i].getTexCoord().getY());
+		}
+		
+		buffer.flip();
+		
+		return buffer;
+	}
+	
+	public static FloatBuffer createFlippedBuffer(Matrix3x3 mat)
+	{
+		FloatBuffer buffer = createFloatBuffer(3 * 3);
+		
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				buffer.put(mat.get(y, x));
+			}
 		}
 		
 		buffer.flip();
