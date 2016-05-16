@@ -54,7 +54,12 @@ public final class Window
 		{
 		    Display.setDisplayMode(new DisplayMode(flags.getWidth(), flags.getHeight()));
 		    Display.setTitle(flags.getTitle());
-		    setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
+		    
+		    if (!flags.getCornerIcon().equals("") && !flags.getTaskbarIcon().equals(""))
+		    {
+		    	setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
+		    }
+		    
 		    Display.create(pixelFormat, contextAtrributes);
 		    Keyboard.create();
 		    Mouse.create();
