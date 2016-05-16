@@ -116,6 +116,13 @@ public abstract class Game
 		scene.deactivate();
 		this.scene = scene;
 		scene.setApplication(application);
+		
+		if (!scene.isLoaded())
+		{
+			scene.setLoaded(true);
+			scene.load();
+		}
+			
 		scene.activate();
 	}
 	

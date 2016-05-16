@@ -11,13 +11,22 @@ package engine.core;
 public class Scene
 {
 	private GameObject rootObject;
+	private boolean loaded;
 	
 	/**
 	 * Creates a new scene with its own root object
 	 */
 	public Scene()
 	{
+		loaded = false;
 		rootObject = new GameObject();
+	}
+	
+	/**
+	 * Called when the scene is loaded (set as a game's current scene for the first time)
+	 */
+	public void load()
+	{
 	}
 	
 	/**
@@ -83,6 +92,27 @@ public class Scene
 	public GameObject getRootObject()
 	{
 		return rootObject;
+	}
+	
+	/**
+	 * Sets whether the scene was loaded
+	 * should not be called
+	 * 
+	 * @param loaded whether the scene was loaded
+	 */
+	public void setLoaded(boolean loaded)
+	{
+		this.loaded = loaded;
+	}
+	
+	/**
+	 * Whether the scene was loaded or not
+	 * 
+	 * @return whether the scene was loaded
+	 */
+	public boolean isLoaded()
+	{
+		return loaded;
 	}
 	
 	/**
