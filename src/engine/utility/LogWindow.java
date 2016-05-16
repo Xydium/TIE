@@ -72,6 +72,6 @@ public class LogWindow extends JFrame {
 	}
 
 	public void updateConsole(String text) {
-		textArea.append(" " + text + System.lineSeparator());
+		textArea.append(" " + text + "\n");
 	}
 }
