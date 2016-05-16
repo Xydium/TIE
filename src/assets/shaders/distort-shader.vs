@@ -1,11 +1,13 @@
-#version 120
+#version 140
 
-varying vec2 texCoord;
+in vec4 in_Vertex;
+in vec2 in_TexCoord;
+
+out vec2 texCoord;
 
 void main()
 {
-	texCoord = vec2(1.0 - gl_MultiTexCoord0.y, gl_MultiTexCoord0.x);
+	texCoord = vec2(1.0 - in_TexCoord.y, in_TexCoord.x);
 	
-	gl_Position = gl_Vertex;
-	//gl_FrontColor = gl_Color;
+	gl_Position = in_Vertex;
 }

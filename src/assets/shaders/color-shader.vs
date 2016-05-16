@@ -1,6 +1,8 @@
 #version 120
 
+in vec4 in_Vertex;
+
 void main()
 {
-	gl_Position = gl_Vertex;
+	gl_Position = in_Vertex.xy;
 }

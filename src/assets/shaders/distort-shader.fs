@@ -1,4 +1,4 @@
-#version 120
+#version 140
 
 uniform sampler2D currentTexture;
 
@@ -6,7 +6,9 @@ uniform float time;
 uniform float frequency;
 uniform float amplitude;
 
-varying vec2 texCoord;
+in vec2 texCoord;
+
+out vec4 out_FragColor;
 
 #include "dark-overlay.fsh"
 
@@ -27,5 +29,5 @@ void main()
 	aux.x = clamp(sin(30.0 * aux.y + frequency * time) * amplitude + aux.x, 0.0, 1.0);
 	aux.y = clamp(sin(30.0 * aux.x + frequency * time) * amplitude + aux.y, 0.0, 1.0);
 	
-	gl_FragColor = adjustOverlay(texture2D(currentTexture, aux));
+	out_FragColor = adjustOverlay(texture(currentTexture, aux));
 }

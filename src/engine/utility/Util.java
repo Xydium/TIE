@@ -8,6 +8,7 @@ import org.lwjgl.BufferUtils;
 
 import engine.math.Vector2;
 import engine.rendering.Color;
+import engine.rendering.Vertex;
 import engine.rendering.Window;
 
 
@@ -88,6 +89,30 @@ public class Util
 		IntBuffer buffer = createIntBuffer(values.length);
 		
 		buffer.put(values);
+		buffer.flip();
+		
+		return buffer;
+	}
+	
+	public static FloatBuffer CreateFlippedBuffer(Vertex[] vertices)
+	{
+		FloatBuffer buffer = CreateFloatBuffer(vertices.length * Vertex.SIZE);
+		
+		for(int i = 0; i < vertices.length; i++)
+		{
+			buffer.put(vertices[i].GetPos().GetX());
+			buffer.put(vertices[i].GetPos().GetY());
+			buffer.put(vertices[i].GetPos().GetZ());
+			buffer.put(vertices[i].GetTexCoord().GetX());
+			buffer.put(vertices[i].GetTexCoord().GetY());
+			buffer.put(vertices[i].GetNormal().GetX());
+			buffer.put(vertices[i].GetNormal().GetY());
+			buffer.put(vertices[i].GetNormal().GetZ());
+			buffer.put(vertices[i].GetTangent().GetX());
+			buffer.put(vertices[i].GetTangent().GetY());
+			buffer.put(vertices[i].GetTangent().GetZ());
+		}
+		
 		buffer.flip();
 		
 		return buffer;
