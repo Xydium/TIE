@@ -48,7 +48,7 @@ public final class Window
 		Window.flags = flags;
 
 		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAtrributes = new ContextAttribs(3, 2).withProfileCore(true);
+		ContextAttribs contextAtrributes = new ContextAttribs(3, 1);
 
 		try
 		{
