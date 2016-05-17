@@ -1,12 +1,9 @@
-#version 150
+#version 120
+#include "dark-overlay.fsh"
 
-precision highp float;
-
-out vec4 out_Color;
-
-in vec4 ex_Color;
+uniform vec4 color;
 
 void main()
 {
-	out_Color = ex_Color;
+	gl_FragColor = adjustOverlay(color);
 }

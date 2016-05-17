@@ -4,7 +4,7 @@ import engine.core.GameComponent;
 import engine.math.Vector2i;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
-import engine.rendering.VertexBuffer;
+import engine.rendering.Mesh;
 import engine.utility.Util;
 
 /**
@@ -21,7 +21,7 @@ public class RectRenderer extends GameComponent
 	private boolean allowLighting;
 	
 	private Vector2i size;
-	private VertexBuffer squareBuffer;
+	private Mesh squareBuffer;
 
 	private UniformConfig uniformConfig;
 
@@ -42,7 +42,7 @@ public class RectRenderer extends GameComponent
 		uniformConfig = null;
 		allowLighting = true;
 		
-		squareBuffer = VertexBuffer.createSquare();
+		squareBuffer = Mesh.createSquare();
 	}
 	
 	/**
@@ -73,14 +73,16 @@ public class RectRenderer extends GameComponent
 		
 		Vector2i halfSize = size.div(2);
 		
-		getShader().setUniform("transPosition", Util.pixelCoordToWindow(getTransform().getGlobalPosition().sub(halfSize)));
-		getShader().setUniform("transRotation", getTransform().getGlobalRotation());
-		getShader().setUniform("transScale", Util.pixelDimensionToWindow(halfSize));
+		getShader().setUniform("trans_Position", Util.pixelCoordToWindow(getTransform().getGlobalPosition().add(halfSize)));
+		getShader().setUniform("trans_Rotation", getTransform().getGlobalRotation());
+		getShader().setUniform("trans_Scale", Util.pixelDimensionToWindow(halfSize));
 		
 		if (uniformConfig != null)
 		{
 			uniformConfig.setUniforms(getShader());
 		}
+		
+		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), allowLighting);
 		
 		squareBuffer.render();
 	}

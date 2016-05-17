@@ -1,28 +1,11 @@
-#version 150
+#version 120
+#include "transform.vsh"
 
-uniform vec2 transPosition;
-uniform float transRotation;
-uniform vec2 transScale;
-
-in vec2 in_Position;
-in vec2 in_TexCoord;
-
-out vec2 ex_TexCoord;
-
-void rotate(inout vec2 v2, in float angle)
-{
-	float sinA = sin(-angle);
-	float cosA = cos(angle);
-	
-	v2 = vec2(v2.x * cosA - v2.y * sinA, v2.x * sinA + v2.y * cosA);
-}
+varying vec2 ex_TexCoord;
 
 void main()
 {
-	ex_TexCoord = in_TexCoord;
-	
-	vec2 pos = in_Position;
-	rotate(pos, transRotation);
+	ex_TexCoord = vec2(1.0 - gl_MultiTexCoord0.y, gl_MultiTexCoord0.x);
 
-	gl_Position = vec4(transPosition + pos * transScale, 1.0, 1.0);
+	gl_Position = transform(gl_Vertex);
 }

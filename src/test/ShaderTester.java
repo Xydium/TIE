@@ -5,7 +5,6 @@ import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.math.Vector2i;
-import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 
@@ -19,18 +18,18 @@ public class ShaderTester extends Game
 	{
 		obj = new GameObject();
 		RectRenderer rr = new RectRenderer(new Vector2i(200, 200), new Texture("test.png"));
-		rr.setShader(new Shader("color-shader"));
+		rr.setShader(new Shader("texture-shader"));
 		obj.addComponent(rr);
-		obj.getTransform().setPosition(400, 300);
-		
+		obj.getTransform().setPosition(100, 100);
+
 		rr.setUniformConfig(new UniformConfig()
 		{
 			public void setUniforms(Shader s)
 			{
-				s.setUniform("color", new Color(1, 0, 0));
-				//s.setUniform("time", counter);
-				//s.setUniform("frequency", 5.0f);
-				//s.setUniform("amplitude", 0.01f);
+				//s.setUniform("color", new Color(1, 0, 0));
+				s.setUniform("time", counter);
+				s.setUniform("frequency", 5.0f);
+				s.setUniform("amplitude", 0.01f);
 			}
 		});
 		

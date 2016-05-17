@@ -1,14 +1,11 @@
-#version 150
-
-precision highp float;
+#version 120
+#include "dark-overlay.fsh"
 
 uniform sampler2D texSampler;
 
-out vec4 out_Color;
-
-in vec2 ex_TexCoord;
+varying vec2 ex_TexCoord;
 
 void main()
 {
-	out_Color = texture(texSampler, ex_TexCoord);
+	gl_FragColor = adjustOverlay(texture2D(texSampler, ex_TexCoord));
 }

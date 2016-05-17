@@ -8,10 +8,8 @@ import javax.imageio.ImageIO;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.PixelFormat;
 
 import engine.utility.Log;
 
@@ -49,18 +47,6 @@ public final class Window
 	{
 		Window.flags = flags;
 
-		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAttributes;
-		
-		if (System.getProperty("os.name").contains("Mac"))
-		{
-			contextAttributes = new ContextAttribs(3, 2).withProfileCore(true);
-		}
-		else
-		{
-			contextAttributes = new ContextAttribs(3, 0);
-		}
-
 		try
 		{
 		    Display.setDisplayMode(new DisplayMode(flags.getWidth(), flags.getHeight()));
@@ -71,7 +57,7 @@ public final class Window
 		    	setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
 		    }
 		    
-		    Display.create(pixelFormat, contextAttributes);
+		    Display.create();
 		    Keyboard.create();
 		    Mouse.create();
 		    
