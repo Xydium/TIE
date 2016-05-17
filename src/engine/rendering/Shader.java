@@ -7,11 +7,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import engine.math.Matrix3x3;
 import engine.math.Vector2;
 import engine.resmgmt.ShaderResource;
 import engine.utility.Log;
-import engine.utility.Util;
 
 /**
  * GL Shader program comprised of a vertex and fragment shader
@@ -158,14 +156,6 @@ public class Shader
 		if (resource.getUniformNames().contains(uniformName))
 		{
 			glUniform4f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
-		}
-	}
-	
-	public void setUniform(String uniformName, Matrix3x3 value)
-	{
-		if (resource.getUniformNames().contains(uniformName))
-		{
-			glUniformMatrix3(resource.getUniforms().get(uniformName), true, Util.createFlippedBuffer(value));
 		}
 	}
 	

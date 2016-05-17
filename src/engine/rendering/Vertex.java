@@ -11,7 +11,7 @@ import engine.math.Vector2;
  */
 public class Vertex
 {
-	public static final int SIZE = 5;
+	public static final int SIZE = 4;
 	
 	private Vector2 position;
 	private Vector2 texCoord;

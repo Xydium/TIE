@@ -15,6 +15,9 @@ import org.lwjgl.opengl.PixelFormat;
 
 import engine.utility.Log;
 
+import static org.lwjgl.opengl.GL11.glGetString;
+import static org.lwjgl.opengl.GL11.GL_VERSION;
+
 /**
  * Static window class for wrapping LWJGL 2's Display class
  *
@@ -47,7 +50,16 @@ public final class Window
 		Window.flags = flags;
 
 		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAtrributes = new ContextAttribs(3, 3).withProfileCore(true);
+		ContextAttribs contextAttributes;
+		
+		if (System.getProperty("os.name").contains("Mac"))
+		{
+			contextAttributes = new ContextAttribs(3, 2).withProfileCore(true);
+		}
+		else
+		{
+			contextAttributes = new ContextAttribs(3, 0);
+		}
 
 		try
 		{
@@ -59,9 +71,11 @@ public final class Window
 		    	setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
 		    }
 		    
-		    Display.create(pixelFormat, contextAtrributes);
+		    Display.create(pixelFormat, contextAttributes);
 		    Keyboard.create();
 		    Mouse.create();
+		    
+		    Log.internal("The current GL Version is " + glGetString(GL_VERSION));
 		}
 		catch (LWJGLException e)
 		{

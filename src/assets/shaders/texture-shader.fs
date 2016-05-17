@@ -1,22 +1,14 @@
-//#version 140
+#version 150
 
-//out vec4 out_Color;
+precision highp float;
 
-void main(void)
-{
-	//out_Color = vec4(1.0, 0.0, 0.0, 1.0);
-}
+uniform sampler2D texSampler;
 
-//#include "dark-overlay.fsh"
+out vec4 out_Color;
 
-/*
-out vec4 out_FragColor;
+in vec2 ex_TexCoord;
 
 void main()
 {
-	//vec2 tc = vec2(1.0 - myTexCoord.y, myTexCoord.x);
-	
-	out_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-	//out_FragColor = texture2D(currentTexture, tc);
+	out_Color = texture(texSampler, ex_TexCoord);
 }
-*/

@@ -25,12 +25,12 @@ public class RectRenderer extends GameComponent
 	private UniformConfig uniformConfig;
 
 	/**
-	 * Creates a new RectRenderer using the given size to create the
-	 * rectangle and a given texture
+	 * Creates a new RectRenderer using the given size
+	 * and a given texture
 	 * 
 	 * Its default shader is the texture-shader
 	 * 
-	 * @param size the size of the rect
+	 * @param size the size of the renderer
 	 * @param texture the texture to render
 	 */
 	public RectRenderer(Vector2 size, Texture texture)
@@ -45,29 +45,41 @@ public class RectRenderer extends GameComponent
 	}
 	
 	/**
-	 * Renders the rectnagle to the screen with the given texture
+	 * Creates a new RectRenderer using the given size
+	 * and no texture
+	 * 
+	 * Its default shader is the texture-shader
+	 * 
+	 * @param size the size of the renderer
+	 */
+	public RectRenderer(Vector2 size)
+	{
+		this(size, null);
+	}
+	
+	/**
+	 * Renders the rectangle to the screen with the given texture
 	 * and the RectRenderer's current shader
 	 */
 	public void render()
 	{
+		getShader().bind();
+		
 		if (texture != null)
 		{
 			texture.bind();			
 		}
 		
-		getShader().bind();
-		getShader().setUniform("transform", getTransform().toMatrix());
+		getShader().setUniform("transPosition", getTransform().getGlobalPosition());
+		getShader().setUniform("transRotation", getTransform().getGlobalRotation());
+		getShader().setUniform("transScale", size);
 		
 		if (uniformConfig != null)
 		{
 			uniformConfig.setUniforms(getShader());
 		}
 		
-		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), allowLighting);
-		
 		squareBuffer.render();
-		
-		//rect.render(getTransform());
 	}
 	
 	/**

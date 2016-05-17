@@ -6,7 +6,6 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
-import engine.math.Matrix3x3;
 import engine.math.Vector2;
 import engine.rendering.Color;
 import engine.rendering.Vertex;
@@ -103,27 +102,9 @@ public class Util
 		{
 			buffer.put(vertices[i].getPosition().getX());
 			buffer.put(vertices[i].getPosition().getY());
-			buffer.put(0);
 			
 			buffer.put(vertices[i].getTexCoord().getX());
 			buffer.put(vertices[i].getTexCoord().getY());
-		}
-		
-		buffer.flip();
-		
-		return buffer;
-	}
-	
-	public static FloatBuffer createFlippedBuffer(Matrix3x3 mat)
-	{
-		FloatBuffer buffer = createFloatBuffer(3 * 3);
-		
-		for (int y = 0; y < 3; y++)
-		{
-			for (int x = 0; x < 3; x++)
-			{
-				buffer.put(mat.get(y, x));
-			}
 		}
 		
 		buffer.flip();

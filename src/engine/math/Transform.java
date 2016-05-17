@@ -225,15 +225,4 @@ public class Transform
 	{
 		return parent;
 	}
-	
-	/**
-	 * Gets the 3x3 transformation matrix which corresponds to
-	 * this transformation in global screen coordinates
-	 * 
-	 * @return the transformation matrix based on this transform
-	 */
-	public Matrix3x3 toMatrix()
-	{
-		return Matrix3x3.fromAngle(getGlobalRotation()).mul(Matrix3x3.fromPosition(getGlobalPosition()));
-	}
 }

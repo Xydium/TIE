@@ -2,6 +2,7 @@ package engine.resmgmt;
 
 import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
+import engine.utility.Log;
 
 /**
  * Stores references to GL textures and the number of times
@@ -27,6 +28,7 @@ public class TextureResource extends Resource
 	protected void finalize()
 	{
 		glDeleteBuffers(id);
+		Log.internal("Deleted texture data for: " + id);
 	}
 	
 	/**

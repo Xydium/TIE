@@ -79,8 +79,8 @@ public class VertexBuffer
 		glEnableVertexAttribArray(1);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, resource.getVBO());
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, Vertex.SIZE * FLOAT_SIZE, 0);
-		glVertexAttribPointer(1, 2, GL_FLOAT, false, Vertex.SIZE * FLOAT_SIZE, 3 * FLOAT_SIZE);
+		glVertexAttribPointer(0, 2, GL_FLOAT, false, Vertex.SIZE * FLOAT_SIZE, 0);
+		glVertexAttribPointer(1, 2, GL_FLOAT, false, Vertex.SIZE * FLOAT_SIZE, 2 * FLOAT_SIZE);
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, resource.getIBO());
 		glDrawElements(GL_QUADS, resource.getSize(), GL_UNSIGNED_INT, 0);
