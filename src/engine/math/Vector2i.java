@@ -48,6 +48,45 @@ public class Vector2i
 	}
 	
 	/**
+	 * Creates a new Vector2 object with its x and y
+	 * parameters set to the given values cast as integers
+	 * 
+	 * @param x the x value of the vector
+	 * @param y the y value of the vector
+	 */
+	public Vector2i(double x, double y)
+	{
+		this.x = (int)x;
+		this.y = (int)y;
+	}
+	
+	/**
+	 * Converts a Vector2f to a new Vector2i object
+	 * 
+	 * @param v2f the vector to convert
+	 */
+	public Vector2i(Vector2f v2f)
+	{
+		x = (int)v2f.getX();
+		y = (int)v2f.getY();
+	}
+	
+	/**
+	 * Rotates the vector by the given angle,
+	 * and returns a new rotated vector
+	 * 
+	 * @param angle the angle to rotate by
+	 * @return a new rotated vector
+	 */
+	public Vector2i rotateBy(float angle)
+	{
+		double sinA = Math.sin(angle);
+		double cosA = Math.cos(angle);
+		
+		return new Vector2i(x * cosA - y * sinA, x * sinA + y * cosA);
+	}
+	
+	/**
 	 * Adds the given vector to this vector and
 	 * creates a new sum vector to be returned
 	 * 

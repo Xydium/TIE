@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import engine.math.Vector2f;
+import engine.math.Vector2i;
 import engine.resmgmt.ShaderResource;
 import engine.utility.Log;
 
@@ -141,6 +142,21 @@ public class Shader
 		if (resource.getUniformNames().contains(uniformName))
 		{
 			glUniform2f(resource.getUniforms().get(uniformName), value.getX(), value.getY());
+		}
+	}
+	
+	/**
+	 * Sets a uniform variable of the given name in this shader
+	 * to be a given Vector2 value
+	 * 
+	 * @param uniformName the name of the uniform variable
+	 * @param value the new value of the uniform variable
+	 */
+	public void setUniform(String uniformName, Vector2i value)
+	{
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform2f(resource.getUniforms().get(uniformName), (float)value.getX(), (float)value.getY());
 		}
 	}
 	

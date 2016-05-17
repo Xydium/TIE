@@ -4,9 +4,7 @@ import engine.components.RectRenderer;
 import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
-import engine.math.Mathf;
 import engine.math.Vector2f;
-import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 

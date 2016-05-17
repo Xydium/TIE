@@ -35,6 +35,17 @@ public class Vector2f
 	}
 	
 	/**
+	 * Converts a Vector2i to a new Vector2f object
+	 * 
+	 * @param v2i the vector to convert
+	 */
+	public Vector2f(Vector2i v2i)
+	{
+		x = v2i.getX();
+		y = v2i.getY();
+	}
+	
+	/**
 	 * Calculates the dot product of this vector and
 	 * the given vector
 	 * 
