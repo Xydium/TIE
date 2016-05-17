@@ -246,6 +246,6 @@ public class Vector2i
 	
 	public String toString()
 	{
-		return String.format("(%i, %i)", x, y);
+		return String.format("(%s, %s)", x, y);
 	}
 }

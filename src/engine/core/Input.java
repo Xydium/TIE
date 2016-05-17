@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import engine.math.Vector2i;
+import engine.rendering.Window;
 
 /**
  * Class used to recieve input from the keyboard
@@ -267,7 +268,7 @@ public final class Input
 	 */
 	public static Vector2i getMousePosition()
 	{
-		return new Vector2i(Mouse.getX(), Mouse.getY());
+		return new Vector2i(Mouse.getX(), Window.getHeight() - Mouse.getY());
 	}
 	
 	/**

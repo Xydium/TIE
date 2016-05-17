@@ -126,6 +126,11 @@ public class Texture
 	{
 		return resource.getID();
 	}
+	
+	public static void unbindTexture()
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
 
 	/**
 	 * Utility method for loading a given BufferedImage to a byte buffer

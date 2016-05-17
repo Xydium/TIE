@@ -120,6 +120,7 @@ public class Transform
 		if (parent == null)
 		{
 			this.position = position;
+			return;
 		}
 		
 		this.position = position.sub(parent.getGlobalPosition()).rotateBy(-parent.getRotation());
@@ -151,6 +152,7 @@ public class Transform
 		if (parent == null)
 		{
 			this.rotation = rotation;
+			return;
 		}
 		
 		this.rotation = parent.getGlobalRotation() - rotation;
