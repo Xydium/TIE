@@ -21,8 +21,8 @@ void main()
 {
 	ex_TexCoord = in_TexCoord;
 	
-	vec2 pos = in_Position * transScale;
+	vec2 pos = in_Position;
 	rotate(pos, transRotation);
 
-	gl_Position = vec4(transPosition + pos, 1.0, 1.0);
+	gl_Position = vec4(transPosition + pos * transScale, 1.0, 1.0);
 }

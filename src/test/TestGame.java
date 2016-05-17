@@ -25,7 +25,7 @@ public class TestGame extends Game
 	
 	public void start()
 	{
-		getApplication().getRenderingEngine().setOverlayBrightness(0.7f);
+		/*getApplication().getRenderingEngine().setOverlayBrightness(0.7f);
 		myShader = new Shader("color-shader");
 		
 		t1 = new Texture("test.png");
@@ -70,7 +70,7 @@ public class TestGame extends Game
 		add(obj2);
 		
 		Log.info("Initialized");
-		//addAll(obj, obj2);
+		//addAll(obj, obj2);*/
 	}
 	
 	public void input()

@@ -1,10 +1,11 @@
 package engine.components;
 
 import engine.core.GameComponent;
-import engine.math.Vector2f;
+import engine.math.Vector2i;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 import engine.rendering.VertexBuffer;
+import engine.utility.Util;
 
 /**
  * A simple component for rendering a rectangle onto the screen
@@ -19,7 +20,7 @@ public class RectRenderer extends GameComponent
 	private Shader shader;
 	private boolean allowLighting;
 	
-	private Vector2f size;
+	private Vector2i size;
 	private VertexBuffer squareBuffer;
 
 	private UniformConfig uniformConfig;
@@ -33,7 +34,7 @@ public class RectRenderer extends GameComponent
 	 * @param size the size of the renderer
 	 * @param texture the texture to render
 	 */
-	public RectRenderer(Vector2f size, Texture texture)
+	public RectRenderer(Vector2i size, Texture texture)
 	{
 		setShader(new Shader("texture-shader"));
 		this.size = size;
@@ -52,7 +53,7 @@ public class RectRenderer extends GameComponent
 	 * 
 	 * @param size the size of the renderer
 	 */
-	public RectRenderer(Vector2f size)
+	public RectRenderer(Vector2i size)
 	{
 		this(size, null);
 	}
@@ -70,9 +71,11 @@ public class RectRenderer extends GameComponent
 			texture.bind();			
 		}
 		
-		getShader().setUniform("transPosition", getTransform().getGlobalPosition());
+		Vector2i halfSize = size.div(2);
+		
+		getShader().setUniform("transPosition", Util.pixelCoordToWindow(getTransform().getGlobalPosition().sub(halfSize)));
 		getShader().setUniform("transRotation", getTransform().getGlobalRotation());
-		getShader().setUniform("transScale", size);
+		getShader().setUniform("transScale", Util.pixelDimensionToWindow(halfSize));
 		
 		if (uniformConfig != null)
 		{
@@ -87,7 +90,7 @@ public class RectRenderer extends GameComponent
 	 * 
 	 * @param size the rect's size
 	 */
-	public void setSize(Vector2f size)
+	public void setSize(Vector2i size)
 	{
 		this.size = size;
 	}
