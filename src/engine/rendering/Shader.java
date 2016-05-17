@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.resmgmt.ShaderResource;
 import engine.utility.Log;
 
@@ -136,7 +136,7 @@ public class Shader
 	 * @param uniformName the name of the uniform variable
 	 * @param value the new value of the uniform variable
 	 */
-	public void setUniform(String uniformName, Vector2 value)
+	public void setUniform(String uniformName, Vector2f value)
 	{
 		if (resource.getUniformNames().contains(uniformName))
 		{

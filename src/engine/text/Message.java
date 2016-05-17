@@ -13,7 +13,7 @@ import java.util.List;
 
 import engine.components.RectRenderer;
 import engine.core.GameObject;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -29,7 +29,7 @@ public class Message extends GameObject{
 
 	private String message;
 	private Font font;
-	private Vector2 loc;
+	private Vector2f loc;
 	private Color color;
 
 	public void render() {
@@ -37,10 +37,10 @@ public class Message extends GameObject{
 		for(BufferedImage img : imgs) {
 			Texture texture = new Texture(img);
 			
-			RectRenderer renderer = new RectRenderer(Util.pixelDToGL(new Vector2(img.getWidth(), img.getHeight())), texture);
+			RectRenderer renderer = new RectRenderer(Util.pixelDToGL(new Vector2f(img.getWidth(), img.getHeight())), texture);
 			renderer.setShader(new Shader("basic-shader"));
 			addAllComponents(renderer);
-			Vector2 position = new Vector2();
+			Vector2f position = new Vector2f();
 			position.setX(loc.getX());
 			position.setY(loc.getY());
 			Util.pixelCToGL(position);
@@ -48,14 +48,14 @@ public class Message extends GameObject{
 		}
 	}
 	
-	public Message(String message, Font font, Color color, Vector2 loc) {
+	public Message(String message, Font font, Color color, Vector2f loc) {
 		this.message = message;
 		this.font = font;
 		this.color = color;
 		this.loc = loc;
 	}
 
-	public Message(String message, String font, Vector2 loc, int size, Color color) {
+	public Message(String message, String font, Vector2f loc, int size, Color color) {
 		this.message = message;
 		this.loc = loc;
 		loadFont(font, size);
@@ -77,7 +77,7 @@ public class Message extends GameObject{
 	/**
 	 * @return the loc
 	 */
-	public Vector2 getLoc() {
+	public Vector2f getLoc() {
 		return loc;
 	}
 
@@ -126,7 +126,7 @@ public class Message extends GameObject{
 		int x = 0;
 		for(BufferedImage bi : textures) {
 			Texture texture = new Texture(bi);
-			RectRenderer rec = new RectRenderer(new Vector2(this.loc.getX() + x, this.loc.getY()), texture);
+			RectRenderer rec = new RectRenderer(new Vector2f(this.loc.getX() + x, this.loc.getY()), texture);
 			rec.setShader(texShader);
 			rectangles.add(rec);
 			System.out.println(bi);

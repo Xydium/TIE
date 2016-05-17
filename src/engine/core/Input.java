@@ -2,7 +2,7 @@ package engine.core;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 
 /**
  * Class used to recieve input from the keyboard
@@ -254,7 +254,7 @@ public final class Input
 	 * 
 	 * @param pos the new position of the mouse
 	 */
-	public static void setMousePosition(Vector2 pos)
+	public static void setMousePosition(Vector2f pos)
 	{
 		Mouse.setCursorPosition((int)pos.getX(), (int)pos.getY());
 	}
@@ -264,9 +264,9 @@ public final class Input
 	 * 
 	 * @return the mouse position
 	 */
-	public static Vector2 getMousePosition()
+	public static Vector2f getMousePosition()
 	{
-		return new Vector2((float)Mouse.getX(), (float)Mouse.getY());
+		return new Vector2f((float)Mouse.getX(), (float)Mouse.getY());
 	}
 	
 	/**

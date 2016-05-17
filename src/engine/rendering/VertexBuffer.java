@@ -2,7 +2,7 @@ package engine.rendering;
 
 import java.util.HashMap;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.resmgmt.VertexBufferResource;
 import engine.utility.Log;
 import engine.utility.Util;
@@ -24,10 +24,10 @@ public class VertexBuffer
 		
 		if (out == null)
 		{
-			Vertex[] vertices = {new Vertex(new Vector2(-1, -1), new Vector2(0, 1)),
-				new Vertex(new Vector2(-1, 1), new Vector2(0, 0)),
-				new Vertex(new Vector2(1, 1), new Vector2(1, 0)),
-				new Vertex(new Vector2(1, -1), new Vector2(1, 1))};
+			Vertex[] vertices = {new Vertex(new Vector2f(-1, -1), new Vector2f(0, 1)),
+				new Vertex(new Vector2f(-1, 1), new Vector2f(0, 0)),
+				new Vertex(new Vector2f(1, 1), new Vector2f(1, 0)),
+				new Vertex(new Vector2f(1, -1), new Vector2f(1, 1))};
 			int[] indices = {0, 1, 2, 3};
 			
 			out = genVBResource(vertices, indices);

@@ -1,7 +1,7 @@
 package engine.components;
 
 import engine.core.GameComponent;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
 import engine.rendering.VertexBuffer;
@@ -19,7 +19,7 @@ public class RectRenderer extends GameComponent
 	private Shader shader;
 	private boolean allowLighting;
 	
-	private Vector2 size;
+	private Vector2f size;
 	private VertexBuffer squareBuffer;
 
 	private UniformConfig uniformConfig;
@@ -33,7 +33,7 @@ public class RectRenderer extends GameComponent
 	 * @param size the size of the renderer
 	 * @param texture the texture to render
 	 */
-	public RectRenderer(Vector2 size, Texture texture)
+	public RectRenderer(Vector2f size, Texture texture)
 	{
 		setShader(new Shader("texture-shader"));
 		this.size = size;
@@ -52,7 +52,7 @@ public class RectRenderer extends GameComponent
 	 * 
 	 * @param size the size of the renderer
 	 */
-	public RectRenderer(Vector2 size)
+	public RectRenderer(Vector2f size)
 	{
 		this(size, null);
 	}
@@ -87,7 +87,7 @@ public class RectRenderer extends GameComponent
 	 * 
 	 * @param size the rect's size
 	 */
-	public void setSize(Vector2 size)
+	public void setSize(Vector2f size)
 	{
 		this.size = size;
 	}

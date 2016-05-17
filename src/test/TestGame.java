@@ -5,7 +5,7 @@ import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -31,7 +31,7 @@ public class TestGame extends Game
 		t2 = new Texture("distortionMap.png");
 		
 		obj = new GameObject();
-		rr = new RectRenderer(new Vector2(0.3f, 0.3f), t1);
+		rr = new RectRenderer(new Vector2f(0.3f, 0.3f), t1);
 		rr.setTag("renderer");
 		rr.setShader(new Shader("distort-shader"));
 		rr.setAllowLighting(false);
@@ -42,7 +42,7 @@ public class TestGame extends Game
 		obj.getTransform().setPosition(0f, 0.3f);
 		
 		obj2 = new GameObject();
-		RectRenderer rr2 = new RectRenderer(new Vector2(0.3f, 0.3f), new Texture("test.png"));
+		RectRenderer rr2 = new RectRenderer(new Vector2f(0.3f, 0.3f), new Texture("test.png"));
 		//rr2.setShader(myShader);
 		obj2.addComponent(rr2);
 		//a2 = new AABBCollider(rr2.getRect());
@@ -76,22 +76,22 @@ public class TestGame extends Game
 	{
 		if (Input.getKey(Input.KEY_W))
 		{
-			obj.getTransform().translateBy(new Vector2(0, 0.01f));
+			obj.getTransform().translateBy(new Vector2f(0, 0.01f));
 		}
 		
 		if (Input.getKey(Input.KEY_A))
 		{
-			obj.getTransform().translateBy(new Vector2(-0.01f, 0));
+			obj.getTransform().translateBy(new Vector2f(-0.01f, 0));
 		}
 		
 		if (Input.getKey(Input.KEY_S))
 		{
-			obj.getTransform().translateBy(new Vector2(0, -0.01f));
+			obj.getTransform().translateBy(new Vector2f(0, -0.01f));
 		}
 		
 		if (Input.getKey(Input.KEY_D))
 		{
-			obj.getTransform().translateBy(new Vector2(0.01f, 0));
+			obj.getTransform().translateBy(new Vector2f(0.01f, 0));
 		}
 	}
 	

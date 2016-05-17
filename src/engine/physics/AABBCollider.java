@@ -1,6 +1,6 @@
 package engine.physics;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Rectangle;
 
 /**
@@ -32,7 +32,7 @@ public class AABBCollider extends Collider
 	 * 
 	 * @param size the AABB's collider size
 	 */
-	public AABBCollider(Vector2 size)
+	public AABBCollider(Vector2f size)
 	{
 		this(new Rectangle(size));
 	}
@@ -53,11 +53,11 @@ public class AABBCollider extends Collider
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2 cPos1 = getTransform().getGlobalPosition().sub(rect.getSize());
-		Vector2 cPos2 = aabb2.getTransform().getGlobalPosition().sub(aabb2.getRect().getSize());
+		Vector2f cPos1 = getTransform().getGlobalPosition().sub(rect.getSize());
+		Vector2f cPos2 = aabb2.getTransform().getGlobalPosition().sub(aabb2.getRect().getSize());
 		
-		Vector2 sz1 = rect.getAdjustedSize().mul(2);
-		Vector2 sz2 = aabb2.getRect().getAdjustedSize().mul(2);
+		Vector2f sz1 = rect.getAdjustedSize().mul(2);
+		Vector2f sz2 = aabb2.getRect().getAdjustedSize().mul(2);
 		
 		return (cPos1.getX() < cPos2.getX() + sz2.getX()
 			 && cPos1.getX() + sz1.getX() > cPos2.getX()
@@ -72,30 +72,30 @@ public class AABBCollider extends Collider
 	 * @param other the collider to resolve collisions with
 	 * @return the penetration vector
 	 */
-	public Vector2 resolveCollision(Collider other)
+	public Vector2f resolveCollision(Collider other)
 	{
 		if (!(other instanceof AABBCollider))
 		{
-			return new Vector2();
+			return new Vector2f();
 		}
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2 p1 = getTransform().getGlobalPosition();
-		Vector2 p2 = aabb2.getTransform().getGlobalPosition();
+		Vector2f p1 = getTransform().getGlobalPosition();
+		Vector2f p2 = aabb2.getTransform().getGlobalPosition();
 		
-		Vector2 s1 = rect.getAdjustedSize();
-		Vector2 s2 = aabb2.getRect().getAdjustedSize();
+		Vector2f s1 = rect.getAdjustedSize();
+		Vector2f s2 = aabb2.getRect().getAdjustedSize();
 		
-		Vector2 centerVec = p2.sub(p1);
+		Vector2f centerVec = p2.sub(p1);
 		
-		Vector2[] collVectors = {new Vector2((p2.getX() + s2.getX()) - (p1.getX() - s1.getX()), 0),
-			new Vector2(-((p1.getX() + s1.getX()) - (p2.getX() - s2.getX())), 0),
-			new Vector2(0, (p2.getY() + s2.getY()) - (p1.getY() - s1.getY())),
-			new Vector2(0, -((p1.getY() + s1.getY()) - (p2.getY() - s2.getY())))};
+		Vector2f[] collVectors = {new Vector2f((p2.getX() + s2.getX()) - (p1.getX() - s1.getX()), 0),
+			new Vector2f(-((p1.getX() + s1.getX()) - (p2.getX() - s2.getX())), 0),
+			new Vector2f(0, (p2.getY() + s2.getY()) - (p1.getY() - s1.getY())),
+			new Vector2f(0, -((p1.getY() + s1.getY()) - (p2.getY() - s2.getY())))};
 		
 		float shortestLen = Float.MAX_VALUE;
-		Vector2 shortest = new Vector2();
+		Vector2f shortest = new Vector2f();
 		
 		for (int i = 0; i < collVectors.length; i++)
 		{

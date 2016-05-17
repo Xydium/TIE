@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import engine.math.Transform;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 
 /**
  * Rectangle utility class used to do calculations where a rectangle is
@@ -17,14 +17,14 @@ import engine.math.Vector2;
  */
 public class Rectangle
 {
-	private Vector2 size;
+	private Vector2f size;
 	
 	/**
 	 * Creates a new rectangle with the given size
 	 * 
 	 * @param size the size of the rectangle
 	 */
-	public Rectangle(Vector2 size)
+	public Rectangle(Vector2f size)
 	{
 		this.size = size;
 	}
@@ -37,7 +37,7 @@ public class Rectangle
 	 */
 	public Rectangle(float width, float height)
 	{
-		this(new Vector2(width, height));
+		this(new Vector2f(width, height));
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class Rectangle
 	 */
 	public void setSize(float width, float height)
 	{
-		size = new Vector2(width, height);
+		size = new Vector2f(width, height);
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class Rectangle
 	 * 
 	 * @param size the new size of the rect
 	 */
-	public void setSize(Vector2 size)
+	public void setSize(Vector2f size)
 	{
 		this.size = size;
 	}
@@ -66,7 +66,7 @@ public class Rectangle
 	 * 
 	 * @return rect's size
 	 */
-	public Vector2 getSize()
+	public Vector2f getSize()
 	{
 		return size;
 	}
@@ -76,9 +76,9 @@ public class Rectangle
 	 * 
 	 * @return rect size adjusted to window's aspect ratio
 	 */
-	public Vector2 getAdjustedSize()
+	public Vector2f getAdjustedSize()
 	{
-		return size.mul(new Vector2(1, (float)Window.getAspectRatio()));
+		return size.mul(new Vector2f(1, (float)Window.getAspectRatio()));
 	}
 	
 	/**

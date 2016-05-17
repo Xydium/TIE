@@ -3,7 +3,7 @@ package engine.physics;
 import java.util.ArrayList;
 
 import engine.core.GameComponent;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 
 /**
  * Class for collider components which will check and
@@ -47,7 +47,7 @@ public abstract class Collider extends GameComponent
 			{
 				if (colliders.get(i).collidesWith(colliders.get(j)))
 				{
-					Vector2 penetration = colliders.get(i).resolveCollision(colliders.get(j));
+					Vector2f penetration = colliders.get(i).resolveCollision(colliders.get(j));
 					colliders.get(i).getTransform().setGlobalPosition(colliders.get(i).getTransform().getGlobalPosition().add(penetration));
 				}
 			}
@@ -70,5 +70,5 @@ public abstract class Collider extends GameComponent
 	 * @param other the collider to resolve collisions with
 	 * @return the penetration vector
 	 */
-	public abstract Vector2 resolveCollision(Collider other);
+	public abstract Vector2f resolveCollision(Collider other);
 }

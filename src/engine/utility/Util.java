@@ -6,7 +6,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Color;
 import engine.rendering.Vertex;
 import engine.rendering.Window;
@@ -27,7 +27,7 @@ public class Util
 	 * @param pixel
 	 * @return modified vector as GL coords
 	 */
-	public static Vector2 pixelCToGL(Vector2 pixel) 
+	public static Vector2f pixelCToGL(Vector2f pixel) 
 	{
 		pixel.setX(pixel.getX() / Window.getWidth() * 2 - 1.0f);
 		pixel.setY(pixel.getY() / Window.getHeight() * (1 / (float) Window.getAspectRatio()) - 1 / (float) Window.getAspectRatio());
@@ -38,7 +38,7 @@ public class Util
 	 * @param pixel
 	 * @return modified vector as GL dimensions
 	 */
-	public static Vector2 pixelDToGL(Vector2 pixel) 
+	public static Vector2f pixelDToGL(Vector2f pixel) 
 	{
 		pixel.setX(pixel.getX() / Window.getWidth());
 		pixel.setY(pixel.getY() / Window.getWidth());

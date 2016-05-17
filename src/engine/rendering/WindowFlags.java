@@ -1,6 +1,6 @@
 package engine.rendering;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.utility.Log;
 import engine.utility.Log.LogLevel;
 
@@ -102,7 +102,7 @@ public class WindowFlags
 	 * 
 	 * @param dimensions the new dimensions of the window flags
 	 */
-	public void setDimensions(Vector2 dimensions)
+	public void setDimensions(Vector2f dimensions)
 	{
 		width = (int)dimensions.getX();
 		height = (int)dimensions.getY();
@@ -113,9 +113,9 @@ public class WindowFlags
 	 * 
 	 * @return the dimensions of the window flags
 	 */
-	public Vector2 getDimensions()
+	public Vector2f getDimensions()
 	{
-		return new Vector2(width, height);
+		return new Vector2f(width, height);
 	}
 	
 	/**

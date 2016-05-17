@@ -5,7 +5,7 @@ import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.math.Mathf;
-import engine.math.Vector2;
+import engine.math.Vector2f;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -19,7 +19,7 @@ public class ShaderTester extends Game
 	public void start()
 	{
 		obj = new GameObject();
-		RectRenderer rr = new RectRenderer(new Vector2(0.5f, 0.5f), new Texture("test.png"));
+		RectRenderer rr = new RectRenderer(new Vector2f(0.5f, 0.5f), new Texture("test.png"));
 		rr.setShader(new Shader("distort-shader"));
 		obj.addComponent(rr);
 		

@@ -2,11 +2,12 @@ package engine.math;
 
 /**
  * A 2-Dimensional Vector with an x value and a y value
+ * with values stored as floats
  * 
  * @author Lenny Litvak
  *
  */
-public class Vector2
+public class Vector2f
 {
 	private float x, y;
 	
@@ -14,7 +15,7 @@ public class Vector2
 	 * Creates a new Vector2 object with its x and y
 	 * parameters set to 0
 	 */
-	public Vector2()
+	public Vector2f()
 	{
 		x = 0;
 		y = 0;
@@ -27,7 +28,7 @@ public class Vector2
 	 * @param x the x value of the vector
 	 * @param y the y value of the vector
 	 */
-	public Vector2(float x, float y)
+	public Vector2f(float x, float y)
 	{
 		this.x = x;
 		this.y = y;
@@ -40,7 +41,7 @@ public class Vector2
 	 * @param v2 the vector to dot product with
 	 * @return the dot product of the two vectors
 	 */
-	public float dot(Vector2 v2)
+	public float dot(Vector2f v2)
 	{
 		return x * v2.x + y * v2.y;
 	}
@@ -71,12 +72,12 @@ public class Vector2
 	 * 
 	 * @return the normalized vector
 	 */
-	public Vector2 getUnit()
+	public Vector2f getUnit()
 	{
 		float mag = getMagnitude();
 		float invMag = mag == 0 ? 0 : 1.0f / mag;
 		
-		return new Vector2(x * invMag, y * invMag);
+		return new Vector2f(x * invMag, y * invMag);
 	}
 	
 	/**
@@ -86,12 +87,12 @@ public class Vector2
 	 * @param angle the angle to rotate by
 	 * @return a new rotated vector
 	 */
-	public Vector2 rotateBy(float angle)
+	public Vector2f rotateBy(float angle)
 	{
 		double sinA = Math.sin(angle);
 		double cosA = Math.cos(angle);
 		
-		return new Vector2((float)(x * cosA - y * sinA), (float)(x * sinA + y * cosA));
+		return new Vector2f((float)(x * cosA - y * sinA), (float)(x * sinA + y * cosA));
 	}
 	
 	/**
@@ -101,9 +102,9 @@ public class Vector2
 	 * @param v2 The vector to add to this vector
 	 * @return The sum vector
 	 */
-	public Vector2 add(Vector2 v2)
+	public Vector2f add(Vector2f v2)
 	{
-		return new Vector2(x + v2.x, y + v2.y);
+		return new Vector2f(x + v2.x, y + v2.y);
 	}
 	
 	/**
@@ -113,9 +114,9 @@ public class Vector2
 	 * @param v2 The vector to subtract from this vector
 	 * @return The difference vector
 	 */
-	public Vector2 sub(Vector2 v2)
+	public Vector2f sub(Vector2f v2)
 	{
-		return new Vector2(x - v2.x, y - v2.y);
+		return new Vector2f(x - v2.x, y - v2.y);
 	}
 	
 	/**
@@ -125,9 +126,9 @@ public class Vector2
 	 * @param v2 The vector to multiply by this vector
 	 * @return The product vector
 	 */
-	public Vector2 mul(Vector2 v2)
+	public Vector2f mul(Vector2f v2)
 	{
-		return new Vector2(x * v2.x, y * v2.y);
+		return new Vector2f(x * v2.x, y * v2.y);
 	}
 	
 	/**
@@ -137,9 +138,9 @@ public class Vector2
 	 * @param v2 The vector to divide this vector by
 	 * @return The quotient vector
 	 */
-	public Vector2 div(Vector2 v2)
+	public Vector2f div(Vector2f v2)
 	{
-		return new Vector2(x / v2.x, y / v2.y);
+		return new Vector2f(x / v2.x, y / v2.y);
 	}
 	
 	/**
@@ -149,9 +150,9 @@ public class Vector2
 	 * @param n The number to be added
 	 * @return The sum vector
 	 */
-	public Vector2 add(float n)
+	public Vector2f add(float n)
 	{
-		return new Vector2(x + n, y + n);
+		return new Vector2f(x + n, y + n);
 	}
 	
 	/**
@@ -161,9 +162,9 @@ public class Vector2
 	 * @param n The number to be subtracted
 	 * @return The difference vector
 	 */
-	public Vector2 sub(float n)
+	public Vector2f sub(float n)
 	{
-		return new Vector2(x - n, y - n);
+		return new Vector2f(x - n, y - n);
 	}
 	
 	/**
@@ -173,9 +174,9 @@ public class Vector2
 	 * @param n The number to be multiplied by
 	 * @return The product vector
 	 */
-	public Vector2 mul(float n)
+	public Vector2f mul(float n)
 	{
-		return new Vector2(x * n, y * n);
+		return new Vector2f(x * n, y * n);
 	}
 	
 	/**
@@ -185,9 +186,9 @@ public class Vector2
 	 * @param n The number to be divided by
 	 * @return The quotient vector
 	 */
-	public Vector2 div(float n)
+	public Vector2f div(float n)
 	{
-		return new Vector2(x / n, y / n);
+		return new Vector2f(x / n, y / n);
 	}
 	
 	/**
