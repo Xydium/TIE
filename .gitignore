@@ -78,3 +78,4 @@ LOG_*.txt
 
 src/assets/textures
 *.classpath
+.classpath
