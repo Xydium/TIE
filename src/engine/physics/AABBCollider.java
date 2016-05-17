@@ -1,7 +1,7 @@
 package engine.physics;
 
 import engine.math.Vector2f;
-import engine.rendering.Rectangle;
+import engine.math.Vector2i;
 
 /**
  * Axis-Alligned Bounding Box collider used for
@@ -12,29 +12,16 @@ import engine.rendering.Rectangle;
  */
 public class AABBCollider extends Collider
 {
-	private Rectangle rect;
-	
-	/**
-	 * Creates a new AABB collider with the given
-	 * rectangle as a bounding box
-	 * 
-	 * @param rect the rect for the bounding box
-	 */
-	public AABBCollider(Rectangle rect)
-	{
-		this.rect = rect;
-		Collider.addCollider(this);
-	}
+	private Vector2i size;
 	
 	/**
 	 * Creates a new AABB collider with the given size
-	 * acting as the size for the bounding box's rectangle
 	 * 
 	 * @param size the AABB's collider size
 	 */
-	public AABBCollider(Vector2f size)
+	public AABBCollider(Vector2i size)
 	{
-		this(new Rectangle(size));
+		this.size = size;
 	}
 	
 	/**
@@ -53,16 +40,13 @@ public class AABBCollider extends Collider
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2f cPos1 = getTransform().getGlobalPosition().sub(rect.getSize());
-		Vector2f cPos2 = aabb2.getTransform().getGlobalPosition().sub(aabb2.getRect().getSize());
+		Vector2i pos1 = getTransform().getGlobalPosition();
+		Vector2i pos2 = aabb2.getTransform().getGlobalPosition();
 		
-		Vector2f sz1 = rect.getAdjustedSize().mul(2);
-		Vector2f sz2 = aabb2.getRect().getAdjustedSize().mul(2);
-		
-		return (cPos1.getX() < cPos2.getX() + sz2.getX()
-			 && cPos1.getX() + sz1.getX() > cPos2.getX()
-			 && cPos1.getY() < cPos2.getY() + sz2.getY()
-			 && cPos1.getY() + sz1.getY() > cPos2.getY());
+		return (pos1.getX() < pos2.getX() + aabb2.getSize().getX()
+			 && pos1.getX() + size.getX() > pos2.getX()
+			 && pos1.getY() < pos2.getY() + aabb2.getSize().getY()
+			 && pos1.getY() + size.getY() > pos2.getY());
 	}
 
 	/**
@@ -72,22 +56,22 @@ public class AABBCollider extends Collider
 	 * @param other the collider to resolve collisions with
 	 * @return the penetration vector
 	 */
-	public Vector2f resolveCollision(Collider other)
+	public Vector2i resolveCollision(Collider other)
 	{
 		if (!(other instanceof AABBCollider))
 		{
-			return new Vector2f();
+			return new Vector2i();
 		}
 		
 		AABBCollider aabb2 = (AABBCollider)other;
 		
-		Vector2f p1 = getTransform().getGlobalPosition();
-		Vector2f p2 = aabb2.getTransform().getGlobalPosition();
+		Vector2i p1 = getTransform().getGlobalPosition();
+		Vector2i p2 = aabb2.getTransform().getGlobalPosition();
 		
-		Vector2f s1 = rect.getAdjustedSize();
-		Vector2f s2 = aabb2.getRect().getAdjustedSize();
+		Vector2i s1 = size;
+		Vector2i s2 = aabb2.getSize();
 		
-		Vector2f centerVec = p2.sub(p1);
+		Vector2f centerVec = new Vector2f(p2.sub(p1));
 		
 		Vector2f[] collVectors = {new Vector2f((p2.getX() + s2.getX()) - (p1.getX() - s1.getX()), 0),
 			new Vector2f(-((p1.getX() + s1.getX()) - (p2.getX() - s2.getX())), 0),
@@ -106,16 +90,16 @@ public class AABBCollider extends Collider
 			}
 		}
 		
-		return shortest;
+		return new Vector2i(shortest);
 	}
 
-	/**
-	 * Gets the rectangle that is being used to test collisions
-	 * 
-	 * @return the AABB's rect
-	 */
-	public Rectangle getRect()
+	public void setSize(Vector2i size)
 	{
-		return rect;
+		this.size = size;
+	}
+	
+	public Vector2i getSize()
+	{
+		return size;
 	}
 }

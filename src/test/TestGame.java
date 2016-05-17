@@ -6,6 +6,7 @@ import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
 import engine.math.Vector2f;
+import engine.math.Vector2i;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -76,22 +77,22 @@ public class TestGame extends Game
 	{
 		if (Input.getKey(Input.KEY_W))
 		{
-			obj.getTransform().translateBy(new Vector2f(0, 0.01f));
+			obj.getTransform().translateBy(new Vector2i(0, 0.01f));
 		}
 		
 		if (Input.getKey(Input.KEY_A))
 		{
-			obj.getTransform().translateBy(new Vector2f(-0.01f, 0));
+			obj.getTransform().translateBy(new Vector2i(-0.01f, 0));
 		}
 		
 		if (Input.getKey(Input.KEY_S))
 		{
-			obj.getTransform().translateBy(new Vector2f(0, -0.01f));
+			obj.getTransform().translateBy(new Vector2i(0, -0.01f));
 		}
 		
 		if (Input.getKey(Input.KEY_D))
 		{
-			obj.getTransform().translateBy(new Vector2f(0.01f, 0));
+			obj.getTransform().translateBy(new Vector2i(0.01f, 0));
 		}
 	}
 	
