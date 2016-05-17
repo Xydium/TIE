@@ -13,7 +13,7 @@ public class Main
 		flags.setConsoleEnabled(true);
 		flags.setIconFiles("icon16.png", "icon32.png");
 		
-		Application app = new Application(new TestGame(), 60.0, flags);
+		Application app = new Application(new ShaderTester(), 60.0, flags);
 		app.start();
 	}
 }

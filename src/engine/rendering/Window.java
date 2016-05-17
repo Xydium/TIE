@@ -8,13 +8,13 @@ import javax.imageio.ImageIO;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.PixelFormat;
 
 import engine.utility.Log;
+
+import static org.lwjgl.opengl.GL11.glGetString;
+import static org.lwjgl.opengl.GL11.GL_VERSION;
 
 /**
  * Static window class for wrapping LWJGL 2's Display class
@@ -47,9 +47,6 @@ public final class Window
 	{
 		Window.flags = flags;
 
-		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAtrributes = new ContextAttribs(3, 1);
-
 		try
 		{
 		    Display.setDisplayMode(new DisplayMode(flags.getWidth(), flags.getHeight()));
@@ -60,11 +57,11 @@ public final class Window
 		    	setIcons(flags.getCornerIcon(), flags.getTaskbarIcon());
 		    }
 		    
-		    Display.create(pixelFormat, contextAtrributes);
+		    Display.create();
 		    Keyboard.create();
 		    Mouse.create();
-		    Log.info("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
-		    Log.internal("Display Created");
+		    
+		    Log.internal("The current GL Version is " + glGetString(GL_VERSION));
 		}
 		catch (LWJGLException e)
 		{

@@ -6,8 +6,10 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
+import engine.math.Vector2i;
 import engine.rendering.Color;
+import engine.rendering.Vertex;
 import engine.rendering.Window;
 
 
@@ -23,26 +25,45 @@ public class Util
 {
 
 	/**
-	 * @param pixel
-	 * @return modified vector as GL coords
+	 * Converts pixel coordinates starting at the top left (0, 0) of the screen
+	 * to OpenGL's window coordinates which go -1 to 1 from the center
+	 * 
+	 * @param coord the coordinate position to convert
+	 * @return the window coordinate
 	 */
-	public static Vector2 pixelCToGL(Vector2 pixel) 
+	public static Vector2f pixelCoordToWindow(Vector2i coord) 
 	{
-		pixel.setX(pixel.getX() / Window.getWidth() * 2 - 1.0f);
-		pixel.setY(pixel.getY() / Window.getHeight() * (1 / (float) Window.getAspectRatio()) - 1 / (float) Window.getAspectRatio());
-		return pixel;
+		float halfWidth = Window.getWidth() / 2.f;
+		float halfHeight = Window.getHeight() / 2.f;
+
+		//pixel.setY(pixel.getY() / Window.getHeight() * (1 / (float) Window.getAspectRatio()) - 1 / (float) Window.getAspectRatio());
+		
+		return new Vector2f(coord.getX() / halfWidth - 1.f, -(coord.getY() / halfHeight - 1.f));
+	}
+	
+	/**
+	 * 
+	 * @param dim
+	 * @return
+	 */
+	public static Vector2f pixelDimensionToWindow(Vector2i dim)
+	{
+		float halfWidth = Window.getWidth() / 2.f;
+		float halfHeight = Window.getHeight() / 2.f;
+		
+		return new Vector2f(dim.getX() / halfWidth, dim.getY() / halfHeight);
 	}
 	
 	/**
 	 * @param pixel
 	 * @return modified vector as GL dimensions
 	 */
-	public static Vector2 pixelDToGL(Vector2 pixel) 
+	/*public static Vector2f pixelDToGL(Vector2f pixel) 
 	{
 		pixel.setX(pixel.getX() / Window.getWidth());
 		pixel.setY(pixel.getY() / Window.getWidth());
 		return pixel;
-	}
+	}*/
 	
 	/**
 	 * Creates a buffer of bytes with the given size
@@ -88,6 +109,24 @@ public class Util
 		IntBuffer buffer = createIntBuffer(values.length);
 		
 		buffer.put(values);
+		buffer.flip();
+		
+		return buffer;
+	}
+	
+	public static FloatBuffer createFlippedBuffer(Vertex[] vertices)
+	{
+		FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE);
+		
+		for(int i = 0; i < vertices.length; i++)
+		{
+			buffer.put(vertices[i].getPosition().getX());
+			buffer.put(vertices[i].getPosition().getY());
+			
+			buffer.put(vertices[i].getTexCoord().getX());
+			buffer.put(vertices[i].getTexCoord().getY());
+		}
+		
 		buffer.flip();
 		
 		return buffer;

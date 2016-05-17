@@ -1,9 +1,7 @@
 package engine.physics;
 
-import java.util.ArrayList;
-
 import engine.core.GameComponent;
-import engine.math.Vector2;
+import engine.math.Vector2i;
 
 /**
  * Class for collider components which will check and
@@ -14,32 +12,10 @@ import engine.math.Vector2;
  */
 public abstract class Collider extends GameComponent
 {
-	private static ArrayList<Collider> colliders = new ArrayList<Collider>();
-	
-	/**
-	 * Adds a collider to the list of colliders to test collision against
-	 * 
-	 * @param coll the collider to add
-	 */
-	public static void addCollider(Collider coll)
-	{
-		colliders.add(coll);
-	}
-	
-	/**
-	 * Removes the collider from the collider list
-	 * 
-	 * @param coll the collider to remove
-	 */
-	public static void removeCollider(Collider coll)
-	{
-		colliders.remove(coll);
-	}
-	
 	/**
 	 * Resolves all collisions of all objects within the collider list
 	 */
-	public static void resolveCollisions()
+	/*public static void resolveCollisions()
 	{
 		for (int i = 0; i < colliders.size(); i++)
 		{
@@ -47,12 +23,12 @@ public abstract class Collider extends GameComponent
 			{
 				if (colliders.get(i).collidesWith(colliders.get(j)))
 				{
-					Vector2 penetration = colliders.get(i).resolveCollision(colliders.get(j));
+					Vector2f penetration = colliders.get(i).resolveCollision(colliders.get(j));
 					colliders.get(i).getTransform().setGlobalPosition(colliders.get(i).getTransform().getGlobalPosition().add(penetration));
 				}
 			}
 		}
-	}
+	}*/
 	
 	/**
 	 * Checks whether this collider collides with the
@@ -70,5 +46,5 @@ public abstract class Collider extends GameComponent
 	 * @param other the collider to resolve collisions with
 	 * @return the penetration vector
 	 */
-	public abstract Vector2 resolveCollision(Collider other);
+	public abstract Vector2i resolveCollision(Collider other);
 }

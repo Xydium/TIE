@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
+import engine.math.Vector2i;
 import engine.resmgmt.ShaderResource;
 import engine.utility.Log;
 
@@ -93,7 +94,10 @@ public class Shader
 	 */
 	public void setUniform(String uniformName, int value)
 	{
-		glUniform1i(resource.getUniforms().get(uniformName), value);
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform1i(resource.getUniforms().get(uniformName), value);
+		}
 	}
 	
 	/**
@@ -133,11 +137,26 @@ public class Shader
 	 * @param uniformName the name of the uniform variable
 	 * @param value the new value of the uniform variable
 	 */
-	public void setUniform(String uniformName, Vector2 value)
+	public void setUniform(String uniformName, Vector2f value)
 	{
 		if (resource.getUniformNames().contains(uniformName))
 		{
 			glUniform2f(resource.getUniforms().get(uniformName), value.getX(), value.getY());
+		}
+	}
+	
+	/**
+	 * Sets a uniform variable of the given name in this shader
+	 * to be a given Vector2 value
+	 * 
+	 * @param uniformName the name of the uniform variable
+	 * @param value the new value of the uniform variable
+	 */
+	public void setUniform(String uniformName, Vector2i value)
+	{
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform2f(resource.getUniforms().get(uniformName), (float)value.getX(), (float)value.getY());
 		}
 	}
 	
@@ -150,7 +169,10 @@ public class Shader
 	 */
 	public void setUniform(String uniformName, Color value)
 	{
-		glUniform4f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
+		if (resource.getUniformNames().contains(uniformName))
+		{
+			glUniform4f(resource.getUniforms().get(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
+		}
 	}
 	
 	private void addAllAttributes(String source)
@@ -411,6 +433,7 @@ public class Shader
 		
 		if (glGetShaderi(shader, GL_COMPILE_STATUS) == 0)
 		{
+			System.err.println("Error from shader: " + fileName);
 			System.err.println(glGetShaderInfoLog(shader, 2048));
 			System.exit(1);
 		}

@@ -1,7 +1,6 @@
 package engine.core;
 
 import engine.audio.GlobalAudio;
-import engine.physics.Collider;
 import engine.rendering.RenderingEngine;
 import engine.rendering.Window;
 import engine.rendering.WindowFlags;
@@ -123,8 +122,6 @@ public class Application
 				
 				game.update();
 				game.updateScene();
-				
-				Collider.resolveCollisions();
 				
 				if (frameCounter >= 1.0)
 				{

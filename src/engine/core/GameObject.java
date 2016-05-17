@@ -116,10 +116,10 @@ public class GameObject
 	 */
 	public void addChild(GameObject child)
 	{
-		children.add(child);
 		child.setApplication(application);
 		child.parent = this;
 		child.transform.setParent(transform);
+		children.add(child);
 	}
 	
 	/**

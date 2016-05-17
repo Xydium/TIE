@@ -1,6 +1,6 @@
 package engine.rendering;
 
-import engine.math.Vector2;
+import engine.math.Vector2f;
 
 /**
  * Object for storing the position and texture coordinates of
@@ -11,8 +11,10 @@ import engine.math.Vector2;
  */
 public class Vertex
 {
-	private Vector2 position;
-	private Vector2 texCoord;
+	public static final int SIZE = 4;
+	
+	private Vector2f position;
+	private Vector2f texCoord;
 	
 	/**
 	 * Creates a new Vertex object with the given
@@ -21,7 +23,7 @@ public class Vertex
 	 * @param position
 	 * @param texCoord
 	 */
-	public Vertex(Vector2 position, Vector2 texCoord)
+	public Vertex(Vector2f position, Vector2f texCoord)
 	{
 		this.position = position;
 		this.texCoord = texCoord;
@@ -32,7 +34,7 @@ public class Vertex
 	 * 
 	 * @return the vertex position
 	 */
-	public Vector2 getPosition()
+	public Vector2f getPosition()
 	{
 		return position;
 	}
@@ -42,7 +44,7 @@ public class Vertex
 	 * 
 	 * @return the vertex texcoord
 	 */
-	public Vector2 getTexCoord()
+	public Vector2f getTexCoord()
 	{
 		return texCoord;
 	}

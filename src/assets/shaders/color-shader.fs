@@ -1,8 +1,7 @@
 #version 120
+#include "dark-overlay.fsh"
 
 uniform vec4 color;
-
-#include "dark-overlay.fsh"
 
 void main()
 {

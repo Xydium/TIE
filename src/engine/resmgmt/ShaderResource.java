@@ -6,6 +6,8 @@ import static org.lwjgl.opengl.GL20.glCreateProgram;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import engine.utility.Log;
+
 /**
  * Stores references to GL shaders and the number of times
  * they have been referenced
@@ -44,6 +46,7 @@ public class ShaderResource extends Resource
 	protected void finalize()
 	{
 		glDeleteBuffers(program);
+		Log.internal("Deleted shader data for: " + program);
 	}
 	
 	/**

@@ -74,4 +74,8 @@ $RECYCLE.BIN/
 
 saved*.png
 
+LOG_*.txt
+
 src/assets/textures
+*.classpath
+.classpath

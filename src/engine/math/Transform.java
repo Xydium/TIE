@@ -1,7 +1,5 @@
 package engine.math;
 
-import engine.utility.Log;
-
 /**
  * A Transform which represents a position and a rotation
  * of an object, and can be translated or rotated
@@ -12,7 +10,7 @@ import engine.utility.Log;
 public class Transform
 {
 	private Transform parent;
-	private Vector2 position;
+	private Vector2i position;
 	private float rotation;
 	
 	/**
@@ -22,7 +20,7 @@ public class Transform
 	 */
 	public Transform()
 	{
-		this(new Vector2(), 0);
+		this(new Vector2i(), 0);
 	}
 	
 	/**
@@ -32,7 +30,7 @@ public class Transform
 	 * 
 	 * @param position the position of the transform
 	 */
-	public Transform(Vector2 position)
+	public Transform(Vector2i position)
 	{
 		this(position, 0);
 	}
@@ -46,7 +44,7 @@ public class Transform
 	 */
 	public Transform(float rotation)
 	{
-		this(new Vector2(), rotation);
+		this(new Vector2i(), rotation);
 	}
 	
 	/**
@@ -57,7 +55,7 @@ public class Transform
 	 * @param position the position of the transform
 	 * @param rotation the rotation of the transform
 	 */
-	public Transform(Vector2 position, float rotation)
+	public Transform(Vector2i position, float rotation)
 	{
 		parent = null;
 		this.position = position;
@@ -71,7 +69,7 @@ public class Transform
 	 * @param translation the vector to translate this transform by
 	 * @return this Transform
 	 */
-	public Transform translateBy(Vector2 translation)
+	public Transform translateBy(Vector2i translation)
 	{
 		position = position.add(translation.rotateBy(rotation));
 		
@@ -99,7 +97,7 @@ public class Transform
 	 */
 	public void setPosition(float x, float y)
 	{
-		position = new Vector2(x, y);
+		position = new Vector2i(x, y);
 	}
 	
 	/**
@@ -107,7 +105,7 @@ public class Transform
 	 * 
 	 * @param position the new position of the transform
 	 */
-	public void setPosition(Vector2 position)
+	public void setPosition(Vector2i position)
 	{
 		this.position = position;
 	}
@@ -117,7 +115,7 @@ public class Transform
 	 * 
 	 * @param position the global position of the transform
 	 */
-	public void setGlobalPosition(Vector2 position)
+	public void setGlobalPosition(Vector2i position)
 	{
 		if (parent == null)
 		{
@@ -136,7 +134,7 @@ public class Transform
 	 */
 	public void setGlobalPosition(float x, float y)
 	{
-		setGlobalPosition(new Vector2(x, y));
+		setGlobalPosition(new Vector2i(x, y));
 	}
 	
 	/**
@@ -154,9 +152,20 @@ public class Transform
 		if (parent == null)
 		{
 			this.rotation = rotation;
+			return;
 		}
 		
 		this.rotation = parent.getGlobalRotation() - rotation;
+	}
+
+	/**
+	 * Sets the parent of the transformation
+	 * 
+	 * @param parent the parent of the transformation
+	 */
+	public void setParent(Transform parent)
+	{
+		this.parent = parent;
 	}
 	
 	/**
@@ -164,7 +173,7 @@ public class Transform
 	 * 
 	 * @return the position of the transform
 	 */
-	public Vector2 getPosition()
+	public Vector2i getPosition()
 	{
 		return position;
 	}
@@ -174,7 +183,7 @@ public class Transform
 	 * 
 	 * @return the global position of the transform
 	 */
-	public Vector2 getGlobalPosition()
+	public Vector2i getGlobalPosition()
 	{
 		if (parent == null)
 		{
@@ -209,9 +218,13 @@ public class Transform
 		return parent.getGlobalRotation() + rotation;
 	}
 	
-	public void setParent(Transform t)
+	/**
+	 * Gets the parent of the transformation
+	 * 
+	 * @return the parent of the transformation
+	 */
+	public Transform getParent()
 	{
-		this.parent = t;
+		return parent;
 	}
-	
 }
