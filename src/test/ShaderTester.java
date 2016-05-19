@@ -4,6 +4,7 @@ import engine.components.RectRenderer;
 import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
+import engine.core.Input;
 import engine.math.Vector2i;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
@@ -42,7 +43,6 @@ public class ShaderTester extends Game
 	
 	public void update()
 	{
-		counter += 0.02f;
-		obj.getTransform().rotateBy(0.01f);
+		obj.getTransform().lookAt(Input.getMousePosition());
 	}
 }

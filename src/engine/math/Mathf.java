@@ -57,4 +57,12 @@ public class Mathf
 	{
 		return (float) Math.tan(a);
 	}
+	
+	/**
+	 * @see java.lang.Math#atan2(double, double)
+	 */
+	public static float atan2(float y, float x)
+	{
+		return (float) Math.atan2(y, x);
+	}
 }

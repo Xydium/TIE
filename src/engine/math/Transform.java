@@ -89,6 +89,18 @@ public class Transform
 		return this;
 	}
 	
+	public void lookAt(int x, int y)
+	{
+		Vector2i gPos = getGlobalPosition();
+		
+		setGlobalRotation(Mathf.atan2(x - gPos.getX(), y - gPos.getY()));
+	}
+	
+	public void lookAt(Vector2i point)
+	{
+		lookAt(point.getX(), point.getY());
+	}
+	
 	/**
 	 * Sets the local position of this transform
 	 * 
