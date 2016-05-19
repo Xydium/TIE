@@ -58,6 +58,13 @@ public class Scene
 	}
 	
 	/**
+	 * Called every update frame
+	 */
+	public void lateUpdate()
+	{
+	}
+	
+	/**
 	 * Called every time the scene renders
 	 */
 	public void render()

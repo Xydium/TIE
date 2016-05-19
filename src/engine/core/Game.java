@@ -75,6 +75,16 @@ public abstract class Game
 	}
 	
 	/**
+	 * Updates all objects in the scene
+	 */
+	public void lateUpdateScene()
+	{
+		getScene().lateUpdate();
+		//getScene().getRootObject().update();
+		//getScene().getRootObject().updateAll();
+	}
+	
+	/**
 	 * Renders all objects in the scene
 	 */
 	public void renderScene()

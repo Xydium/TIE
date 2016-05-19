@@ -50,17 +50,16 @@ public class AABBCollider extends Collider
 	}
 
 	/**
-	 * Gets the penetration vector of the collision between this
-	 * collider and the given collider
+	 * Resolves the collision between this collider and the other
+	 * collider
 	 * 
 	 * @param other the collider to resolve collisions with
-	 * @return the penetration vector
 	 */
-	public Vector2i resolveCollision(Collider other)
+	public void resolveCollision(Collider other)
 	{
 		if (!(other instanceof AABBCollider))
 		{
-			return new Vector2i();
+			return;
 		}
 		
 		AABBCollider aabb2 = (AABBCollider)other;
@@ -71,26 +70,29 @@ public class AABBCollider extends Collider
 		Vector2i s1 = size;
 		Vector2i s2 = aabb2.getSize();
 		
-		Vector2f centerVec = new Vector2f(p2.sub(p1));
+		Vector2f c1 = new Vector2f(p1.add(s1.div(2)));
+		Vector2f c2 = new Vector2f(p2.add(s2.div(2)));
 		
-		Vector2f[] collVectors = {new Vector2f((p2.getX() + s2.getX()) - (p1.getX() - s1.getX()), 0),
-			new Vector2f(-((p1.getX() + s1.getX()) - (p2.getX() - s2.getX())), 0),
-			new Vector2f(0, (p2.getY() + s2.getY()) - (p1.getY() - s1.getY())),
-			new Vector2f(0, -((p1.getY() + s1.getY()) - (p2.getY() - s2.getY())))};
+		Vector2f centerVec = c2.sub(c1);
+		
+		Vector2f[] penDirs = {
+			new Vector2f(0, p2.getY() - s1.getY() - p1.getY()), new Vector2f(0, p2.getY() + s2.getY() - p1.getY()),
+			new Vector2f(p2.getX() - s1.getX() - p1.getX(), 0), new Vector2f(p2.getX() + s2.getX() - p1.getX(), 0)
+		};
 		
 		float shortestLen = Float.MAX_VALUE;
 		Vector2f shortest = new Vector2f();
 		
-		for (int i = 0; i < collVectors.length; i++)
+		for (int i = 0; i < penDirs.length; i++)
 		{
-			if (centerVec.dot(collVectors[i]) < 0 && collVectors[i].getMagnitudeSq() < shortestLen)
+			if (centerVec.dot(penDirs[i]) < 0 && penDirs[i].getMagnitudeSq() < shortestLen)
 			{
-				shortestLen = collVectors[i].getMagnitudeSq();
-				shortest = collVectors[i];
+				shortestLen = penDirs[i].getMagnitudeSq();
+				shortest = penDirs[i];
 			}
 		}
 		
-		return new Vector2i(shortest);
+		getTransform().setGlobalPosition(p1.add(new Vector2i(shortest)));
 	}
 
 	public void setSize(Vector2i size)

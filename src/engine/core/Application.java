@@ -123,6 +123,8 @@ public class Application
 				game.update();
 				game.updateScene();
 				
+				game.lateUpdateScene();
+				
 				if (frameCounter >= 1.0)
 				{
 					lastFPS = frames;

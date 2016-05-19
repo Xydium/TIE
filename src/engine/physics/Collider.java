@@ -1,7 +1,6 @@
 package engine.physics;
 
 import engine.core.GameComponent;
-import engine.math.Vector2i;
 
 /**
  * Class for collider components which will check and
@@ -40,11 +39,10 @@ public abstract class Collider extends GameComponent
 	public abstract boolean collidesWith(Collider other);
 	
 	/**
-	 * Gets the penetration vector of the collision between this
-	 * collider and the given collider
+	 * Resolves the collision between this collider and the other
+	 * collider
 	 * 
 	 * @param other the collider to resolve collisions with
-	 * @return the penetration vector
 	 */
-	public abstract Vector2i resolveCollision(Collider other);
+	public abstract void resolveCollision(Collider other);
 }
