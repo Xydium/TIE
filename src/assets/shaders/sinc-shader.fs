@@ -1,9 +1,10 @@
 #version 120
+#include "dark-overlay.fsh"
 
 uniform vec4 color;
-uniform int deg;
+uniform float angle;
 
 void main()
 {
-	gl_FragColor = vec4(color.xyz * sin(radians(deg)), color.w);
+	gl_FragColor = adjustOverlay(vec4(color.rgb * sin(angle), color.a));
 }
