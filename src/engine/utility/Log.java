@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *
  * @author Tim Hornick
  * @author Chris Jerrett
+ * @author Lenny Litvak
  *
  */
 public class Log
@@ -34,13 +35,16 @@ public class Log
 	 */
 	public static void error(Exception e)
 	{
-		String error = "";
+		StringBuilder error = new StringBuilder();
+		error.append(e.getClass().getName()).append(": ");
+		error.append(e.getLocalizedMessage()).append("\n");
+		
 		for(StackTraceElement el : e.getStackTrace())
 		{
-			error += "\t" + el.toString() + "\n";
+			error.append("\t").append(el.toString()).append("\n");
 		}
 		
-		addLine(LogLevel.ERROR, error);
+		addLine(LogLevel.ERROR, error.toString());
 	}
 
 	/**
