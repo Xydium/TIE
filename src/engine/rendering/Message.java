@@ -14,6 +14,7 @@ import java.util.List;
 import engine.components.RectRenderer;
 import engine.core.GameObject;
 import engine.math.Vector2;
+import engine.math.Vector2i;
 import engine.utility.Log;
 import engine.utility.Util;
 
@@ -22,42 +23,52 @@ import engine.utility.Util;
  * @author Chris Jerrett
  * @version Alpha
  */
-public class Message extends GameObject{
+public class Message extends GameObject
+{
 
 	private String message;
 	private Font font;
-	private Vector2 loc;
+	private Vector2i loc;
 	private Color color;
 
-	public void render() {
-		List<BufferedImage> imgs= getLettersTextures();
-		for(BufferedImage img : imgs) {
-			Texture texture = new Texture(img);
-
-			//RectRenderer renderer = new RectRenderer(Util.pixelDToGL(new Vector2(img.getWidth(), img.getHeight())), texture);
-			//renderer.setShader(new Shader("basic-shader"));
-			//addAllComponents(renderer);
-			Vector2 position = new Vector2();
-			position.setX(loc.getX());
-			position.setY(loc.getY());
-			//Util.pixelCToGL(position);
-			//getTransform().setPosition(position);
-		}
-	}
-
-	public Message(String message, Font font, Color color, Vector2 loc) {
+	public Message(String message, Font font, Color color, Vector2i loc) {
 		this.message = message;
 		this.font = font;
 		this.color = color;
 		this.loc = loc;
+		BufferedImage img = combineLetters();
+		Texture texture = new Texture(img);
+		RectRenderer renderer = new RectRenderer(new Vector2i(img.getWidth(), img.getHeight()), texture);
+		renderer.setShader(new Shader("texture-shader"));
+		renderer.setAllowLighting(false);
+		addComponent(renderer);
+		getTransform().setPosition(loc);
 	}
 
-	public Message(String message, String font, Vector2 loc, int size, Color color) {
+	public Message(String message, String font, Vector2i loc, int size, Color color) {
 		this.message = message;
 		this.loc = loc;
 		loadFont(font, size);
 	}
 
+	private BufferedImage combineLetters()
+	{
+		List<BufferedImage> imgs = getLettersTextures();
+		int width = 0;
+		for(BufferedImage im : imgs)
+		{
+			width += im.getWidth();
+		}
+		BufferedImage result = new BufferedImage(width, imgs.get(0).getHeight(), BufferedImage.TYPE_INT_ARGB);
+		int x = 0;
+		for(BufferedImage img : imgs)
+		{
+			result.getGraphics().drawImage(img, x, 0, null);
+			x += img.getWidth();
+		}
+		return result;
+	}
+	
 	private void loadFont(String font, int size) {
 		try {
 			InputStream stream = getClass().getResourceAsStream("res/fonts/" + font + ".fft");
@@ -74,7 +85,7 @@ public class Message extends GameObject{
 	/**
 	 * @return the loc
 	 */
-	public Vector2 getLoc() {
+	public Vector2i getLoc() {
 		return loc;
 	}
 

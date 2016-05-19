@@ -163,6 +163,6 @@ public class Util
 		float green = color.getG();
 		float alpha = color.getA();
 		
-		return new java.awt.Color(red, blue, green, alpha);
+		return new java.awt.Color(red, green, blue, alpha);
 	}
 }
