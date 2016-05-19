@@ -132,7 +132,7 @@ public class Transform
 	 * @param x the x component of the global position of the transform
 	 * @param y the y component of the global position of the transform
 	 */
-	public void setGlobalPosition(float x, float y)
+	public void setGlobalPosition(int x, int y)
 	{
 		setGlobalPosition(new Vector2i(x, y));
 	}
