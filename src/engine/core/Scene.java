@@ -92,6 +92,14 @@ public class Scene
 	}
 	
 	/**
+	 * Cleans up all removed stuff from the scene
+	 */
+	public void cleanRemoved()
+	{
+		rootObject.cleanRemovedObjects();
+	}
+	
+	/**
 	 * Gets the root object of the scene
 	 * 
 	 * @return the root object

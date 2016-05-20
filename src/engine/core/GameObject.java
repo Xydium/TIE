@@ -18,6 +18,8 @@ public class GameObject
 	private ArrayList<GameObject> children;
 	private GameObject parent;
 	
+	private ArrayList<GameObject> removeList;
+	
 	private Transform transform;
 	
 	private Application application;
@@ -33,6 +35,9 @@ public class GameObject
 		children = new ArrayList<GameObject>();
 		parent = null;
 		transform = new Transform();
+		
+		removeList = new ArrayList<GameObject>();
+		
 		application = null;
 		tag = "GameObject";
 	}
@@ -110,6 +115,21 @@ public class GameObject
 	}
 	
 	/**
+	 * Actually removes all of the removed objects in the removed list
+	 */
+	public void cleanRemovedObjects()
+	{
+		for (GameObject obj : removeList)
+		{
+			obj.parent = null;
+			obj.transform.setParent(null);
+			children.remove(obj);
+		}
+		
+		removeList.clear();
+	}
+	
+	/**
 	 * Adds a child to the game object's children
 	 * 
 	 * @param child the child to add to the object
@@ -157,6 +177,41 @@ public class GameObject
 		{
 			addComponent(comp);
 		}
+	}
+	
+	/**
+	 * Removes the given child from the object's children
+	 * 
+	 * Warning: attempts to remove it immediately; not suggested
+	 * 
+	 * @param child the child to remove
+	 * @return the child removed
+	 */
+	public GameObject removeChild(GameObject child)
+	{
+		child.parent = null;
+		child.transform.setParent(null);
+		children.remove(child);
+		
+		return child;
+	}
+	
+	/**
+	 * Removes the child at the given index from
+	 * the object's children
+	 * 
+	 * Warning: attempts to remove it immediately; not suggested
+	 * 
+	 * @param i the index of the child to remove
+	 * @return the child removed
+	 */
+	public GameObject removeChild(int i)
+	{
+		GameObject child = children.remove(i);
+		child.parent = null;
+		child.transform.setParent(null);
+		
+		return child;
 	}
 	
 	/**

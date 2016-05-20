@@ -125,6 +125,8 @@ public class Application
 				
 				game.lateUpdateScene();
 				
+				game.getScene().cleanRemoved();
+				
 				if (frameCounter >= 1.0)
 				{
 					lastFPS = frames;
