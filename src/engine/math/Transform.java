@@ -89,11 +89,41 @@ public class Transform
 		return this;
 	}
 	
-	public void lookAt(int x, int y)
+	public float distanceTo(int x, int y)
 	{
 		Vector2i gPos = getGlobalPosition();
 		
-		setGlobalRotation(Mathf.atan2(x - gPos.getX(), y - gPos.getY()));
+		int dx = gPos.getX() - x;
+		int dy = gPos.getY() - y;
+		
+		return Mathf.sqrt(dx * dx + dy * dy);
+	}
+	
+	public float distanceTo(Vector2i point)
+	{
+		return distanceTo(point.getX(), point.getY());
+	}
+	
+	public float distanceTo(Transform other)
+	{
+		return distanceTo(other.getGlobalPosition());
+	}
+	
+	public float angleTo(int x, int y)
+	{
+		Vector2i gPos = getGlobalPosition();
+		
+		return Mathf.atan2(x - gPos.getX(), y - gPos.getY());
+	}
+	
+	public float angleTo(Vector2i point)
+	{
+		return angleTo(point.getX(), point.getY());
+	}
+	
+	public void lookAt(int x, int y)
+	{
+		setGlobalRotation(angleTo(x, y));
 	}
 	
 	public void lookAt(Vector2i point)

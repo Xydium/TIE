@@ -27,6 +27,14 @@ public class Mathf
 	}
 	
 	/**
+	 * @see java.lang.Math#sqrt(double)
+	 */
+	public static float sqrt(float n)
+	{
+		return (float) Math.sqrt(n);
+	}
+	
+	/**
 	 * @see java.lang.Math#abs(double)
 	 */
 	public static float abs(float n)
