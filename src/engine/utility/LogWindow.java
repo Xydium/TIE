@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultCaret;
 
 import engine.utility.Log.LogLevel;
 
@@ -43,7 +44,9 @@ public class LogWindow extends JFrame {
 		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
-		textArea.setRows(20);
+		DefaultCaret caret = (DefaultCaret)textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		textArea.setRows(30);
 		scrollPane.setViewportView(textArea);
 
 		slider = new JSlider();
@@ -73,5 +76,6 @@ public class LogWindow extends JFrame {
 
 	public void updateConsole(String text) {
 		textArea.append(" " + text + "\n");
+
 	}
 }
