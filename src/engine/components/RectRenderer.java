@@ -191,4 +191,25 @@ public class RectRenderer extends GameComponent
 		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", size=" + size + ", uniformConfig="
 				+ uniformConfig + "]";
 	}
+
+	/**
+	 * @return the size
+	 */
+	public Vector2i getSize() {
+		return size;
+	}
+
+	/**
+	 * @return the squareBuffer
+	 */
+	public Mesh getSquareBuffer() {
+		return squareBuffer;
+	}
+
+	/**
+	 * @return the uniformConfig
+	 */
+	public UniformConfig getUniformConfig() {
+		return uniformConfig;
+	}
 }
