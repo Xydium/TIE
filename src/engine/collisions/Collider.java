@@ -1,4 +1,4 @@
-package engine.physics;
+package engine.collisions;
 
 import engine.core.GameComponent;
 

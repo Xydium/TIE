@@ -1,4 +1,4 @@
-package engine.physics;
+package engine.collisions;
 
 import engine.math.Vector2f;
 import engine.math.Vector2i;

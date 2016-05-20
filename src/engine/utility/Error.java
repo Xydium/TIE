@@ -1,4 +1,4 @@
-package engine.core;
+package engine.utility;
 
 public enum Error {
 
