@@ -71,6 +71,11 @@ public class Scene
 	{
 	}
 	
+	public void remove(GameObject obj)
+	{
+		getRootObject().removeChildSafely(obj);
+	}
+	
 	/**
 	 * Adds the given object to the scene
 	 * 

@@ -155,6 +155,14 @@ public class GameObject
 		}
 	}
 	
+	public void cleanRemoved()
+	{
+		for (GameObject obj : removeList)
+		{
+			removeChild(obj);
+		}
+	}
+	
 	/**
 	 * Adds the given component to the game object
 	 * 
@@ -212,6 +220,11 @@ public class GameObject
 		child.transform.setParent(null);
 		
 		return child;
+	}
+	
+	public void removeChildSafely(GameObject child)
+	{
+		removeList.add(child);
 	}
 	
 	/**
