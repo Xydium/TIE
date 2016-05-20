@@ -34,11 +34,6 @@ public class Vector2i
 		this.y = y;
 	}
 	
-	public boolean equals(Vector2i v2i)
-	{
-		return x == v2i.x && y == v2i.y;
-	}
-	
 	/**
 	 * Creates a new Vector2 object with its x and y
 	 * parameters set to the given values cast as integers
@@ -185,6 +180,18 @@ public class Vector2i
 	public Vector2i div(int n)
 	{
 		return new Vector2i(x / n, y / n);
+	}
+	
+	/**
+	 * Returns whether the components of the two vectors
+	 * are equal to each other
+	 * 
+	 * @param v2i the vector to compare with
+	 * @return whether the vectors are equal
+	 */
+	public boolean equals(Vector2i v2i)
+	{
+		return x == v2i.x && y == v2i.y;
 	}
 	
 	/**
