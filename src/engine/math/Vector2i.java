@@ -34,6 +34,11 @@ public class Vector2i
 		this.y = y;
 	}
 	
+	public boolean equals(Vector2i v2i)
+	{
+		return x == v2i.x && y == v2i.y;
+	}
+	
 	/**
 	 * Creates a new Vector2 object with its x and y
 	 * parameters set to the given values cast as integers
