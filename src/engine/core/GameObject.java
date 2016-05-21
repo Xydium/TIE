@@ -18,6 +18,7 @@ public class GameObject
 	private ArrayList<GameObject> children;
 	private GameObject parent;
 	
+	private ArrayList<GameObject> addList;
 	private ArrayList<GameObject> removeList;
 	
 	private Transform transform;
@@ -36,6 +37,7 @@ public class GameObject
 		parent = null;
 		transform = new Transform();
 		
+		addList = new ArrayList<GameObject>();
 		removeList = new ArrayList<GameObject>();
 		
 		application = null;
@@ -85,6 +87,8 @@ public class GameObject
 	 */
 	public void updateAll()
 	{
+		resolveAdded();
+		
 		for (GameObject obj : children)
 		{
 			obj.update();
@@ -95,6 +99,8 @@ public class GameObject
 		{
 			comp.update();
 		}
+		
+		resolveRemoved();
 	}
 	
 	/**
@@ -112,21 +118,6 @@ public class GameObject
 		{
 			comp.render();
 		}
-	}
-	
-	/**
-	 * Actually removes all of the removed objects in the removed list
-	 */
-	public void cleanRemovedObjects()
-	{
-		for (GameObject obj : removeList)
-		{
-			obj.parent = null;
-			obj.transform.setParent(null);
-			children.remove(obj);
-		}
-		
-		removeList.clear();
 	}
 	
 	/**
@@ -155,12 +146,30 @@ public class GameObject
 		}
 	}
 	
-	public void cleanRemoved()
+	/**
+	 * Resolves all the safely-added objects
+	 */
+	public void resolveAdded()
+	{
+		for (GameObject obj : addList)
+		{
+			addChild(obj);
+		}
+		
+		addList.clear();
+	}
+	
+	/**
+	 * Resolves all the safely-removed objects
+	 */
+	public void resolveRemoved()
 	{
 		for (GameObject obj : removeList)
 		{
 			removeChild(obj);
 		}
+		
+		removeList.clear();
 	}
 	
 	/**
@@ -222,6 +231,23 @@ public class GameObject
 		return child;
 	}
 	
+	/**
+	 * Adds a child by adding it to a list and adding it before
+	 * the game loop has started
+	 * 
+	 * @param child the child to add
+	 */
+	public void addChildSafely(GameObject child)
+	{
+		addList.add(child);
+	}
+	
+	/**
+	 * Removes a child by adding it to a list and removing it after
+	 * the game's update sequence has completed
+	 * 
+	 * @param child the child to remove
+	 */
 	public void removeChildSafely(GameObject child)
 	{
 		removeList.add(child);
@@ -275,6 +301,11 @@ public class GameObject
 	public void setApplication(Application application)
 	{
 		this.application = application;
+		
+		for (GameObject child : children)
+		{
+			child.setApplication(application);
+		}
 	}
 	
 	/**
@@ -398,5 +429,4 @@ public class GameObject
 		
 		return result;
 	}
-	
 }
