@@ -151,7 +151,7 @@ public class Log
 
 		if(windowEnabled && logWindow != null)
 		{
-			logWindow.updateConsole(line);
+			logWindow.writeLine(line);
 		}
 		
 		if (lines.size() >= MAX_LOG_BUFFER_SIZE)

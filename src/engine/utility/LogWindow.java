@@ -15,29 +15,36 @@ import javax.swing.text.DefaultCaret;
 
 import engine.utility.Log.LogLevel;
 
-public class LogWindow extends JFrame {
-
+/**
+ * Window that displays output from the log
+ * 
+ * @author Lenny Litvak
+ * @author Chris Jerrett
+ *
+ */
+public class LogWindow extends JFrame
+{
 	private static final long serialVersionUID = -7439835121174490802L;
-	private JPanel contentPane;
+	
 	private JTextArea textArea;
-	private JLabel lblLogLevel;
-	private JSlider slider;
 
 	/**
-	 * Create the frame.
+	 * Creates a new Log Window to display output
+	 * from the Log
 	 */
-	public LogWindow() {
-		super();
-		setTitle("Log");
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public LogWindow()
+	{
+		super("Output Log");
 		setBounds(100, 100, 700, 500);
-		contentPane = new JPanel();
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		JPanel contentPane = (JPanel)getContentPane();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		lblLogLevel = new JLabel("Log Level: " + Log.getLogLevel());
+		final JLabel lblLogLevel = new JLabel("Log Level: " + Log.getLogLevel());
 		contentPane.add(lblLogLevel, BorderLayout.NORTH);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -47,35 +54,41 @@ public class LogWindow extends JFrame {
 		DefaultCaret caret = (DefaultCaret)textArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		textArea.setRows(30);
+		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 
-		slider = new JSlider();
+		final JSlider slider = new JSlider();
 		scrollPane.setColumnHeaderView(slider);
-		int sliderSize = slider.getMaximum() - slider.getMinimum();
-		int numStates = Log.LogLevel.values().length + 1;
-
-		double sectionSize = sliderSize/numStates;
-		slider.setValue((int)(sectionSize * (Log.getLogLevel().ordinal() + 1)));
-		slider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				int sliderSize = slider.getMaximum() - slider.getMinimum();
-				int numStates = Log.LogLevel.values().length;
-				double sectionSize = sliderSize/numStates;
-				int state = (int) (slider.getValue() / sectionSize);
-				try {
-					Log.setLogLevel(LogLevel.values()[state]);
-				} catch (Exception e) {
+		slider.setMinimum(0);
+		slider.setMaximum(Log.LogLevel.values().length - 1);
+		slider.setValue(Log.getLogLevel().ordinal());
+		
+		slider.addChangeListener(new ChangeListener()
+		{
+			public void stateChanged(ChangeEvent arg0)
+			{
+				try
+				{
+					Log.setLogLevel(LogLevel.values()[slider.getValue()]);
+				} 
+				catch (Exception e)
+				{
 				}
 
 				lblLogLevel.setText("Log Level: " + Log.getLogLevel().name());
 			}
 		});
+		
 		setVisible(true);
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}
 
-	public void updateConsole(String text) {
+	/**
+	 * Writes a line of text to the console
+	 * 
+	 * @param text the text to write
+	 */
+	public void writeLine(String text)
+	{
 		textArea.append(" " + text + "\n");
-
 	}
 }
