@@ -2,14 +2,19 @@ package engine.components;
 
 import java.awt.Canvas;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 import engine.math.Vector2i;
 import engine.rendering.Color;
 import engine.rendering.Mesh;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
+import engine.utility.Log;
 import engine.utility.Util;
 
 public class TextRenderer extends BaseRenderer
@@ -25,7 +30,7 @@ public class TextRenderer extends BaseRenderer
 	
 	/**
 	 * Creates a new TextRenderer using the given
-	 * text and font
+	 * text, font, and color
 	 * 
 	 * @param text the text to be rendered
 	 * @param font the font to render the text with
@@ -42,6 +47,20 @@ public class TextRenderer extends BaseRenderer
 		squareMesh = Mesh.createSquare();
 		
 		genTexture();
+	}
+	
+	/**
+	 * Creates a new TextRenderer using the given text,
+	 * font information, and color
+	 * 
+	 * @param text the text to be rendered
+	 * @param fontName the name of the font to use
+	 * @param fontSize the size of the font
+	 * @param color the color to render the text
+	 */
+	public TextRenderer(String text, String fontName, int fontSize, Color color)
+	{
+		this(text, loadTruetypeFont(fontName, fontSize), color);
 	}
 	
 	/**
@@ -141,9 +160,33 @@ public class TextRenderer extends BaseRenderer
 		resize();
 		
 		BufferedImage drawBuffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		drawBuffer.getGraphics().setFont(font);
-		drawBuffer.getGraphics().drawString(text, 0, 0);
+		Graphics g = drawBuffer.getGraphics();
+		g.setColor(color.toAWTColor());
+		g.setFont(font);
+		g.drawString(text, 0, height / 2);
 		
 		setTexture(new Texture(drawBuffer));
+	}
+	
+	private static Font loadTruetypeFont(String fontName, int size)
+	{
+		try
+		{
+			InputStream stream = TextRenderer.class.getResourceAsStream("/assets/fonts/" + fontName + ".ttf");
+			Font fnt = Font.createFont(Font.TRUETYPE_FONT, stream);
+			fnt = fnt.deriveFont(Font.PLAIN, size);
+			
+			return fnt;
+		}
+		catch (FontFormatException e)
+		{
+			Log.error("Invalid ttf file: /assets/fonts/" + fontName + ".ttf");
+		}
+		catch (IOException e)
+		{
+			Log.error("Could not find ttf file: /assets/fonts/" + fontName + ".ttf");
+		}
+		
+		return null;
 	}
 }

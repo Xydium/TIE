@@ -1,7 +1,5 @@
 package test;
 
-import java.awt.Font;
-
 import engine.components.RectRenderer;
 import engine.components.TextRenderer;
 import engine.components.UniformConfig;
@@ -39,7 +37,7 @@ public class ShaderTester extends Game
 		});
 		
 		GameObject obj2 = new GameObject();
-		TextRenderer tr = new TextRenderer("Some text idk", new Font("Papyrus", Font.PLAIN, 20), new Color(1, 1, 1));
+		TextRenderer tr = new TextRenderer("Some text idk", "Papyrus", 20, new Color(1, 0.5f, 1));
 		obj2.addComponent(tr);
 		obj2.getTransform().setPosition(250, 250);
 		add(obj2);

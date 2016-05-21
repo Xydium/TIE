@@ -109,4 +109,15 @@ public class Color
 	{
 		return a;
 	}
+	
+	/**
+	 * Creates a new java.awt.Color object with the
+	 * same color as this object
+	 * 
+	 * @return the java.awt.Color conversion of this color
+	 */
+	public java.awt.Color toAWTColor()
+	{
+		return new java.awt.Color(r, g, b, a);
+	}
 }
