@@ -154,7 +154,7 @@ public class TextRenderer extends BaseRenderer
 	{
 		FontMetrics fontMetrics = new Canvas().getFontMetrics(font);
 		width = fontMetrics.stringWidth(text);
-		height = fontMetrics.getHeight();
+		height = fontMetrics.getHeight() + 10;
 	}
 	
 	private void genTexture()
