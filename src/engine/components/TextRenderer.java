@@ -42,7 +42,7 @@ public class TextRenderer extends BaseRenderer
 		this.font = font;
 		this.color = color;
 		
-		setShader(new Shader("color-texture-shader"));
+		setShader(new Shader("texture-shader"));
 		
 		squareMesh = Mesh.createSquare();
 		
