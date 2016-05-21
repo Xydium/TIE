@@ -1,5 +1,8 @@
 package engine.rendering;
 
+import static org.lwjgl.opengl.GL11.GL_VERSION;
+import static org.lwjgl.opengl.GL11.glGetString;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -11,10 +14,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import engine.math.Vector2i;
 import engine.utility.Log;
-
-import static org.lwjgl.opengl.GL11.glGetString;
-import static org.lwjgl.opengl.GL11.GL_VERSION;
 
 /**
  * Static window class for wrapping LWJGL 2's Display class
@@ -142,6 +143,16 @@ public final class Window
 		return flags.getHeight();
 	}
 
+	/**
+	 * Gets the size of the window
+	 * 
+	 * @return the window's size
+	 */
+	public static Vector2i getSize()
+	{
+		return flags.getDimensions();
+	}
+	
 	/**
 	 * Gets the aspect ratio (width / height) of the window
 	 *
