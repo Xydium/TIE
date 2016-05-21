@@ -1,16 +1,13 @@
 package test;
 
 import engine.components.RectRenderer;
-import engine.components.RectRenderer.UniformConfig;
 import engine.core.Game;
 import engine.core.GameObject;
 import engine.core.Input;
-import engine.math.Vector2f;
 import engine.math.Vector2i;
 import engine.rendering.Color;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
-import engine.utility.Log;
 
 public class TestGame extends Game
 {

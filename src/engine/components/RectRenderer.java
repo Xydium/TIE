@@ -1,10 +1,9 @@
 package engine.components;
 
-import engine.core.GameComponent;
 import engine.math.Vector2i;
+import engine.rendering.Mesh;
 import engine.rendering.Shader;
 import engine.rendering.Texture;
-import engine.rendering.Mesh;
 import engine.utility.Util;
 
 /**
@@ -14,16 +13,10 @@ import engine.utility.Util;
  * @author Lenny Litvak
  *
  */
-public class RectRenderer extends GameComponent
+public class RectRenderer extends BaseRenderer
 {
-	private Texture texture;
-	private Shader shader;
-	private boolean allowLighting;
-	
 	private Vector2i size;
-	private Mesh squareBuffer;
-
-	private UniformConfig uniformConfig;
+	private Mesh squareMesh;
 
 	/**
 	 * Creates a new RectRenderer using the given size
@@ -38,11 +31,9 @@ public class RectRenderer extends GameComponent
 	{
 		setShader(new Shader("texture-shader"));
 		this.size = size;
-		this.texture = texture;
-		uniformConfig = null;
-		allowLighting = true;
+		setTexture(texture);
 		
-		squareBuffer = Mesh.createSquare();
+		squareMesh = Mesh.createSquare();
 	}
 	
 	/**
@@ -66,9 +57,9 @@ public class RectRenderer extends GameComponent
 	{
 		getShader().bind();
 		
-		if (texture != null)
+		if (getTexture() != null)
 		{
-			texture.bind();			
+			getTexture().bind();			
 		}
 		
 		Vector2i halfSize = size.div(2);
@@ -77,14 +68,14 @@ public class RectRenderer extends GameComponent
 		getShader().setUniform("trans_Rotation", getTransform().getGlobalRotation());
 		getShader().setUniform("trans_Scale", Util.pixelDimensionToWindow(halfSize));
 		
-		if (uniformConfig != null)
+		if (getUniformConfig() != null)
 		{
-			uniformConfig.setUniforms(getShader());
+			getUniformConfig().setUniforms(getShader());
 		}
 		
-		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), allowLighting);
+		getApplication().getRenderingEngine().updateOverlayBrightness(getShader(), getAllowLighting());
 		
-		squareBuffer.render();
+		squareMesh.render();
 	}
 	
 	/**
@@ -95,91 +86,6 @@ public class RectRenderer extends GameComponent
 	public void setSize(Vector2i size)
 	{
 		this.size = size;
-	}
-
-	/**
-	 * Sets the texture of the RectRenderer
-	 * 
-	 * @param texture the new texture
-	 */
-	public void setTexture(Texture texture)
-	{
-		this.texture = texture;
-	}
-	
-	/**
-	 * Sets the shader of the RectRenderer
-	 * 
-	 * @param shader the new shader
-	 */
-	public void setShader(Shader shader)
-	{
-		this.shader = shader;
-	}
-	
-	/**
-	 * Sets whether the RectRenderer allows it to be affected
-	 * by lighting
-	 * 
-	 * @param allowLighting whether lighting is allowed
-	 */
-	public void setAllowLighting(boolean allowLighting)
-	{
-		this.allowLighting = allowLighting;
-	}
-	
-	/**
-	 * Gets the texture of the RectRenderer
-	 * 
-	 * @return the RectRenderer's texture
-	 */
-	public Texture getTexture()
-	{
-		return texture;
-	}
-
-	/**
-	 * Gets the shader used by the RectRenderer
-	 * 
-	 * @return the RectRenderer's shader
-	 */
-	public Shader getShader()
-	{
-		return shader;
-	}
-	
-	/**
-	 * Gets whether the RectRenderer allows it to be affected
-	 * by lighting
-	 * 
-	 * @return whether lighting is allowed
-	 */
-	public boolean getAllowLighting()
-	{
-		return allowLighting;
-	}
-	
-	/**
-	 * Sets the uniform configuration interface that will be used by the
-	 * RectRenderer to set the uniforms of its shader
-	 * 
-	 * @param uniformConfig the uniform configuration interface
-	 */
-	public void setUniformConfig(UniformConfig uniformConfig)
-	{
-		this.uniformConfig = uniformConfig;
-	}
-
-	/**
-	 * Simple interface that can be used to set the uniforms of the
-	 * RectRenderer's shader
-	 * 
-	 * @author Tim Hornick
-	 *
-	 */
-	public interface UniformConfig
-	{
-		public void setUniforms(Shader s);
 	}
 
 	/**
@@ -199,18 +105,7 @@ public class RectRenderer extends GameComponent
 	 */
 	public Mesh getSquareBuffer()
 	{
-		return squareBuffer;
-	}
-
-	/**
-	 * Gets the uniform config currently set to
-	 * alter the uniforms
-	 * 
-	 * @return the uniformConfig
-	 */
-	public UniformConfig getUniformConfig()
-	{
-		return uniformConfig;
+		return squareMesh;
 	}
 	
 	/* (non-Javadoc)
@@ -219,7 +114,7 @@ public class RectRenderer extends GameComponent
 	@Override
 	public String toString()
 	{
-		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", size=" + size + ", uniformConfig="
-				+ uniformConfig + "]";
+		return "RectRenderer [texture=" + getTexture() + ", shader=" + getShader() + ", size=" + size + ", uniformConfig="
+				+ getUniformConfig() + "]";
 	}
 }
