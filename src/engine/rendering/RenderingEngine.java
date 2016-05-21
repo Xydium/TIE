@@ -2,6 +2,7 @@ package engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
 import engine.core.Application;
+import engine.math.Mathf;
 
 /**
  * Rendering engine for the game, contains important GL utilities
@@ -16,6 +17,7 @@ public class RenderingEngine
 	
 	private Color clearColor;
 	private float overlayBrightness;
+	private float targetOverlayBrightness = 1;
 
 	/**
 	 * Creates a new RenderingEngine object with the given
@@ -48,7 +50,7 @@ public class RenderingEngine
 	 */
 	public void updateOverlayBrightness(Shader shader, boolean enabled)
 	{
-		
+		overlayBrightness = Mathf.lerp(overlayBrightness, targetOverlayBrightness, 0.07f);
 		shader.setUniform("lightPercent", enabled ? overlayBrightness : -1.f);
 		shader.setUniform("windowSize", application.getWindowFlags().getDimensions());
 	}
@@ -60,7 +62,7 @@ public class RenderingEngine
 	 */
 	public void setOverlayBrightness(float overlayBrightness)
 	{
-		this.overlayBrightness = overlayBrightness;
+		this.targetOverlayBrightness = overlayBrightness;
 	}
 	
 	/**
