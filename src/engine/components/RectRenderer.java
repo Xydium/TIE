@@ -181,6 +181,37 @@ public class RectRenderer extends GameComponent
 	{
 		public void setUniforms(Shader s);
 	}
+
+	/**
+	 * Gets the size of the rect renderer
+	 * 
+	 * @return the size
+	 */
+	public Vector2i getSize()
+	{
+		return size;
+	}
+
+	/**
+	 * Gets the square buffer mesh used to render the rect renderer
+	 * 
+	 * @return the squareBuffer
+	 */
+	public Mesh getSquareBuffer()
+	{
+		return squareBuffer;
+	}
+
+	/**
+	 * Gets the uniform config currently set to
+	 * alter the uniforms
+	 * 
+	 * @return the uniformConfig
+	 */
+	public UniformConfig getUniformConfig()
+	{
+		return uniformConfig;
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -190,26 +221,5 @@ public class RectRenderer extends GameComponent
 	{
 		return "RectRenderer [texture=" + texture + ", shader=" + shader + ", size=" + size + ", uniformConfig="
 				+ uniformConfig + "]";
-	}
-
-	/**
-	 * @return the size
-	 */
-	public Vector2i getSize() {
-		return size;
-	}
-
-	/**
-	 * @return the squareBuffer
-	 */
-	public Mesh getSquareBuffer() {
-		return squareBuffer;
-	}
-
-	/**
-	 * @return the uniformConfig
-	 */
-	public UniformConfig getUniformConfig() {
-		return uniformConfig;
 	}
 }

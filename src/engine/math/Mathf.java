@@ -73,4 +73,18 @@ public class Mathf
 	{
 		return (float) Math.atan2(y, x);
 	}
+	
+	/**
+	 * Linearly interpolates between points a and b,
+	 * with the percentage c
+	 * 
+	 * @param a the initial value to interpolate from
+	 * @param b the final value to interpolate to
+	 * @param c the percentage to interpolate
+	 * @return the interpolated value
+	 */
+	public static float lerp(float a, float b, float c)
+	{
+		return a + (b - a) * c;
+	}
 }
