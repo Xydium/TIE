@@ -47,6 +47,8 @@ public class TextRenderer extends BaseRenderer
 		squareMesh = Mesh.createSquare();
 		
 		genTexture();
+		
+		setAllowLighting(false);
 	}
 	
 	/**
@@ -134,7 +136,7 @@ public class TextRenderer extends BaseRenderer
 		
 		Vector2i halfSize = new Vector2i(width / 2, height / 2);
 		
-		getShader().setUniform("trans_Position", Util.pixelCoordToWindow(getTransform().getGlobalPosition().add(halfSize)));
+		getShader().setUniform("trans_Position", Util.pixelCoordToWindow(getTransform().getGlobalPosition()));
 		getShader().setUniform("trans_Rotation", getTransform().getGlobalRotation());
 		getShader().setUniform("trans_Scale", Util.pixelDimensionToWindow(halfSize));
 		
