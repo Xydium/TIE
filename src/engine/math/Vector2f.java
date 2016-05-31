@@ -107,6 +107,29 @@ public class Vector2f
 	}
 	
 	/**
+	 * Gets the angle of the vector
+	 * 
+	 * @return the angle of the vector
+	 */
+	public float getAngle()
+	{
+		Vector2f norm = getUnit();
+		
+		return Mathf.atan2(norm.getY(), norm.getX());
+	}
+	
+	/**
+	 * Gets the angle to a given point
+	 * 
+	 * @param point the point to get the angle to
+	 * @return the angle to the given point
+	 */
+	public float getAngleTo(Vector2f point)
+	{
+		return Mathf.atan2(x - point.getX(), y - point.getY());
+	}
+	
+	/**
 	 * Adds the given vector to this vector and
 	 * creates a new sum vector to be returned
 	 * 
