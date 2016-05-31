@@ -197,7 +197,7 @@ public class Transform
 			return;
 		}
 		
-		this.rotation = parent.getGlobalRotation() - rotation;
+		this.rotation = -parent.getGlobalRotation() - rotation;
 	}
 
 	/**
